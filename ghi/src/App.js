@@ -1,7 +1,12 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Construct from "./Construct.js";
 import ErrorNotification from "./ErrorNotification";
+import MainPage from "./MainPage.js";
+import Nav from "./Nav.js";
 import "./App.css";
+import AccountForm from "./AccountForm.js";
+import AccountList from "./AccountList.js";
 
 function App() {
   const [launchInfo, setLaunchInfo] = useState([]);
@@ -27,10 +32,25 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <ErrorNotification error={error} />
-      <Construct info={launchInfo} />
-    </div>
+    <>
+      <BrowserRouter>
+        <Nav />
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="accounts">
+              <Route index element={<AccountList />} />
+              <Route path="new" element={<AccountForm />} />
+            </Route>
+          </Routes>
+        </div>
+      </BrowserRouter>
+      <div>
+        <ErrorNotification error={error} />
+        <Construct info={launchInfo} />
+      </div>
+      ;
+    </>
   );
 }
 
