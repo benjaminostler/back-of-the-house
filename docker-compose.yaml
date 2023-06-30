@@ -1,15 +1,30 @@
-# OG file-
+# volumes:
+#   gastroids2:
+#     external: true
 # services:
 #   fastapi:
-#     environment:
-#       CORS_HOST: http://localhost:3000
 #     build:
-#       context: api
+#       context: ./fastapi
 #       dockerfile: Dockerfile.dev
+#     environment:
+#       DATABASE_URL: postgresql://gastroids2:gastroids2@db/gastroids2
+#       WAIT_HOSTS: db:5432
+#       PORT: 8000
 #     ports:
-#       - 8000:8000
+#       - 8000:80
 #     volumes:
-#       - ./api:/app
+#       - ./fastapi:/app
+
+#   postgres:
+#     image: postgres:14.5-bullseye
+#     environment:
+#       POSTGRES_PASSWORD: gastroids2
+#       POSTGRES_USER: gastroids2
+#       POSTGRES_DB: gastroids2
+#     ports:
+#       - '15432:5432'
+#     volumes:
+#       - gastroids2:/var/lib/postgresql
 
 #   ghi:
 #     image: node:lts-bullseye
@@ -18,66 +33,38 @@
 #     volumes:
 #       - ./ghi:/app
 #     ports:
-#       - "3000:3000"
+#       - '3000:3000'
 #     environment:
 #       HOST_OS: ${OS}
 #       NODE_ENV: development
-#       HOST: "0.0.0.0"
+#       HOST: '0.0.0.0'
 #       PUBLIC_URL: http://localhost:3000
-#       REACT_APP_API_HOST: ${REACT_APP_API_HOST}
+#       REACT_APP_API_HOST: http://localhost:8000
 
-# original dockerfile.dev
-# volumes:
-# services:
-#   fastapi:
-#     environment:
-#       CORS_HOST: http://localhost:3000
-#     build:
-#       context: api
-#       dockerfile: Dockerfile.dev
-#     ports:
-#       - 8000:8000
-#     volumes:
-#       - ./api:/app
 
 volumes:
-  gastroids:
+  gastroids2:
     external: true
 services:
-  ghi:
-    image: node:lts-bullseye
-    command: /bin/bash run.sh
-    working_dir: /app
-    volumes:
-      - ./ghi:/app
-    ports:
-      - "3000:3000"
-    environment:
-      HOST_OS: ${OS}
-      NODE_ENV: development
-      HOST: "0.0.0.0"
-      PUBLIC_URL: http://localhost:3000
-      REACT_APP_API_HOST: ${REACT_APP_API_HOST}
-  fastapi:
+  api:
     build:
-      context: fastapi
+      context: ./fastapi
       dockerfile: Dockerfile.dev
+    environment:
+      DATABASE_URL: postgresql://gastroids_user:password@db/gastroids_db
+      WAIT_HOSTS: db:5432
+      PORT: 8000
     ports:
       - "8000:8000"
     volumes:
       - ./fastapi:/app
+  db:
+    image: postgres:14.5-bullseye
     environment:
-      DATABASE_URL: postgresql://gastroids:gastroids@postgres/gastroids
-      WAIT_HOSTS: postgres:5432
-  postgres:
-    build:
-      context: data
-      dockerfile: Dockerfile.dev
-    volumes:
-      - gastroids:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: gastroids
-      POSTGRES_USER: gastroids
-      POSTGRES_DB: gastroids
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: gastroids_user
+      POSTGRES_DB: gastroids_db
     ports:
       - "15432:5432"
+    volumes:
+      - gastroids2:/var/lib/postgresql/data
