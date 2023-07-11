@@ -27,3 +27,11 @@ def get_all(
     repo: AccountRespoitory = Depends(),
 ):
     return repo.get_all()
+
+@router.put("/accounts/{account_id}", response_model=Union[AccountOut, Error])
+def update_account(
+    account_id: int,
+    account: AccountIn,
+    repo: AccountRespoitory = Depends(),
+) -> Union[Error, AccountOut]:
+    return repo.update(account_id, account)
