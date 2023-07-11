@@ -29,7 +29,7 @@ def get_all(
     return repo.get_all()
 
 @router.put("/accounts/{account_id}", response_model=Union[AccountOut, Error])
-def update_vacation(
+def update_account(
     account_id: int,
     account: AccountIn,
     repo: AccountRespoitory = Depends(),
