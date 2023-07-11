@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, Response
-from typing import Union, List
+from typing import Union, List, Optional
 from queries.reservations import (
     Error,
     ReservationIn,
@@ -35,3 +35,22 @@ def update_reservation(
     repo: ReservationRespoitory = Depends(),
 ) -> Union[Error, ReservationOut]:
     return repo.update(reservation_id, reservation)
+
+@router.delete("/reservations/{reservation_id}", response_model=bool)
+def delete_reservation(
+    reservation_id: int,
+    repo: ReservationRespoitory = Depends(),
+) -> bool:
+    return repo.delete(reservation_id)
+
+
+@router.get("/reservations/{reservation_id}", response_model=Optional[ReservationOut])
+def get_one_reservation(
+    reservation_id: int,
+    response: Response,
+    repo: ReservationRespoitory = Depends(),
+) -> ReservationOut:
+    reservation = repo.get_one(reservation_id)
+    if reservation is None:
+        response.status_code = 404
+    return reservation

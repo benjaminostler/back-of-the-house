@@ -28,6 +28,49 @@ class ReservationOut(BaseModel):
 
 
 class ReservationRespoitory:
+    def get_one(self, reservation_id: int) -> Optional[ReservationOut]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    result = db.execute(
+                        """
+                        SELECT id
+                            , first_name
+                            , last_name
+                            , phone_number
+                            , email_address
+                            , party_size
+                            , date
+                            , time
+                        FROM reservations
+                        WHERE id = %s
+                        """,
+                        [reservation_id]
+                    )
+                    record = result.fetchone()
+                    if record is None:
+                        return None
+                    return self.record_to_reservation_out(record)
+        except Exception as e:
+            print(e)
+            return {"message": "Could not get that reservation"}
+
+    def delete(self, reservation_id: int) -> bool:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        DELETE from reservations
+                        WHERE id = %s
+                        """,
+                        [reservation_id]
+                    )
+                    return True
+        except Exception as e:
+            print(e)
+            return False
+
     def update(self, reservation_id: int, reservations: ReservationIn) -> Union[ReservationOut, Error]:
         try:
             with pool.connection() as conn:
@@ -69,23 +112,21 @@ class ReservationRespoitory:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
-                        SELECT id, first_name, last_name, phone_number, email_address, party_size, date, time
+                        SELECT id
+                            , first_name
+                            , last_name
+                            , phone_number
+                            , email_address
+                            , party_size
+                            , date
+                            , time
                         FROM reservations
                         ORDER BY id
                         """
                     )
                     return [
-                        ReservationOut(
-                            id=entry[0],
-                            first_name=entry[1],
-                            last_name=entry[2],
-                            phone_number=entry[3],
-                            email_address=entry[4],
-                            party_size=entry[5],
-                            date=entry[6],
-                            time=entry[7],
-                        )
-                        for entry in db
+                        self.record_to_reservation_out(record)
+                        for record in result
                     ]
 
         except Exception:
@@ -124,3 +165,15 @@ class ReservationRespoitory:
     def reservation_in_to_out(self, id: int, reservations: ReservationIn):
         old_data = reservations.dict()
         return ReservationOut(id=id, **old_data)
+
+    def record_to_reservation_out(self, record):
+        return ReservationOut(
+            id=record[0],
+            first_name=record[1],
+            last_name=record[2],
+            phone_number=record[3],
+            email_address=record[4],
+            party_size=record[5],
+            date=record[6],
+            time=record[7],
+        )
