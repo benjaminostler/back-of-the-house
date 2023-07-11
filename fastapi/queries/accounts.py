@@ -26,6 +26,39 @@ class AccountOut(BaseModel):
 
 
 class AccountRespoitory:
+    def update(self, account_id: int, accounts: AccountIn) -> Union[AccountOut, Error]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        UPDATE accounts
+                        SET first_name = %s
+                            , last_name = %s
+                            , username = %s
+                            , password = %s
+                            , email = %s
+                            , phone_number = %s
+                        WHERE id = %s
+                        """,
+                        [
+                            accounts.first_name,
+                            accounts.last_name,
+                            accounts.username,
+                            accounts.password,
+                            accounts.email,
+                            accounts.phone_number,
+                            account_id
+                        ]
+                    )
+                    # old_data = accounts.dict()
+                    # return AccountOut(id=account_id, **old_data)
+                    return self.account_in_to_out(account_id, accounts)
+
+        except Exception as e:
+            print(e)
+            return {"message": "Could not update account"}
+
     def get_all(self) -> Union[Error, List[AccountOut]]:
         try:
             with pool.connection() as conn:
@@ -75,8 +108,13 @@ class AccountRespoitory:
                         ]
                     )
                     id = result.fetchone()[0]
-                    old_data = accounts.dict()
-                    return AccountOut(id=id, **old_data)
+                    # old_data = accounts.dict()
+                    # return AccountOut(id=id, **old_data)
                     # return {"message": "error!"}
+                    return self.account_in_to_out(id, accounts)
         except Exception:
             return {"message": "Could not post new account"}
+
+    def account_in_to_out(self, id: int, accounts: AccountIn):
+        old_data = accounts.dict()
+        return AccountOut(id=id, **old_data)
