@@ -5,6 +5,8 @@ from queries.pool import pool
 class Error(BaseModel):
     message: str
 
+class DuplicateAccountError(ValueError):
+    pass
 
 class AccountIn(BaseModel):
     first_name: str
@@ -20,13 +22,40 @@ class AccountOut(BaseModel):
     first_name: str
     last_name: str
     username: str
-    password: str
     email: str
     phone_number: str
 
 
-class AccountRespoitory:
-    def update(self, account_id: int, accounts: AccountIn) -> Union[AccountOut, Error]:
+class AccountOutWithPassword(AccountOut):
+    hashed_password: str
+
+
+class AccountRepository:
+    def get(self, username: str) -> AccountOutWithPassword:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    result = db.execute(
+                        """
+                        SELECT id
+                            , first_name
+                            , last_name
+                            , username
+                            , hashed_password
+                            , email
+                            , phone_number
+                        FROM accounts
+                        WHERE username =%s
+                        """,
+                        [username],
+                    )
+                    record = result.fetchone()
+                    return self.record_to_account(record)
+        except Exception as e:
+            print(e)
+            raise ValueError("Could not get account") from e
+
+    def update(self, id: int, hashed_password: str, accounts: AccountIn) -> Union[AccountOut, Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -45,16 +74,20 @@ class AccountRespoitory:
                             accounts.first_name,
                             accounts.last_name,
                             accounts.username,
-                            accounts.password,
+                            hashed_password,
                             accounts.email,
                             accounts.phone_number,
-                            account_id
+                            id,
                         ]
                     )
-                    # old_data = accounts.dict()
-                    # return AccountOut(id=account_id, **old_data)
-                    return self.account_in_to_out(account_id, accounts)
-
+                    return AccountOut(
+                        id=id,
+                        first_name=accounts.first_name,
+                        last_name=accounts.last_name,
+                        username=accounts.username,
+                        email=accounts.email,
+                        phone_number=accounts.phone_number
+                    )
         except Exception as e:
             print(e)
             return {"message": "Could not update account"}
@@ -63,10 +96,9 @@ class AccountRespoitory:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
-                    result = db.execute(
+                    db.execute(
                         """
-                        SELECT id, first_name, last_name, username, password, email, phone_number
-                        FROM accounts
+                        SELECT * FROM accounts
                         ORDER BY id
                         """
                     )
@@ -82,38 +114,60 @@ class AccountRespoitory:
                         )
                         for entry in db
                     ]
-
         except Exception:
             return {"message": "Could not get all accounts"}
 
-    def create(self, accounts: AccountIn) -> AccountOut:
-        try:
-            with pool.connection() as conn:
-                with conn.cursor() as db:
-                    result = db.execute(
-                        """
-                        INSERT INTO accounts
-                            (first_name, last_name, username, password, email, phone_number)
-                        VALUES
-                            (%s, %s, %s, %s, %s, %s)
-                        RETURNING id;
-                        """,
-                        [
-                            accounts.first_name,
-                            accounts.last_name,
-                            accounts.username,
-                            accounts.password,
-                            accounts.email,
-                            accounts.phone_number
-                        ]
-                    )
-                    id = result.fetchone()[0]
-                    # old_data = accounts.dict()
-                    # return AccountOut(id=id, **old_data)
-                    # return {"message": "error!"}
-                    return self.account_in_to_out(id, accounts)
-        except Exception:
-            return {"message": "Could not post new account"}
+    def create(self, info: AccountIn, hashed_password: str) -> AccountOutWithPassword:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                result = db.execute(
+                    """
+                    INSERT INTO accounts
+                        (first_name, last_name, username, hashed_password, email, phone_number)
+                    VALUES
+                        (%s, %s, %s, %s, %s, %s)
+                    RETURNING id, email, hashed_password;
+                    """,
+                    [
+                        info.first_name,
+                        info.last_name,
+                        info.username,
+                        hashed_password,
+                        info.email,
+                        info.phone_number
+                    ]
+                )
+                id = result.fetchone()[0]
+                return AccountOutWithPassword(
+                    id=id,
+                    first_name=info.first_name,
+                    last_name=info.last_name,
+                    username=info.username,
+                    hashed_password=hashed_password,
+                    email=info.email,
+                    phone_number=info.phone_number
+                )
+
+    def record_to_account(self, record) -> AccountOutWithPassword:
+        return AccountOutWithPassword(
+            id=record[0],
+            first_name=record[1],
+            last_name=record[2],
+            username=record[3],
+            hashed_password=record[4],
+            email=record[5],
+            phone_number=record[6],
+        )
+        # account_dict = {
+        #     "id": record[0],
+        #     "first_name": record[1],
+        #     "last_name": record[2],
+        #     "username": record[3],
+        #     "hashed_password": record[4],
+        #     "email": record[5],
+        #     "phone_number": record[6]
+        # }
+        # return account_dict
 
     def account_in_to_out(self, id: int, accounts: AccountIn):
         old_data = accounts.dict()
