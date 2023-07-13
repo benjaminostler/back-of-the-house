@@ -11,6 +11,7 @@ services:
       DATABASE_URL: postgresql://gastroids_user:password@db/gastroids_db
       WAIT_HOSTS: db:5432
       PORT: 8000
+      SIGNING_KEY: 8661cc250e528b00007eb201f8a590db6147e12f44eb07fdcfb2b5a1c6324d8c
     ports:
       - "8000:8000"
     volumes:
