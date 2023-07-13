@@ -7,6 +7,7 @@ steps = [
             name varchar(100) not null,
             picture text not null,
             description text not null
+
         );
 
         """,
