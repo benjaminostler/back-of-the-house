@@ -3,7 +3,7 @@ from typing import Union, List, Optional
 from queries.reservations import (
     Error,
     ReservationIn,
-    ReservationRespoitory,
+    ReservationRepository,
     ReservationOut,
 )
 
@@ -14,7 +14,7 @@ router = APIRouter()
 def create_reservations(
     reservations: ReservationIn,
     # response: Response,
-    repo: ReservationRespoitory = Depends()
+    repo: ReservationRepository = Depends()
 ):
     # return repo.create(accounts)
     # response.status_code = 400
@@ -24,7 +24,7 @@ def create_reservations(
 
 @router.get("/reservations", response_model=Union[Error, List[ReservationOut]])
 def get_all(
-    repo: ReservationRespoitory = Depends(),
+    repo: ReservationRepository = Depends(),
 ):
     return repo.get_all()
 
@@ -32,14 +32,14 @@ def get_all(
 def update_reservation(
     reservation_id: int,
     reservation: ReservationIn,
-    repo: ReservationRespoitory = Depends(),
+    repo: ReservationRepository = Depends(),
 ) -> Union[Error, ReservationOut]:
     return repo.update(reservation_id, reservation)
 
 @router.delete("/reservations/{reservation_id}", response_model=bool)
 def delete_reservation(
     reservation_id: int,
-    repo: ReservationRespoitory = Depends(),
+    repo: ReservationRepository = Depends(),
 ) -> bool:
     return repo.delete(reservation_id)
 
@@ -48,7 +48,7 @@ def delete_reservation(
 def get_one_reservation(
     reservation_id: int,
     response: Response,
-    repo: ReservationRespoitory = Depends(),
+    repo: ReservationRepository = Depends(),
 ) -> ReservationOut:
     reservation = repo.get_one(reservation_id)
     if reservation is None:
