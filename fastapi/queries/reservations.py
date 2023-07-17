@@ -27,7 +27,7 @@ class ReservationOut(BaseModel):
     time: str
 
 
-class ReservationRespoitory:
+class ReservationRepository:
     def get_one(self, reservation_id: int) -> Optional[ReservationOut]:
         try:
             with pool.connection() as conn:
