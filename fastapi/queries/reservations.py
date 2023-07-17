@@ -9,8 +9,8 @@ class Error(BaseModel):
 class ReservationIn(BaseModel):
     first_name: str
     last_name: str
+    email: str
     phone_number: str
-    email_address: str
     party_size: str
     date: str
     time: str
@@ -20,8 +20,8 @@ class ReservationOut(BaseModel):
     id: int
     first_name: str
     last_name: str
+    email: str
     phone_number: str
-    email_address: str
     party_size: str
     date: str
     time: str
@@ -37,8 +37,8 @@ class ReservationRepository:
                         SELECT id
                             , first_name
                             , last_name
+                            , email
                             , phone_number
-                            , email_address
                             , party_size
                             , date
                             , time
@@ -80,8 +80,8 @@ class ReservationRepository:
                         UPDATE reservations
                         SET first_name = %s
                             , last_name = %s
+                            , email = %s
                             , phone_number = %s
-                            , email_address = %s
                             , party_size = %s
                             , date = %s
                             , time = %s
@@ -90,8 +90,8 @@ class ReservationRepository:
                         [
                             reservations.first_name,
                             reservations.last_name,
+                            reservations.email,
                             reservations.phone_number,
-                            reservations.email_address,
                             reservations.party_size,
                             reservations.date,
                             reservations.time,
@@ -115,8 +115,8 @@ class ReservationRepository:
                         SELECT id
                             , first_name
                             , last_name
+                            , email
                             , phone_number
-                            , email_address
                             , party_size
                             , date
                             , time
@@ -139,7 +139,7 @@ class ReservationRepository:
                     result = db.execute(
                         """
                         INSERT INTO reservations
-                            (first_name, last_name, phone_number, email_address, party_size, date, time)
+                            (first_name, last_name, email, phone_number, party_size, date, time)
                         VALUES
                             (%s, %s, %s, %s, %s, %s, %s)
                         RETURNING id;
@@ -147,8 +147,8 @@ class ReservationRepository:
                         [
                             reservations.first_name,
                             reservations.last_name,
+                            reservations.email,
                             reservations.phone_number,
-                            reservations.email_address,
                             reservations.party_size,
                             reservations.date,
                             reservations.time
@@ -171,8 +171,8 @@ class ReservationRepository:
             id=record[0],
             first_name=record[1],
             last_name=record[2],
-            phone_number=record[3],
-            email_address=record[4],
+            email=record[3],
+            phone_number=record[4],
             party_size=record[5],
             date=record[6],
             time=record[7],
