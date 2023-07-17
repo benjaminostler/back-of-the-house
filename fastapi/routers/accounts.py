@@ -9,6 +9,17 @@ from fastapi import (
 from jwtdown_fastapi.authentication import Token
 from authenticator import authenticator
 from pydantic import BaseModel
+from fastapi import (
+    Depends,
+    HTTPException,
+    status,
+    Response,
+    APIRouter,
+    Request,
+)
+from jwtdown_fastapi.authentication import Token
+from authenticator import authenticator
+from pydantic import BaseModel
 from queries.accounts import (
     AccountIn,
     AccountOut,
@@ -30,9 +41,28 @@ class HttpError(BaseModel):
     detail: str
 
 
+class AccountForm(BaseModel):
+    username: str
+    password: str
+
+
+class AccountToken(Token):
+    account: AccountOut
+
+
+class HttpError(BaseModel):
+    detail: str
+
+
 router = APIRouter()
 
 
+@router.post("/api/accounts", response_model=AccountToken | HttpError)
+async def create_account(
+    info: AccountIn,
+    request: Request,
+    response: Response,
+    repo: AccountRepository = Depends(),
 @router.post("/api/accounts", response_model=AccountToken | HttpError)
 async def create_account(
     info: AccountIn,
