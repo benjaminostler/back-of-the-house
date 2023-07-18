@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from typing import Union, List
-from queries.menu_item import (
+from queries.menu_items import (
     MenuItemIn,
     MenuItemOut,
     MenuItemRepository,
