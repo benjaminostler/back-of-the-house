@@ -10,25 +10,34 @@ from queries.reservations import (
 router = APIRouter()
 
 
-@router.post("/reservations", response_model=Union[ReservationOut, Error])
+@router.post(
+    "/reservations",
+    response_model=Union[ReservationOut, Error],
+    tags=["Reservations"],
+)
 def create_reservations(
     reservations: ReservationIn,
-    # response: Response,
     repo: ReservationRepository = Depends()
 ):
-    # return repo.create(accounts)
-    # response.status_code = 400
     return repo.create(reservations)
-    # return accounts
 
 
-@router.get("/reservations", response_model=Union[Error, List[ReservationOut]])
+@router.get(
+    "/reservations",
+    response_model=Union[Error, List[ReservationOut]],
+    tags=["Reservations"],
+)
 def get_all(
     repo: ReservationRepository = Depends(),
 ):
     return repo.get_all()
 
-@router.put("/reservations/{reservation_id}", response_model=Union[ReservationOut, Error])
+
+@router.put(
+    "/reservations/{reservation_id}",
+    response_model=Union[ReservationOut, Error],
+    tags=["Reservations"],
+)
 def update_reservation(
     reservation_id: int,
     reservation: ReservationIn,
@@ -36,7 +45,12 @@ def update_reservation(
 ) -> Union[Error, ReservationOut]:
     return repo.update(reservation_id, reservation)
 
-@router.delete("/reservations/{reservation_id}", response_model=bool)
+
+@router.delete(
+    "/reservations/{reservation_id}",
+    response_model=bool,
+    tags=["Reservations"],
+)
 def delete_reservation(
     reservation_id: int,
     repo: ReservationRepository = Depends(),
@@ -44,7 +58,11 @@ def delete_reservation(
     return repo.delete(reservation_id)
 
 
-@router.get("/reservations/{reservation_id}", response_model=Optional[ReservationOut])
+@router.get(
+    "/reservations/{reservation_id}",
+    response_model=Optional[ReservationOut],
+    tags=["Reservations"],
+)
 def get_one_reservation(
     reservation_id: int,
     response: Response,
