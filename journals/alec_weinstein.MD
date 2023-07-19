@@ -13,3 +13,6 @@ Today I created a table for orders and invoices. We are working out what fields 
 July 14
 
 Last night I created queries and routes for Orders. Had an issue with my branch after having to clone the repo again and had to send the code to Ben, who will be pushing it to main and I will be pulling from.
+
+July 17
+The team collectively altered the Orders table and created and Orders_item table. I updated the queries and routers accordingly for Orders.
