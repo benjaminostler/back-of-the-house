@@ -11,14 +11,14 @@ from queries.menu_items import (
 router = APIRouter()
 
 
-@router.post("/menu_item", response_model=Union[MenuItemOut, Error])
+@router.post("/menu_item", response_model=Union[MenuItemOut, Error], tags=["Menu Items"])
 def create_menu_item(
     menu_item: MenuItemIn, repo: MenuItemRepository = Depends()
 ):
     return repo.create(menu_item)
 
 
-@router.get("/menu_item", response_model=Union[Error, List[MenuItemOut]])
+@router.get("/menu_item", response_model=Union[Error, List[MenuItemOut]], tags=["Menu Items"])
 def list_menu_items(
     repo: MenuItemRepository = Depends(),
 ):
@@ -26,7 +26,7 @@ def list_menu_items(
 
 
 @router.put(
-    "/menu_item/{menu_item_id}", response_model=Union[MenuItemOut, Error]
+    "/menu_item/{menu_item_id}", response_model=Union[MenuItemOut, Error], tags=["Menu Items"]
 )
 def update_menu_item(
     menu_item_id: int,
@@ -37,7 +37,7 @@ def update_menu_item(
 
 
 @router.get(
-    "/menu_item/{menu_item_id}", response_model=Union[MenuItemOut, Error]
+    "/menu_item/{menu_item_id}", response_model=Union[MenuItemOut, Error], tags=["Menu Items"]
 )
 def get_menu_item(
     menu_item_id=int,
@@ -46,7 +46,7 @@ def get_menu_item(
     return repo.get_menu_item(menu_item_id)
 
 
-@router.delete("/menu_item/{menu_item_id}", response_model=bool())
+@router.delete("/menu_item/{menu_item_id}", response_model=bool(), tags=["Menu Items"])
 def delete_menu_item(
     menu_item_id: int,
     repo: MenuItemRepository = Depends(),

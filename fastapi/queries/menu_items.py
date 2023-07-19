@@ -32,7 +32,7 @@ class MenuItemRepository:
                     result = db.execute(
                         """
                         SELECT id, category, name, picture_url, description, price
-                        FROM menu_item
+                        FROM menu_items
                         WHERE id = %s
                         """,
                         [menu_item_id],
@@ -49,7 +49,7 @@ class MenuItemRepository:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        DELETE FROM menu_item
+                        DELETE FROM menu_items
                         WHERE id = %s
                         """,
                         [menu_item_id],
@@ -67,7 +67,7 @@ class MenuItemRepository:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        UPDATE menu_item
+                        UPDATE menu_items
                         SET category = %s,
                         name = %s,
                         picture_url = %s,
@@ -98,7 +98,7 @@ class MenuItemRepository:
                     result = db.execute(
                         """
                         SELECT id, category, name, picture_url, description, price
-                        FROM menu_item
+                        FROM menu_items
                         ORDER BY id
                         """
                     )
@@ -117,7 +117,7 @@ class MenuItemRepository:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
-                        INSERT INTO menu_item
+                        INSERT INTO menu_items
                             (category, name, picture_url, description, price)
                         VALUES
                             (%s, %s, %s, %s, %s)
