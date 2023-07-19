@@ -104,7 +104,7 @@ class OrderItemsRepository(BaseModel):
         except Exception as e:
             print("e", e)
             return {"message": "Could not create new order items."}
-    
+
     def delete(self, order_item_id: int) -> bool:
         try:
             with pool.connection() as conn:
