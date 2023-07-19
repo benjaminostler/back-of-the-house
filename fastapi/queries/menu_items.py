@@ -117,7 +117,7 @@ class MenuItemRepository:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
-                        INSERT INTO menu_item
+                        INSERT INTO menu_items
                             (category, name, picture_url, description, price)
                         VALUES
                             (%s, %s, %s, %s, %s)
