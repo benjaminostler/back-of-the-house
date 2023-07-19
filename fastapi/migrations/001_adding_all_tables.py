@@ -50,8 +50,8 @@ steps = [
     [
         """
         CREATE TABLE order_items (
-            id              SERIAL PRIMARY KEY not null,
-            orders_id        INT NOT NULL,
+            id              SERIAL PRIMARY KEY NOT NULL,
+            orders_id       INT NOT NULL,
             menu_item_id    INT NOT NULL,
             quantity        INT NOT NULL,
             FOREIGN KEY (menu_item_id)
@@ -60,6 +60,23 @@ steps = [
         """,
         """
         DROP TABLE order_items;
+        """
+    ],
+    [
+        """
+        CREATE TABLE orders (
+            id              SERIAL PRIMARY KEY NOT NULL,
+            account_id      INT NOT NULL,
+            price           NUMERIC (6,2) NOT NULL,
+            subtotal        NUMERIC (6,2) NOT NULL,
+            total           NUMERIC (6,2) NOT NULL,
+            FOREIGN KEY (account_id)
+                REFERENCES accounts (id),
+
+        );
+        """,
+        """
+        DROP TABLE orders;
         """
     ],
     [

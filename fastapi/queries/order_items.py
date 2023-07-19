@@ -22,6 +22,37 @@ class OrderItemsOut(BaseModel):
 
 class OrderItemsRepository(BaseModel):
 
+    def update(
+        self,
+        order_items_id: int,
+        order_items: OrderItemsIn
+    ) -> Union[OrderItemsOut, Error]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        UPDATE order_items
+                        SET
+                            orders_id = %s,
+                            menu_item_id = %s,
+                            quantity = %s,
+                        WHERE id = %s
+
+                        """,
+                        [
+                            order_items.orders_id,
+                            order_items.menu_item_id,
+                            order_items.quantity,
+                            order_items_id,
+                        ]
+                    )
+                    order_items.id = order_items_id
+                    return order_items
+        except Exception as e:
+            print(e)
+            return {"message": "Could not update order items."}
+
     def get_all(self) -> Union[List[OrderItemsOut], Error]:
         try:
             with pool.connection() as conn:
@@ -73,6 +104,22 @@ class OrderItemsRepository(BaseModel):
         except Exception as e:
             print("e", e)
             return {"message": "Could not create new order items."}
+
+    def delete(self, order_item_id: int) -> bool:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        DELETE FROM order_items
+                        WHERE id = %s
+                        """,
+                        [order_item_id],
+                    )
+            return True
+        except Exception as e:
+            print(e)
+            return False
 
     def order_items_in_to_out(self, id: int, order_items: OrderItemsIn):
         old_data = order_items.dict()
