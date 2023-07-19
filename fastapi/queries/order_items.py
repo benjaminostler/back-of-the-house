@@ -50,24 +50,19 @@ class OrderItemsRepository(BaseModel):
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
-                    db.execute(
+                    result = db.execute(
                         """
                         SELECT id,
-                            order_id,
+                            orders_id,
                             menu_item_id,
-                            quantity,
+                            quantity
                         FROM order_items
                         ORDER BY id
                         """
                     )
                     return [
-                        OrderItemsOut(
-                            id=entry[0],
-                            order_id=entry[1],
-                            menu_item_id=entry[3],
-                            quantity=entry[4],
-                        )
-                        for entry in db
+                        self.record_to_order_items_out(record)
+                        for record in result
                     ]
 
         except Exception:
@@ -84,7 +79,7 @@ class OrderItemsRepository(BaseModel):
                         """
                         INSERT INTO order_items
                             (
-                            order_id,
+                            orders_id,
                             menu_item_id,
                             quantity
                             )
@@ -149,16 +144,15 @@ class OrderItemsRepository(BaseModel):
             print(e)
             return False
 
-def order_items_in_to_out(self, id: int, order_items: OrderItemsIn):
-    old_data = order_items.dict()
-    return OrderItemsOut(id=id, **old_data)
+    def order_items_in_to_out(self, id: int, order_items: OrderItemsIn):
+        old_data = order_items.dict()
+        return OrderItemsOut(id=id, **old_data)
 
 
-def record_to_order_items_out(self, record):
-    return OrderItemsOut(
-        id=record[0],
-        account_id=record[1],
-        order_id=record[2],
-        menu_item_id=[3],
-        quantity=[4],
-    )
+    def record_to_order_items_out(self, record):
+        return OrderItemsOut(
+            id=record[0],
+            orders_id=record[1],
+            menu_item_id=[2],
+            quantity=[3],
+        )
