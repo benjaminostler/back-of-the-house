@@ -1,5 +1,5 @@
 steps = [
-    # Create the tables
+    # Create the table
     [
 
         """
@@ -34,6 +34,21 @@ steps = [
     ],
     [
         """
+        CREATE TABLE orders (
+            id              SERIAL PRIMARY KEY NOT NULL,
+            account_id      INT NOT NULL,
+            subtotal        NUMERIC (6,2) NOT NULL,
+            total           NUMERIC (6,2) NOT NULL,
+            FOREIGN KEY (account_id)
+                REFERENCES accounts (id)
+        );
+        """,
+        """
+        DROP TABLE orders;
+        """
+    ],
+    [
+        """
         CREATE TABLE order_items (
             id              SERIAL PRIMARY KEY not null,
             orders_id        INT NOT NULL,
@@ -52,10 +67,14 @@ steps = [
         CREATE TABLE orders (
             id              SERIAL PRIMARY KEY NOT NULL,
             account_id      INT NOT NULL,
+            order_items_id  INT NOT NULL,
+            price           NUMERIC (6,2) NOT NULL,
             subtotal        NUMERIC (6,2) NOT NULL,
             total           NUMERIC (6,2) NOT NULL,
             FOREIGN KEY (account_id)
-                REFERENCES accounts (id)
+                REFERENCES accounts (id),
+            FOREIGN KEY (order_items_id)
+                REFERENCES order_items (id)
         );
         """,
         """
