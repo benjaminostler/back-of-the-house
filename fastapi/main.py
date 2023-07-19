@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routers import reservations, menu_items, accounts
+from routers import reservations, menu_items, accounts, orders, order_items
 from authenticator import authenticator
 from fastapi.middleware.cors import CORSMiddleware
 import os
@@ -9,6 +9,8 @@ app.include_router(reservations.router)
 app.include_router(menu_items.router)
 app.include_router(authenticator.router)
 app.include_router(accounts.router)
+app.include_router(orders.router)
+app.include_router(order_items.router)
 
 app.add_middleware(
     CORSMiddleware,
