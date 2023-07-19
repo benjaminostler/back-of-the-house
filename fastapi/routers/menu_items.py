@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends
 from typing import Union, List
 from queries.menu_items import (
-    MenuItemIn,
-    MenuItemOut,
-    MenuItemRepository,
+    MenuItemsIn,
+    MenuItemsOut,
+    MenuItemsRepository,
     Error,
 )
 
@@ -13,14 +13,14 @@ router = APIRouter()
 
 @router.post("/menu_item", response_model=Union[MenuItemOut, Error], tags=["Menu Items"])
 def create_menu_item(
-    menu_item: MenuItemIn, repo: MenuItemRepository = Depends()
+    menu_items: MenuItemsIn, repo: MenuItemsRepository = Depends()
 ):
-    return repo.create(menu_item)
+    return repo.create(menu_items)
 
 
 @router.get("/menu_item", response_model=Union[Error, List[MenuItemOut]], tags=["Menu Items"])
 def list_menu_items(
-    repo: MenuItemRepository = Depends(),
+    repo: MenuItemsRepository = Depends(),
 ):
     return repo.list_menu_items()
 
@@ -30,10 +30,10 @@ def list_menu_items(
 )
 def update_menu_item(
     menu_item_id: int,
-    menu_item: MenuItemIn,
-    repo: MenuItemRepository = Depends(),
-) -> Union[Error, MenuItemOut]:
-    return repo.update(menu_item_id, menu_item)
+    menu_items: MenuItemsIn,
+    repo: MenuItemsRepository = Depends(),
+) -> Union[Error, MenuItemsOut]:
+    return repo.update(menu_item_id, menu_items)
 
 
 @router.get(
@@ -41,7 +41,7 @@ def update_menu_item(
 )
 def get_menu_item(
     menu_item_id=int,
-    repo: MenuItemRepository = Depends(),
+    repo: MenuItemsRepository = Depends(),
 ) -> bool:
     return repo.get_menu_item(menu_item_id)
 
@@ -49,6 +49,6 @@ def get_menu_item(
 @router.delete("/menu_item/{menu_item_id}", response_model=bool(), tags=["Menu Items"])
 def delete_menu_item(
     menu_item_id: int,
-    repo: MenuItemRepository = Depends(),
+    repo: MenuItemsRepository = Depends(),
 ) -> bool:
     return repo.delete(menu_item_id)

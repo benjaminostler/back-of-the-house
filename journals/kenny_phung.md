@@ -21,4 +21,4 @@ During this week, I worked on the following tasks:
 ## Week 15 (July 10th - July 14th)
 
 1. Ed showed the team how to create migrations. No git commits avaiable to link.
-2. I asked Ed to create endpoints for "/menu_item" and Ben to create endpoints for "/order" as they've claimed they're caught up on the the curriculum.
+2. I asked Ed to create endpoints for "/menu_items" and Ben to create endpoints for "/order" as they've claimed they're caught up on the the curriculum.

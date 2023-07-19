@@ -7,7 +7,7 @@ class Error(BaseModel):
     message: str
 
 
-class MenuItemIn(BaseModel):
+class MenuItemsIn(BaseModel):
     category: str
     name: str
     picture_url: Optional[str]
@@ -15,7 +15,7 @@ class MenuItemIn(BaseModel):
     price: float
 
 
-class MenuItemOut(BaseModel):
+class MenuItemsOut(BaseModel):
     id: int
     category: str
     name: str
@@ -24,8 +24,8 @@ class MenuItemOut(BaseModel):
     price: float
 
 
-class MenuItemRepository:
-    def get_menu_item(self, menu_item_id: int) -> Optional[MenuItemOut]:
+class MenuItemsRepository:
+    def get_menu_item(self, menu_item_id: int) -> Optional[MenuItemsOut]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -60,8 +60,8 @@ class MenuItemRepository:
             return False
 
     def update(
-        self, menu_item_id: int, menu_item: MenuItemIn
-    ) -> Union[Error, List[MenuItemOut]]:
+        self, menu_item_id: int, menu_items: MenuItemsIn
+    ) -> Union[Error, List[MenuItemsOut]]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -77,21 +77,21 @@ class MenuItemRepository:
 
                         """,
                         [
-                            menu_item.category,
-                            menu_item.name,
-                            menu_item.picture_url,
-                            menu_item.description,
-                            menu_item.price,
+                            menu_items.category,
+                            menu_items.name,
+                            menu_items.picture_url,
+                            menu_items.description,
+                            menu_items.price,
                             menu_item_id,
                         ],
                     )
-                    old_data = menu_item.dict()
-                    return MenuItemOut(id=menu_item_id, **old_data)
+                    old_data = menu_items.dict()
+                    return MenuItemsOut(id=menu_item_id, **old_data)
         except Exception as e:
             print(e)
             return {"message": "Could not update menu item."}
 
-    def list_menu_items(self) -> Union[Error, List[MenuItemOut]]:
+    def list_menu_items(self) -> Union[Error, List[MenuItemsOut]]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -111,7 +111,7 @@ class MenuItemRepository:
             print(e)
             return {"message": "Could not list menu items."}
 
-    def create(self, menu_item: MenuItemIn) -> MenuItemOut:
+    def create(self, menu_items: MenuItemsIn) -> MenuItemsOut:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -124,23 +124,23 @@ class MenuItemRepository:
                         RETURNING id;
                         """,
                         [
-                            menu_item.category,
-                            menu_item.name,
-                            menu_item.picture_url,
-                            menu_item.description,
-                            menu_item.price,
+                            menu_items.category,
+                            menu_items.name,
+                            menu_items.picture_url,
+                            menu_items.description,
+                            menu_items.price,
                         ],
                     )
                     id = result.fetchone()[0]
-                    old_data = menu_item.dict()
-                    return MenuItemOut(id=id, **old_data)
+                    old_data = menu_items.dict()
+                    return MenuItemsOut(id=id, **old_data)
 
         except Exception as e:
             print(e)
             return {"message": "Could not create menu item."}
 
     def record_to_menu_item_out(self, record):
-        return MenuItemOut(
+        return MenuItemsOut(
             id=record[0],
             category=record[1],
             name=record[2],
