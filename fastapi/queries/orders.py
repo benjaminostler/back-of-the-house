@@ -11,15 +11,11 @@ class OrderIn(BaseModel):
     account_id: int
     subtotal: float
     total: float
-    subtotal: float
-    total: float
 
 
 class OrderOut(BaseModel):
     id: int
     account_id: int
-    subtotal: float
-    total: float
     subtotal: float
     total: float
 
@@ -72,18 +68,11 @@ class OrderRepository(BaseModel):
                             account_id,
                             subtotal,
                             total
-                            subtotal,
-                            total
                         FROM orders
-
-                        ORDER BY id
-
                         ORDER BY id
                         """
                     )
                     return [
-                        self.record_to_order_out(record)
-                        for record in result
                         self.record_to_order_out(record)
                         for record in result
                     ]

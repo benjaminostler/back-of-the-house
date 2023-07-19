@@ -36,7 +36,6 @@ def list_orders(
     repo: OrderRepository = Depends(),
 ):
     return repo.get_orders()
-    return repo.get_orders()
 
 
 @router.put("/order/{orders_id}",
