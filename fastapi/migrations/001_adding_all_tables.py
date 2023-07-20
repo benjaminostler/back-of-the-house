@@ -1,5 +1,5 @@
 steps = [
-    # Create the table
+    # Create the tables
     [
 
         """
@@ -60,23 +60,6 @@ steps = [
         """,
         """
         DROP TABLE order_items;
-        """
-    ],
-    [
-        """
-        CREATE TABLE orders (
-            id              SERIAL PRIMARY KEY NOT NULL,
-            account_id      INT NOT NULL,
-            price           NUMERIC (6,2) NOT NULL,
-            subtotal        NUMERIC (6,2) NOT NULL,
-            total           NUMERIC (6,2) NOT NULL,
-            FOREIGN KEY (account_id)
-                REFERENCES accounts (id),
-
-        );
-        """,
-        """
-        DROP TABLE orders;
         """
     ],
     [
