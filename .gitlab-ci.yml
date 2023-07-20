@@ -12,6 +12,7 @@ lint-test-job:
   stage: test
   script:
     - pip install flake8
+    - flake8 --max-line-length=103 fastapi
     - flake8 fastapi
 
 # Run the unit tests
