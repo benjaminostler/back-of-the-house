@@ -12,6 +12,7 @@ class OrderIn(BaseModel):
     subtotal: float
     total: float
 
+
 class OrderOut(BaseModel):
     id: int
     account_id: int
