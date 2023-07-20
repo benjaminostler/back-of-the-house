@@ -1,5 +1,5 @@
 steps = [
-    # Create the table
+    # Create the tables
     [
 
         """
