@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends
-from typing import Union, List
+from typing import Union
 from queries.order_items import (
     OrderItemsIn,
     OrderItemsOut,
     OrderItemsRepository,
-    Error
+    Error,
 )
 
 
@@ -12,10 +12,11 @@ router = APIRouter()
 
 
 @router.put(
-        "/order_items/{order_items_id}",
-        response_model=Union[OrderItemsOut, Error],
-        tags=["Order Items"],
-        operation_id="update_order_items")
+    "/order_items/{order_items_id}",
+    response_model=Union[OrderItemsOut, Error],
+    tags=["Order Items"],
+    operation_id="update_order_items",
+)
 def update_order_items(
     order_items_id: int,
     order_items: OrderItemsIn,
@@ -25,10 +26,11 @@ def update_order_items(
 
 
 @router.delete(
-        "/order_items/{order_items_id}",
-        response_model=bool,
-        tags=["Order Items"],
-        operation_id="delete_order_items")
+    "/order_items/{order_items_id}",
+    response_model=bool,
+    tags=["Order Items"],
+    operation_id="delete_order_items",
+)
 def delete_order_items(
     order_items_id: int,
     repo: OrderItemsRepository = Depends(),
@@ -37,13 +39,14 @@ def delete_order_items(
 
 
 @router.post(
-        "/order_items",
-        response_model=Union[OrderItemsOut, Error],
-        tags=["Order Items"],
-        operation_id="create_order_items")
+    "/order_items",
+    response_model=Union[OrderItemsOut, Error],
+    tags=["Order Items"],
+    operation_id="create_order_items",
+)
 def create_order_items(
-        order_items: OrderItemsIn,
-        repo: OrderItemsRepository = Depends()):
+    order_items: OrderItemsIn, repo: OrderItemsRepository = Depends()
+):
     return repo.create(order_items)
 
 
@@ -58,12 +61,14 @@ def create_order_items(
 #     return repo.get_order_items()
 
 
-@router.get("/order_items/{order_items_id}",
-            response_model=Union[Error, OrderItemsOut],
-            tags=["Order Items"],
-            operation_id="get_order_items_by_id")
+@router.get(
+    "/order_items/{order_items_id}",
+    response_model=Union[Error, OrderItemsOut],
+    tags=["Order Items"],
+    operation_id="get_order_items_by_id",
+)
 def get_detail_order_items(
-        order_items_id: int,
-        repo: OrderItemsRepository = Depends(),
+    order_items_id: int,
+    repo: OrderItemsRepository = Depends(),
 ) -> OrderItemsOut:
     return repo.get_order_item(order_items_id)
