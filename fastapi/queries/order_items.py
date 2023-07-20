@@ -104,6 +104,22 @@ class OrderItemsRepository(BaseModel):
         except Exception as e:
             print("e", e)
             return {"message": "Could not create new order items."}
+    
+    def delete(self, order_item_id: int) -> bool:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        DELETE FROM order_items
+                        WHERE id = %s
+                        """,
+                        [order_item_id],
+                    )
+            return True
+        except Exception as e:
+            print(e)
+            return False
 
     def delete(self, order_item_id: int) -> bool:
         try:
