@@ -38,7 +38,6 @@ def list_orders(
     return repo.get_orders()
 
 
-
 @router.put("/order/{orders_id}",
             response_model=Union[OrderOut, Error],
             tags=["Orders"],

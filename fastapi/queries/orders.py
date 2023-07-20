@@ -13,7 +13,6 @@ class OrderIn(BaseModel):
     total: float
 
 
-
 class OrderOut(BaseModel):
     id: int
     account_id: int
@@ -69,10 +68,7 @@ class OrderRepository(BaseModel):
                             account_id,
                             subtotal,
                             total
-                            subtotal,
-                            total
                         FROM orders
-
                         ORDER BY id
                         """
                     )
