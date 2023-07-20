@@ -31,7 +31,7 @@ def get_detail_order(
 @router.get("/order",
             response_model=Union[Error, List[OrderOut]],
             tags=["Orders"],
-            operation_id="get_orders_by_id")
+            operation_id="list_orders_by_id")
 def list_orders(
     repo: OrderRepository = Depends(),
 ):
