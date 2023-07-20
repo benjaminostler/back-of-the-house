@@ -1,6 +1,11 @@
 from fastapi import APIRouter, Depends
 from typing import Union, List
-from queries.order_items import (OrderItemsIn, OrderItemsOut, OrderItemsRepository, Error)
+from queries.order_items import (
+    OrderItemsIn,
+    OrderItemsOut,
+    OrderItemsRepository,
+    Error
+)
 
 
 router = APIRouter()
