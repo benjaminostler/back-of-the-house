@@ -13,6 +13,7 @@ COPY requirements.txt requirements.txt
 COPY main.py main.py
 COPY queries queries
 COPY routers routers
+COPY authenticator.py authenticator.py
 
 RUN python -m pip install -r requirements.txt
 
@@ -23,4 +24,4 @@ COPY migrations migrations
 
 
 # took away $PORT, added port 80 7/19 254pm
-CMD /wait && python -m migrations up && uvicorn main:app --reload --host 0.0.0.0 --port 80
+CMD /wait && python -m migrations up && uvicorn main:app --reload --host 0.0.0.0 --port $PORT
