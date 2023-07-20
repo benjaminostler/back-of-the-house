@@ -23,4 +23,4 @@ COPY migrations migrations
 
 
 # took away $PORT, added port 80 7/19 254pm
-CMD /wait && python -m migrations up && uvicorn main:app --reload --host 0.0.0.0 --port 80
+CMD /wait && python -m migrations up && uvicorn main:app --reload --host 0.0.0.0 --port $PORT
