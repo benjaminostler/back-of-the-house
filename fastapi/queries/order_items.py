@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from queries.pool import pool
-from typing import List, Union, Optional
+from typing import Union, Optional
 
 
 class Error(BaseModel):
@@ -21,11 +21,8 @@ class OrderItemsOut(BaseModel):
 
 
 class OrderItemsRepository(BaseModel):
-
     def update(
-        self,
-        order_items_id: int,
-        order_items: OrderItemsIn
+        self, order_items_id: int, order_items: OrderItemsIn
     ) -> Union[OrderItemsOut, Error]:
         try:
             with pool.connection() as conn:
@@ -45,7 +42,7 @@ class OrderItemsRepository(BaseModel):
                             order_items.menu_item_id,
                             order_items.quantity,
                             order_items_id,
-                        ]
+                        ],
                     )
                     order_items.id = order_items_id
                     return order_items
@@ -67,7 +64,7 @@ class OrderItemsRepository(BaseModel):
                         FROM order_items
                         WHERE id = %s
                         """,
-                        [order_items_id]
+                        [order_items_id],
                     )
                     record = db.fetchone()[0]
                     if record is None:
@@ -123,8 +120,8 @@ class OrderItemsRepository(BaseModel):
                         [
                             order_items.orders_id,
                             order_items.menu_item_id,
-                            order_items.quantity
-                        ]
+                            order_items.quantity,
+                        ],
                     )
                     id = result.fetchone()[0]
                     return self.order_items_in_to_out(id, order_items)
