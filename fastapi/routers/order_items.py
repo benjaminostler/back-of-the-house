@@ -42,12 +42,23 @@ def create_order_items(
     return repo.create(order_items)
 
 
-@router.get(
-        "/order_items",
-        response_model=Union[Error, List[OrderItemsOut]],
-        tags=["Order Items"],
-        operation_id="list_order_items")
-def list_order_items(
-    repo: OrderItemsRepository = Depends(),
-):
-    return repo.get_all()
+# @router.get(
+#         "/order_items",
+#         response_model=Union[Error, List[OrderItemsOut]],
+#         tags=["Order Items"],
+#         operation_id="list_order_items")
+# def list_order_items(
+#     repo: OrderItemsRepository = Depends(),
+# ):
+#     return repo.get_order_items()
+
+
+@router.get("/order_items/{order_items_id}",
+            response_model=Union[Error, OrderItemsOut],
+            tags=["Order Items"],
+            operation_id="get_order_items_by_id")
+def get_detail_order_items(
+        order_items_id: int,
+        repo: OrderItemsRepository = Depends(),
+) -> OrderItemsOut:
+    return repo.get_order_item(order_items_id)
