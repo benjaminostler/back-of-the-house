@@ -19,4 +19,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-app.include_router(orders.router)
+
+@app.get("/")
+def root():
+    return {"message": "You hit the root path!"}
