@@ -18,6 +18,7 @@ class CreateMenuItemQueries:
 def test_init():
     assert 1 == 1
 
+
 def test_get_all_menu_items():
     # ARRANGE
 
