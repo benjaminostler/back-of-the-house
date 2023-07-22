@@ -1,5 +1,5 @@
 import React from "react";
-import useAToken from "/app/src/FEAuth.tsx";
+import useAToken from "@galvanize-inc/jwtdown-for-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 

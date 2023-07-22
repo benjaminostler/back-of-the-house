@@ -4,9 +4,23 @@ RUN python -m pip install --upgrade pip
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.9.0/wait /wait
 RUN chmod +x /wait
 
+
+
 WORKDIR /app
-COPY requirements.txt .
+COPY requirements.txt requirements.txt
+
+# added for deployment 7/19 251pm
+COPY main.py main.py
+COPY queries queries
+COPY routers routers
+COPY authenticator.py authenticator.py
 RUN python -m pip install -r requirements.txt
 
 WORKDIR /app
+
+# added for deployment 7/19 248pm
+COPY migrations migrations
+
+
+# took away $PORT, added port 80 7/19 254pm
 CMD /wait && python -m migrations up && uvicorn main:app --reload --host 0.0.0.0 --port $PORT
