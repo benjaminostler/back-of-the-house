@@ -5,7 +5,7 @@ volumes:
 services:
   api:
     build:
-      context: ./fastapi
+      context: ./fastrapi
       dockerfile: Dockerfile.dev
     environment:
       DATABASE_URL: postgresql://gastroids_user:password@db/gastroids_db
@@ -15,7 +15,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./fastapi:/app
+      - ./fastrapi:/app
   db:
     image: postgres:14.5-bullseye
     environment:
