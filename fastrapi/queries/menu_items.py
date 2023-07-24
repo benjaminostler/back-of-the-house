@@ -31,7 +31,12 @@ class MenuItemsRepository:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
-                        SELECT id, category, name, picture_url, description, price
+                        SELECT id,
+                        category,
+                        name,
+                        picture_url,
+                        description,
+                        price
                         FROM menu_items
                         WHERE id = %s
                         """,
@@ -97,7 +102,12 @@ class MenuItemsRepository:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
-                        SELECT id, category, name, picture_url, description, price
+                        SELECT id,
+                        category,
+                        name,
+                        picture_url,
+                        description,
+                        price
                         FROM menu_items
                         ORDER BY id
                         """

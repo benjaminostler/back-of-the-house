@@ -49,7 +49,7 @@ class ReservationRepository:
                         )
                         existing_account = db.fetchone()
                         if existing_account is None:
-                            return {"message": "Account with the provided account_id does not exist."}
+                            return {"message": "Account not found."}
 
                     result = db.execute(
                         """

@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from queries.pool import pool
-from typing import List, Union, Optional
+from typing import List, Union
 
 
 class Error(BaseModel):
@@ -52,8 +52,8 @@ class OrderItemsRepository(BaseModel):
         except Exception as e:
             print(e)
             return {"message": "Could not update order items."}
-        
-    def get_order_item(self, order_items_id: int) -> Optional[OrderItemsOut]:
+
+    def get_all(self) -> Union[List[OrderItemsOut], Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -63,33 +63,16 @@ class OrderItemsRepository(BaseModel):
                             orders_id,
                             menu_item_id,
                             quantity
-                        """,
-                        [order_items_id],
+                        FROM order_items
+                        ORDER BY id
+                        """
                     )
-                    record = result.fetchone()
-                    return self.record_to_order_items_out(record)
-        except Exception as e:
-            
-    # def get_all(self) -> Union[List[OrderItemsOut], Error]:
-    #     try:
-    #         with pool.connection() as conn:
-    #             with conn.cursor() as db:
-    #                 result = db.execute(
-    #                     """
-    #                     SELECT id,
-    #                         orders_id,
-    #                         menu_item_id,
-    #                         quantity
-    #                     FROM order_items
-    #                     ORDER BY id
-    #                     """
-    #                 )
-    #                 return [
-    #                     self.record_to_order_items_out(record)
-    #                     for record in result
-    #                 ]
-    #     except Exception:
-    #         return {"message": "Could not get all order items"}
+                    return [
+                        self.record_to_order_items_out(record)
+                        for record in result
+                    ]
+        except Exception:
+            return {"message": "Could not get all order items"}
 
     def create(self, order_items: OrderItemsIn) -> OrderItemsOut:
         try:
@@ -121,22 +104,6 @@ class OrderItemsRepository(BaseModel):
         except Exception as e:
             print("e", e)
             return {"message": "Could not create new order items."}
-    
-    def delete(self, order_item_id: int) -> bool:
-        try:
-            with pool.connection() as conn:
-                with conn.cursor() as db:
-                    db.execute(
-                        """
-                        DELETE FROM order_items
-                        WHERE id = %s
-                        """,
-                        [order_item_id],
-                    )
-            return True
-        except Exception as e:
-            print(e)
-            return False
 
     def delete(self, order_item_id: int) -> bool:
         try:

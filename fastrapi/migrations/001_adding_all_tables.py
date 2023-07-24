@@ -53,7 +53,7 @@ steps = [
             id              SERIAL PRIMARY KEY NOT NULL,
             orders_id       INT NOT NULL,
             menu_item_id    INT NOT NULL,
-            quantity        INT NOT NULL,
+            quantity        INT,
             FOREIGN KEY (menu_item_id)
                 REFERENCES menu_items (id)
         );
