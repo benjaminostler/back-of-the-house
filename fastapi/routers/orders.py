@@ -28,16 +28,6 @@ def get_detail_order(
     return repo.get_order(orders_id)
 
 
-@router.get("/order",
-            response_model=Union[Error, List[OrderOut]],
-            tags=["Orders"],
-            operation_id="get_orders_by_id")
-def list_orders(
-    repo: OrderRepository = Depends(),
-):
-    return repo.get_orders()
-
-
 @router.put("/order/{orders_id}",
             response_model=Union[OrderOut, Error],
             tags=["Orders"],
