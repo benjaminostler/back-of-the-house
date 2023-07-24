@@ -22,3 +22,14 @@ During this week, I worked on the following tasks:
 
 1. Ed showed the team how to create migrations. No git commits avaiable to link.
 2. I asked Ed to create endpoints for "/menu_items" and Ben to create endpoints for "/order" as they've claimed they're caught up on the the curriculum.
+3. I focused on getting the backend authenticaion online. I installed jwtdown-fastapi into our fastapi directory/requirements.txt. Additionally, I generated the unique signing_key to our docker-compose.yaml file.
+4. I also created our authenticator file by following the module on Learn regarding backend auth. I adjust the files from the tutorial so that it was appropriate for our project.
+5. I was able to successfully implement backend authentication by successfully generating a token for a new user. This is [the merge request](https://gitlab.com/backofthehouse/gastronomical-gems/-/merge_requests/25/diffs) for the above feature.
+6. After backend auth has been implemented, I create the queries and routers for reservations to handle the CRUD operations via [this merge request](https://gitlab.com/backofthehouse/gastronomical-gems/-/merge_requests/20/diffs)
+
+## Week 16 (July 17th - July 20th)
+
+1. I notified the team that I would be offline on Thursday, leaving 3 days to work on frontend authorization.
+2. I created the initial frontend pages "SignupForm.js" and "LoginForm.js" while finalizing reservation endpoints to reference account_id as a foreign key via [this merge request](https://gitlab.com/backofthehouse/gastronomical-gems/-/merge_requests/36)
+3. Although the frontend forms are able to submit data to the backend, the login does not work since it's not able to sucessfully fetch the token from the backend.
+4. I eventually fixed the front end auth issue by updating my import to '@galvanize-inc/jwtdown-for-react' [Merge Request #41](https://gitlab.com/backofthehouse/gastronomical-gems/-/merge_requests/41/diffs). Our project can now allow users to create an account and sucessfully login with a token. I also updated our Nav.js to checkToken and display the proper Nav items depending on the login status of the user. 
