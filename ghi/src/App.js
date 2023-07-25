@@ -4,6 +4,8 @@ import Nav from "./Nav.js";
 import SignupForm from "./accounts/SignupForm.js";
 import LoginForm from "./accounts/LoginForm.js";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
+import ListMenuItems from "./menu/ListMenuItems.js";
+import { Counter } from "./features/counter/Counter.js";
 
 function App() {
   const domain = /https:\/\/[^/]+/;
@@ -18,6 +20,8 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/accounts/new" element={<SignupForm />} />
             <Route path="/loginform" element={<LoginForm />} />
+            <Route path="/menu_items" element={<ListMenuItems />} />
+            <Route path="/counter" element={<Counter />} />
           </Routes>
         </div>
       </AuthProvider>
