@@ -4,7 +4,6 @@ import {
   decrement,
   increment,
   incrementByAmount,
-  incrementAsync,
   selectCount,
 } from "./CounterSlice";
 import { addToCart, removeFromCart } from "../cart/CartSlice";
