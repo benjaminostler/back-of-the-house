@@ -63,6 +63,7 @@ class AccountRepository:
                         """,
                         [username],
                     )
+                    print("!!!!", result)
                     record = result.fetchone()
                     return self.record_to_account(record)
         except Exception as e:
