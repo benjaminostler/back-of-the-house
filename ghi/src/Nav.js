@@ -42,7 +42,11 @@ function Nav() {
                 Home
               </NavLink>
             </li>
-
+            <li className="nav-item">
+              <NavLink className="nav-link active" aria-current="page" to="/reservations/new">
+                Create Reservation
+              </NavLink>
+            </li>            
             {/* Show login and signup links if the user is not logged in */}
             {!token && (
               <>
