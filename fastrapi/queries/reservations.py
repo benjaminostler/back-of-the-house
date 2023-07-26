@@ -218,14 +218,14 @@ class ReservationRepository:
         return ReservationOut(id=id, **old_data)
 
     def record_to_reservation_out(self, record):
-        return ReservationOut(
-            id=record[0],
-            first_name=record[1],
-            last_name=record[2],
-            phone_number=record[3],
-            email=record[4],
-            party_size=record[5],
-            date=record[6],
-            time=record[7],
-            account_id=record[8],
-        )
+            return ReservationOut(
+                id=record[0],
+                first_name=record[2],
+                last_name=record[3],
+                email=record[4],
+                phone_number=record[5],
+                party_size=record[6],
+                date=record[7],
+                time=record[8],
+                account_id=record[1],
+            )

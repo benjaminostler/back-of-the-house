@@ -4,6 +4,7 @@ import Nav from "./Nav.js";
 import SignupForm from "./accounts/SignupForm.js";
 import LoginForm from "./accounts/LoginForm.js";
 import ReservationForm from "./reservations/ReservationForm.js";
+import ReservationList from "./reservations/ReservationList.js";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/reservations/new" element ={<ReservationForm />} />
+            <Route path="/reservations" element={<ReservationList />} />
             <Route path="/accounts/new" element={<SignupForm />} />
             <Route path="/loginform" element={<LoginForm />} />
           </Routes>
