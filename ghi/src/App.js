@@ -11,6 +11,7 @@ function App() {
   const domain = /https:\/\/[^/]+/;
   const basename = process.env.PUBLIC_URL.replace(domain, "");
 
+ 
   return (
     <BrowserRouter basename={basename}>
       <AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
@@ -20,8 +21,11 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/accounts/new" element={<SignupForm />} />
             <Route path="/loginform" element={<LoginForm />} />
-            <Route path="/menu_items" element={<ListMenuItems />} />
-            <Route path="/counter" element={<Counter />} />
+            <Route path="menu">
+              <Route index element={<Menu menuItems={menuItems}/>}/>
+              {/* <Route path="/details" element={<MenuItemDetails menuItems={menuItems} />} /> */}
+              <Route path="new" element={<MenuItemForm />} />
+            </Route>
           </Routes>
         </div>
       </AuthProvider>
