@@ -14,16 +14,16 @@ lint-test-job:
     - pip install flake8
     - flake8 fastrapi
 
-# # Run the unit tests
-# api-unit-tests-job:
-#   image: python:3-bullseye
-#   stage: test
-#   needs:
-#     - lint-test-job
-#   script:
-#     - cd fastrapi
-#     - pip install -r requirements.txt
-#     - python -m pytest
+# Run the unit tests
+api-unit-tests-job:
+  image: python:3-bullseye
+  stage: test
+  needs:
+    - lint-test-job
+  script:
+    - cd fastrapi
+    - pip install -r requirements.txt
+    - python -m pytest
 
 # Build API Image:
 build-api-image:
