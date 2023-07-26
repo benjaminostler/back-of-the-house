@@ -16,8 +16,6 @@ function Nav() {
     // setShowBanner(true);
   };
 
-  // moved checkForToken function into useEffect to pass es lint
-  // React Hook useEffect has a missing dependency: 'checkForToken'.
   useEffect(() => {
     if (token) {
       setShowLogin(false);
@@ -43,7 +41,7 @@ function Nav() {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/menu_items">
+              <NavLink className="nav-link" to="/menu">
                 Menu
               </NavLink>
             </li>
@@ -87,6 +85,12 @@ function Nav() {
                 </NavLink>
               </li>
             )}
+
+            <li className="nav-item">
+              <NavLink className="nav-link" to="menu/new">
+                Create Menu Item
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>
