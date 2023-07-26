@@ -11,23 +11,7 @@ function App() {
   const domain = /https:\/\/[^/]+/;
   const basename = process.env.PUBLIC_URL.replace(domain, "");
 
-  const [menuItems, setMenuItems] = useState([]);
-  // const [menuItem, setMenuItem] = useState('');
-
-  async function getMenuItems() {
-    const url = "http://localhost:8000/menu_items/";
-    const response = await fetch(url);
-    if (response.ok) {
-      const data = await response.json();
-      setMenuItems(data);
-    } else {
-      console.error(response);
-    }
-  }
-
-  useEffect(() => {
-    getMenuItems();
-  }, []);
+ 
   return (
     <BrowserRouter basename={basename}>
       <AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
