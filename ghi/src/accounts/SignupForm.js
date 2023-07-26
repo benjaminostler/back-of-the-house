@@ -23,7 +23,7 @@ const SignupForm = () => {
       email: email,
       phone_number: phone_number,
     };
-    register(accountData, `http://localhost:8000/api/accounts/`);
+    register(accountData, `${process.env.REACT_APP_API_HOST}/accounts/`);
     e.target.reset();
     navigate("/");
   };
