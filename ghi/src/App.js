@@ -4,6 +4,8 @@ import Nav from "./Nav.js";
 import SignupForm from "./accounts/SignupForm.js";
 import LoginForm from "./accounts/LoginForm.js";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
+import MenuItemForm from "./menu/MenuItemForm.js";
+import Menu from "./menu/Menu.js";
 
 function App() {
   const domain = /https:\/\/[^/]+/;
