@@ -4,14 +4,12 @@ import Nav from "./Nav.js";
 import SignupForm from "./accounts/SignupForm.js";
 import LoginForm from "./accounts/LoginForm.js";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
-import ListMenuItems from "./menu/ListMenuItems.js";
-import { Counter } from "./features/counter/Counter.js";
 
 function App() {
   const domain = /https:\/\/[^/]+/;
   const basename = process.env.PUBLIC_URL.replace(domain, "");
 
- 
+
   return (
     <BrowserRouter basename={basename}>
       <AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
