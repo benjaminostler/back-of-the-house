@@ -14,16 +14,19 @@ lint-test-job:
     - pip install flake8
     - flake8 fastrapi
 
-# # Run the unit tests
-# api-unit-tests-job:
-#   image: python:3-bullseye
-#   stage: test
-#   needs:
-#     - lint-test-job
-#   script:
-#     - cd fastrapi
-#     - pip install -r requirements.txt
-#     - python -m pytest
+# Run the unit tests
+api-unit-tests-job:
+  image: python:3-bullseye
+  stage: test
+  needs:
+    - lint-test-job
+  script:
+    - cd fastrapi
+    - pip install -r requirements.txt
+    - python -m pytest
+  variables:
+    DATABASE_URL: "postgresql://gastroids_user:password@db/gastroids_db"
+    SIGNING_KEY: "8661cc250e528b00007eb201f8a590db6147e12f44eb07fdcfb2b5a1c6324d8c"
 
 # Build API Image:
 build-api-image:
