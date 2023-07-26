@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function ReservationForm() {
     const [firstName, setFirstName] = useState('')
@@ -36,20 +36,26 @@ function ReservationForm() {
         const value = event.target.value
         setTime(value)
     }
-    // const [accounts, setAccounts] = useState([])
 
-    // const fetchAccountsData = async () => {
-    //     const accountsURL = 'http://localhost:8000/accounts'
-    //     const response = await fetch(accountsURL)
+    const [account, setAccount] = useState('')
+    const [accounts, setAccounts] = useState([])
+    const handleAccountChange = (event) => {
+        const value = parseInt(event.target.value)
+        setAccount(value)
+    }
 
-    //     if(response.ok) {
-    //         const data = await response.json()
-    //         setAccounts(data.accounts);
-    //     }
-    // }
-    // useEffect(() => {
-    //     fetchAccountsData()
-    // }, [])
+    const fetchAccountsData = async () => {
+        const accountsURL = 'http://localhost:8000/accounts/'
+        const response = await fetch(accountsURL)
+
+        if(response.ok) {
+            const data = await response.json()
+            setAccounts(data);
+        }
+    }
+    useEffect(() => {
+        fetchAccountsData()
+    }, [])
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -128,6 +134,18 @@ function ReservationForm() {
                             <label htmlFor="time">Time:</label>                            
                             <input value={time} onChange={handleTimeChange} placeholder="Time" required type="time" name="time" id="time" className="form-control" />
                         </div>
+                        <div className="mb-3">
+                            <select value={account} onChange={handleAccountChange} required name="account" id="account" className="form-select">
+                                <option value="account">Choose an account ID</option>
+                                {accounts.map(account => {
+                                    return(
+                                        <option key={account.id} value={account.first_name}>
+                                            {account.first_name}
+                                        </option>
+                                    );
+                                })}
+                            </select>
+                        </div>                        
                         <button className="btn btn-primary">Create</button>  
                     </form>
                 </div>

@@ -51,7 +51,8 @@ function Nav() {
               <NavLink className="nav-link active" aria-current="page" to="/reservations">
                 Reservations
               </NavLink>
-            </li>               
+            </li>
+            <li className="nav-item">                           
               <NavLink className="nav-link" to="/menu_items">
                 Menu
               </NavLink>

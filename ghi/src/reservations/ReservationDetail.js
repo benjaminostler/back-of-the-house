@@ -5,17 +5,31 @@ export default function Reservation() {
     const { id } = useParams();
     const [reservation, setReservation] = useState();
 
-    useEffect(() => {
-        console.log('useEffect');
+    const fetchReservationData = async () => {
         const url = 'http://localhost:8000/reservations/' + id;
-        fetch(url)
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                setReservation(data);
-            })
-    })
+        const response = await fetch(url)
+
+        if(response.ok) {
+            const data = await response.json();
+            setReservation(data)
+        }
+    }
+
+    useEffect(() => {
+        fetchReservationData();
+    }, [])
+
+    // useEffect(() => {
+    //     console.log('useEffect');
+    //     const url = 'http://localhost:8000/reservations/' + id;
+    //     fetch(url)
+    //         .then((response) => {
+    //             return response.json();
+    //         })
+    //         .then((data) => {
+    //             setReservation(data);
+    //         })
+    // })
 
 //     return (
 //         <>
