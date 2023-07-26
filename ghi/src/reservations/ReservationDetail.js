@@ -49,8 +49,6 @@ export default function Reservation() {
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th>Reservation ID</th>
-                        <th>Account ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
@@ -63,8 +61,6 @@ export default function Reservation() {
                 <tbody>
                     {reservation ? (
                         <tr>
-                            <td>{reservation.id}</td>
-                            <td>{reservation.account_id}</td>
                             <td>{reservation.first_name}</td>
                             <td>{reservation.last_name}</td>
                             <td>{reservation.email}</td>

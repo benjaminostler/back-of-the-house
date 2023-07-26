@@ -17,19 +17,19 @@ function ReservationList() {
         fetchData();
     }, [])
 
-    const [accounts, setAccounts] = useState([])
+    // const [accounts, setAccounts] = useState([])
 
-    const fetchAccountsData = async () => {
-        const accountsURL = 'http://localhost:8000/accounts/'
-        const response = await fetch(accountsURL)
-        console.log(response)
+    // const fetchAccountsData = async () => {
+    //     const accountsURL = 'http://localhost:8000/accounts/'
+    //     const response = await fetch(accountsURL)
+    //     console.log(response)
 
-        if(response.ok) {
-            const data = await response.json()
-            console.log(data)
-            setAccounts(data.accounts)
-        }
-    }
+    //     if(response.ok) {
+    //         const data = await response.json()
+    //         console.log(data)
+    //         setAccounts(data.accounts)
+    //     }
+    // }
 
     const deleteReservation = async (id) => {
         const reservationURL = `http://localhost:8000/reservations/${id}/`;
@@ -58,6 +58,20 @@ function ReservationList() {
         if(response.ok) {
             window.location.replace(`http://localhost:3000/reservations/${id}/`)
         }
+    }
+
+    const editReservation = async (id) => {
+        const reservationURL = `http://localhost:8000/reservations/${id}/`
+        const fetchConfig = {
+            method: "put",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }
+        const response = await fetch(reservationURL, fetchConfig)
+        if(response.ok) {
+            window.location.replace(`http://localhost:3000/reservations/new/`)
+        }        
     }
 
     // const accountsFiltered = () => {
@@ -91,6 +105,13 @@ function ReservationList() {
                                 <td>{reservation.party_size}</td>
                                 <td>{reservation.date}</td>
                                 <td>{reservation.time}</td>
+                                <td>
+									<button
+										onClick={(e) => editReservation(reservation.id)}
+										className="btn btn-secondary m-2">
+										Edit
+									</button>
+                                </td>
                                 <td>
 									<button
 										onClick={(e) => deleteReservation(reservation.id)}
