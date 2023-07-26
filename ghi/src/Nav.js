@@ -16,16 +16,12 @@ function Nav() {
     // setShowBanner(true);
   };
 
-  const checkForToken = () => {
+  useEffect(() => {
     if (token) {
       setShowLogin(false);
     } else {
       setShowLogin(true);
     }
-  };
-
-  useEffect(() => {
-    checkForToken();
   }, [token]);
 
   console.log("Token:", token);
@@ -45,7 +41,7 @@ function Nav() {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/menu_items">
+              <NavLink className="nav-link" to="/menu">
                 Menu
               </NavLink>
             </li>
