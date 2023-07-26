@@ -17,6 +17,53 @@ function ReservationList() {
         fetchData();
     }, [])
 
+    const [accounts, setAccounts] = useState([])
+
+    const fetchAccountsData = async () => {
+        const accountsURL = 'http://localhost:8000/accounts/'
+        const response = await fetch(accountsURL)
+        console.log(response)
+
+        if(response.ok) {
+            const data = await response.json()
+            console.log(data)
+            setAccounts(data.accounts)
+        }
+    }
+
+    const deleteReservation = async (id) => {
+        const reservationURL = `http://localhost:8000/reservations/${id}/`;
+        const fetchConfig = {
+            method: "delete",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+
+        const response = await fetch(reservationURL, fetchConfig)
+        if(response.ok) {
+            window.location.reload();
+        }
+    }
+
+    const viewReservation = async (id) => {
+        const reservationURL = `http://localhost:8000/reservations/${id}/`
+        const fetchConfig = {
+            method: "get",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }
+        const response = await fetch(reservationURL, fetchConfig)
+        if(response.ok) {
+            window.location.replace(`http://localhost:3000/reservations/${id}/`)
+        }
+    }
+
+    // const accountsFiltered = () => {
+    //     const filtered = accounts.filter(sale => sale.salesperson.id === salesperson);
+    //     return filtered;
+    // }
 
     return (
         <div>
@@ -44,6 +91,20 @@ function ReservationList() {
                                 <td>{reservation.party_size}</td>
                                 <td>{reservation.date}</td>
                                 <td>{reservation.time}</td>
+                                <td>
+									<button
+										onClick={(e) => deleteReservation(reservation.id)}
+										className="btn btn-secondary m-2">
+										Delete
+									</button>
+                                </td>
+                                <td>
+                                    <button
+										onClick={(e) => viewReservation(reservation.id)}
+										className="btn btn-secondary m-2">
+										View    
+                                    </button>
+                                </td>
                             </tr>
                         )
                     })}

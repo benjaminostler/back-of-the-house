@@ -50,6 +50,7 @@ export default function Reservation() {
                 <thead>
                     <tr>
                         <th>Reservation ID</th>
+                        <th>Account ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
@@ -63,6 +64,7 @@ export default function Reservation() {
                     {reservation ? (
                         <tr>
                             <td>{reservation.id}</td>
+                            <td>{reservation.account_id}</td>
                             <td>{reservation.first_name}</td>
                             <td>{reservation.last_name}</td>
                             <td>{reservation.email}</td>
