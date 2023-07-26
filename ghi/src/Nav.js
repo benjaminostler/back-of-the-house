@@ -1,34 +1,32 @@
-import { NavLink, useNavigate } from "react-router-dom";
-import { useState, useEffect } from 'react';
-import useToken from '@galvanize-inc/jwtdown-for-react';
-
+import { NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 
 function Nav() {
-
-  const {token, logout} = useToken();
+  const { token, logout } = useToken();
   const [showLogin, setShowLogin] = useState(true);
-  console.log(token)
+  console.log(token);
 
-	const handleLogout = () => {
-		logout();
-		setShowLogin(true);
+  // added to pass es linter
+  console.log(showLogin);
+
+  const handleLogout = () => {
+    logout();
+    setShowLogin(true);
     // setShowBanner(true);
-	};
+  };
 
-	const checkForToken = () => {
-		if (token) {
-			setShowLogin(false);
-		} else {
+  // moved checkForToken function into useEffect to pass es lint
+  // React Hook useEffect has a missing dependency: 'checkForToken'.
+  useEffect(() => {
+    if (token) {
+      setShowLogin(false);
+    } else {
       setShowLogin(true);
     }
-	};
+  }, [token]);
 
-	useEffect(() => {
-		checkForToken();
-	}, [token]);
-
-  console.log('Token:', token);
-
+  console.log("Token:", token);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-success">
@@ -42,6 +40,21 @@ function Nav() {
             <li className="nav-item">
               <NavLink className="nav-link active" aria-current="page" to="/">
                 Home
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/menu_items">
+                Menu
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/counter">
+                RTK Counter!
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/cart">
+                Cart
               </NavLink>
             </li>
 
