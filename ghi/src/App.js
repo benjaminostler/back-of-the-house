@@ -22,8 +22,7 @@ function App() {
             <Route path="/accounts/new" element={<SignupForm />} />
             <Route path="/loginform" element={<LoginForm />} />
             <Route path="menu">
-              <Route index element={<Menu menuItems={menuItems}/>}/>
-              {/* <Route path="/details" element={<MenuItemDetails menuItems={menuItems} />} /> */}
+              // <Route index element={<Menu menuItems={menuItems}/>}/>
               <Route path="new" element={<MenuItemForm />} />
             </Route>
           </Routes>
