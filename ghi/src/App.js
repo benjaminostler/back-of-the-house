@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
 import MainPage from "./MainPage.js";
 import Nav from "./Nav.js";
 import SignupForm from "./accounts/SignupForm.js";
 import LoginForm from "./accounts/LoginForm.js";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
+import MenuItemForm from "./menu/MenuItemForm.js";
 import Menu from "./menu/Menu.js";
 import MenuItemDetail from "./menu/MenuItemDetail.js";
 
@@ -42,10 +42,12 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/accounts/new" element={<SignupForm />} />
             <Route path="/loginform" element={<LoginForm />} />
+
             <Route path="/menu">
               <Route index element={<Menu menuItems={menuItems} />} />
-              {/* <Route path="/{menu_item_id}" OR /:id  element={<MenuItemDetails />} /> */}
+
               <Route path=":id" element={<MenuItemDetail />} />
+              <Route path="new" element={<MenuItemForm />} />
             </Route>
           </Routes>
         </div>
