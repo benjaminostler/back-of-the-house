@@ -83,7 +83,7 @@ function ReservationForm() {
             setPartySize('')
             setDate('')
             setTime('')
-            // window.location.replace('/reservations')
+            window.location.replace('/reservations')
         } else {
             console.log('error')
         }

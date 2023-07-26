@@ -133,8 +133,8 @@ class ReservationRepository:
                         SELECT id
                             , first_name
                             , last_name
-                            , phone_number
                             , email
+                            , phone_number
                             , party_size
                             , date
                             , time

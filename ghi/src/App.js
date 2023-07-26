@@ -5,6 +5,7 @@ import SignupForm from "./accounts/SignupForm.js";
 import LoginForm from "./accounts/LoginForm.js";
 import ReservationForm from "./reservations/ReservationForm.js";
 import ReservationList from "./reservations/ReservationList.js";
+import ReservationDetail from "./reservations/ReservationDetail.js";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/reservations/new" element ={<ReservationForm />} />
             <Route path="/reservations" element={<ReservationList />} />
+            <Route path="/reservations/:id" element={<ReservationDetail />} />
             <Route path="/accounts/new" element={<SignupForm />} />
             <Route path="/loginform" element={<LoginForm />} />
           </Routes>
