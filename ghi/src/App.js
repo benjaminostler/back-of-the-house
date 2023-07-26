@@ -4,12 +4,35 @@ import Nav from "./Nav.js";
 import SignupForm from "./accounts/SignupForm.js";
 import LoginForm from "./accounts/LoginForm.js";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
-import ListMenuItems from "./menu/ListMenuItems.js";
-import { Counter } from "./features/counter/Counter.js";
+import MenuItemForm from "./menu/MenuItemForm.js";
+import Menu from "./menu/Menu.js";
+import MenuItemDetail from "./menu/MenuItemDetail.js";
+import { useState, useEffect } from "react";
 
 function App() {
   const domain = /https:\/\/[^/]+/;
   const basename = process.env.PUBLIC_URL.replace(domain, "");
+
+  const [menuItems, setMenuItems] = useState([]);
+  // const[selectedmenuItem, setselectedMenuItem]=useState("");
+
+  async function getMenuItems() {
+    const url = `http://localhost:8000/menu_items/`;
+    const response = await fetch(url);
+    if (response.ok) {
+      const data = await response.json();
+      // console.log("menus", data);
+      // console.log("data object", data[0]);
+      // console.log("!!!!", data[0].picture_url);
+      setMenuItems(data);
+    } else {
+      console.error(response);
+    }
+  }
+
+  useEffect(() => {
+    getMenuItems();
+  }, []);
 
   return (
     <BrowserRouter basename={basename}>
@@ -20,8 +43,13 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/accounts/new" element={<SignupForm />} />
             <Route path="/loginform" element={<LoginForm />} />
-            <Route path="/menu_items" element={<ListMenuItems />} />
-            <Route path="/counter" element={<Counter />} />
+
+            <Route path="/menu">
+              <Route index element={<Menu menuItems={menuItems} />} />
+
+              <Route path=":id" element={<MenuItemDetail />} />
+              <Route path="new" element={<MenuItemForm />} />
+            </Route>
           </Routes>
         </div>
       </AuthProvider>
