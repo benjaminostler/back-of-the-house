@@ -7,6 +7,8 @@ import ReservationForm from "./reservations/ReservationForm.js";
 import ReservationList from "./reservations/ReservationList.js";
 import ReservationDetail from "./reservations/ReservationDetail.js";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
+import ListMenuItems from "./menu/ListMenuItems.js";
+import { Counter } from "./features/counter/Counter.js";
 
 function App() {
   const domain = /https:\/\/[^/]+/;
@@ -24,6 +26,8 @@ function App() {
             <Route path="/reservations/:id" element={<ReservationDetail />} />
             <Route path="/accounts/new" element={<SignupForm />} />
             <Route path="/loginform" element={<LoginForm />} />
+            <Route path="/menu_items" element={<ListMenuItems />} />
+            <Route path="/counter" element={<Counter />} />
           </Routes>
         </div>
       </AuthProvider>

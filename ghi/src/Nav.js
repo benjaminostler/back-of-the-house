@@ -52,6 +52,21 @@ function Nav() {
                 Reservations
               </NavLink>
             </li>               
+              <NavLink className="nav-link" to="/menu_items">
+                Menu
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/counter">
+                RTK Counter!
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/cart">
+                Cart
+              </NavLink>
+            </li>
+
             {/* Show login and signup links if the user is not logged in */}
             {!token && (
               <>
