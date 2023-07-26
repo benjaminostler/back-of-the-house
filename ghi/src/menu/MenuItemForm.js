@@ -62,7 +62,6 @@ export default function MenuItemForm() {
             <h1>Create a menu item</h1>
             <form onSubmit={handleSubmit} id="create-menu-item-form">
               <div className="form-floating mb-3">
-                <label htmlFor="category">Category</label>
                 <input
                   onChange={handleCategoryChange}
                   placeholder="Category"
@@ -73,7 +72,9 @@ export default function MenuItemForm() {
                   id="category"
                   className="form-control"
                 />
-                <label htmlFor="name">Name</label>
+                <label htmlFor="category">Category</label>
+              </div>
+              <div className="form-floating mb-3">
                 <input
                   onChange={handleNameChange}
                   placeholder="Menu Item Name"
@@ -84,7 +85,9 @@ export default function MenuItemForm() {
                   id="name"
                   className="form-control"
                 />
-                <label htmlFor="picture_url">Picture Url</label>
+                <label htmlFor="name">Name</label>
+              </div>
+              <div className="form-floating mb-3">
                 <input
                   onChange={handlePictureUrlChange}
                   placeholder="Picture Url"
@@ -95,7 +98,9 @@ export default function MenuItemForm() {
                   id="picture_url"
                   className="form-control"
                 />
-                <label htmlFor="description">Description</label>
+                <label htmlFor="picture_url">Picture Url</label>
+              </div>
+              <div className="form-floating mb-3">
                 <input
                   onChange={handleDescriptionChange}
                   placeholder="Description"
@@ -106,7 +111,9 @@ export default function MenuItemForm() {
                   id="description"
                   className="form-control"
                 />
-                <label htmlFor="price">Price</label>
+                <label htmlFor="description">Description</label>
+              </div>
+              <div className="form-floating mb-3">
                 <input
                   onChange={handlePriceChange}
                   placeholder="Price"
@@ -117,8 +124,11 @@ export default function MenuItemForm() {
                   id="price"
                   className="form-control"
                 />
+                <label htmlFor="price">Price</label>
               </div>
-              <button type="submit" className="btn btn-outline-primary">Create</button>
+              <button type="submit" className="btn btn-outline-primary">
+                Create
+              </button>
             </form>
           </div>
         </div>
