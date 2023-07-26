@@ -16,3 +16,11 @@ Last night I created queries and routes for Orders. Had an issue with my branch 
 
 July 17
 The team collectively altered the Orders table and created and Orders_item table. I updated the queries and routers accordingly for Orders.
+
+July 24
+
+Began work on the main menu page, mostly in pseudo-code, and am refamiliarizing myself with React.
+
+July 25
+
+Continued working on Menu page, created Menu Item Details page, trying to use UseParams hook as a way of accessing menu items by their id to display them on that page. I allowed bootstrap to render after it wasn't because I noticed we were missing the scripts and link in our index.html.
