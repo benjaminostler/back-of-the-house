@@ -6,6 +6,7 @@ import LoginForm from "./accounts/LoginForm.js";
 import ReservationForm from "./reservations/ReservationForm.js";
 import ReservationList from "./reservations/ReservationList.js";
 import ReservationDetail from "./reservations/ReservationDetail.js";
+import Cart from "./Cart.js";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 import MenuItemForm from "./menu/MenuItemForm.js";
 import Menu from "./menu/Menu.js";
@@ -49,7 +50,7 @@ function App() {
             <Route path="/reservations/:id" element={<ReservationDetail />} />
             <Route path="/accounts/new" element={<SignupForm />} />
             <Route path="/loginform" element={<LoginForm />} />
-
+            <Route path="/cart" element={<Cart />} />
             <Route path="/menu">
               <Route index element={<Menu menuItems={menuItems} />} />
 
