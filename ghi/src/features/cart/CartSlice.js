@@ -89,4 +89,4 @@ export const { addToCart, incrementQuantity, decrementQuantity, removeItem } =
 // export const { addToCart, removeFromCart, updateQuantity, clearCart } =
 //   cartSlice.actions;
 
-// export default cartSlice.reducer;
+export default cartSlice.reducer;
