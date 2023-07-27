@@ -1,7 +1,6 @@
 steps = [
     # Create the tables
     [
-
         """
         CREATE TABLE accounts (
             id              SERIAL PRIMARY KEY NOT NULL,
@@ -15,7 +14,7 @@ steps = [
         """,
         """
         DROP TABLE accounts;
-        """
+        """,
     ],
     [
         """
@@ -30,7 +29,7 @@ steps = [
         """,
         """
         DROP TABLE menu_items;
-        """
+        """,
     ],
     [
         """
@@ -45,7 +44,7 @@ steps = [
         """,
         """
         DROP TABLE orders;
-        """
+        """,
     ],
     [
         """
@@ -60,7 +59,7 @@ steps = [
         """,
         """
         DROP TABLE order_items;
-        """
+        """,
     ],
     [
         """
@@ -80,6 +79,34 @@ steps = [
         """,
         """
         DROP TABLE reservations;
+        """,
+    ],
+    [
         """
-    ]
+        CREATE TABLE cart (
+            id          SERIAL PRIMARY KEY not null,
+            total_price NUMERIC(6,2)
+        );
+        """,
+        """
+        DROP TABLE cart;
+        """,
+    ],
+    [
+        """
+        CREATE TABLE cart_items (
+            id          SERIAL PRIMARY KEY not null,
+            cart_id     INT not null,
+            menu_item_id    INT not null,
+            quantity    INT not null,
+            FOREIGN KEY (cart_id)
+                REFERENCES cart (id),
+            FOREIGN KEY (menu_item_id)
+                REFERENCES menu_items (id)
+        );
+        """,
+        """
+        DROP TABLE cart_items;
+        """,
+    ],
 ]

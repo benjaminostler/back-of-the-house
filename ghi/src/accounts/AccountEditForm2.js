@@ -1,44 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import useAToken from "@galvanize-inc/jwtdown-for-react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
-const SignupForm = () => {
+const AccountEditForm = () => {
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [phone_number, setPhoneNumber] = useState("");
-  const { register } = useAToken();
+  const { token, updateAccount } = useAToken(); // Renamed from useEffect to useState
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const accountData = {
+    const updatedAccountData = {
       first_name: first_name,
       last_name: last_name,
       username: username,
-      password: password,
       email: email,
       phone_number: phone_number,
     };
-    register(accountData, `${process.env.REACT_APP_API_HOST}/api/accounts`);
-    e.target.reset();
-    navigate("/");
+
+    try {
+      const response = await updateAccount(
+        updatedAccountData,
+        "http://localhost:8000/api/accounts/"
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to update account");
+      }
+
+      console.log("Account updated successfully");
+      navigate("/");
+    } catch (error) {
+      console.error("Error updating account:", error.message);
+    }
   };
 
   return (
     <div className="card text-bg-light mb-3">
-      <h5 className="card-header">Login</h5>
+      <h5 className="card-header">Edit Account</h5>
       <div className="card-body">
         <form onSubmit={(e) => handleSubmit(e)}>
+
           <div className="mb-3">
             <label className="form-label">First Name:</label>
             <input
               name="firstname"
               type="text"
               className="form-control"
+              value={first_name}
               onChange={(e) => setFirstName(e.target.value)}
               required
             />
@@ -50,6 +62,7 @@ const SignupForm = () => {
               name="lastname"
               type="text"
               className="form-control"
+              value={last_name}
               onChange={(e) => setLastName(e.target.value)}
               required
             />
@@ -61,18 +74,8 @@ const SignupForm = () => {
               name="username"
               type="text"
               className="form-control"
+              value={username}
               onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="mb-3">
-            <label className="form-label">Password:</label>
-            <input
-              name="password"
-              type="password"
-              className="form-control"
-              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
@@ -83,6 +86,7 @@ const SignupForm = () => {
               name="email"
               type="text"
               className="form-control"
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
@@ -91,16 +95,17 @@ const SignupForm = () => {
           <div className="mb-3">
             <label className="form-label">Phone Number:</label>
             <input
-              name="phone_number"
+              name="phonenumber"
               type="text"
               className="form-control"
+              value={phone_number}
               onChange={(e) => setPhoneNumber(e.target.value)}
               required
             />
           </div>
 
           <div>
-            <input className="btn btn-primary" type="submit" value="Login" />
+            <input className="btn btn-primary" type="submit" value="Update" />
           </div>
         </form>
       </div>
@@ -108,4 +113,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default AccountEditForm;
