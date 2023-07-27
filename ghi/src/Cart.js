@@ -65,14 +65,14 @@ const Cart = () => {
 
   return (
     <div>
-      <h1>Shopping Cart</h1>
+      <h1>Cart</h1>
       <table>
         <thead>
           <tr>
             <th>Name</th>
             <th>Qty</th>
             <th>Price</th>
-            <th>Add/Subtract</th>
+            <th>+1/-1 Enter Qty</th>
           </tr>
         </thead>
         <tbody>
@@ -115,7 +115,6 @@ const Cart = () => {
             <tr>
               <th>Name</th>
               <th>Picture</th>
-              <th>Add to Cart</th>
             </tr>
           </thead>
           <tbody>
