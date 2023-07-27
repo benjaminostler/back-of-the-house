@@ -1,2 +1,2 @@
 [flake8]
-exclude = ghi,docs,journals,fastrapi/migrations,fastrapi/queries
+exclude = ghi,docs,journals,fastrapi/migrations,fastrapi/queries,fastrapi/tests
