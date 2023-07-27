@@ -28,79 +28,84 @@ const SignupForm = () => {
     navigate("/");
   };
 
-    return(
-        <div className="card text-bg-light mb-3">
-            <h5 className="card-header">Login</h5>
-            <div className="card-body">
-                <form onSubmit={(e) => handleSubmit(e)}>
+  return (
+    <div className="card text-bg-light mb-3">
+      <h5 className="card-header">Login</h5>
+      <div className="card-body">
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div className="mb-3">
+            <label className="form-label">First Name:</label>
+            <input
+              name="firstname"
+              type="text"
+              className="form-control"
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+          </div>
 
-                <div className="mb-3">
-                    <label className="form-label">First Name:</label>
-                    <input
-                    name="firstname"
-                    type="text"
-                    className="form-control"
-                    onChange={(e) => setFirstName(e.target.value)} required
-                    />
-                </div>
+          <div className="mb-3">
+            <label className="form-label">Last Name:</label>
+            <input
+              name="lastname"
+              type="text"
+              className="form-control"
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+          </div>
 
-                <div className="mb-3">
-                    <label className="form-label">Last Name:</label>
-                    <input
-                    name="lastname"
-                    type="text"
-                    className="form-control"
-                    onChange={(e) => setLastName(e.target.value)} required
-                    />
-                </div>
+          <div className="mb-3">
+            <label className="form-label">Username:</label>
+            <input
+              name="username"
+              type="text"
+              className="form-control"
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
 
-                <div className="mb-3">
-                    <label className="form-label">Username:</label>
-                    <input
-                    name="username"
-                    type="text"
-                    className="form-control"
-                    onChange={(e) => setUsername(e.target.value)} required
-                    />
-                </div>
+          <div className="mb-3">
+            <label className="form-label">Password:</label>
+            <input
+              name="password"
+              type="password"
+              className="form-control"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
 
-                <div className="mb-3">
-                    <label className="form-label">Password:</label>
-                    <input
-                    name="password"
-                    type="password"
-                    className="form-control"
-                    onChange={(e) => setPassword(e.target.value)} required
-                    />
-                </div>
+          <div className="mb-3">
+            <label className="form-label">Email:</label>
+            <input
+              name="email"
+              type="text"
+              className="form-control"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
 
-                <div className="mb-3">
-                    <label className="form-label">Email:</label>
-                    <input
-                    name="email"
-                    type="text"
-                    className="form-control"
-                    onChange={(e) => setEmail(e.target.value)} required
-                    />
-                </div>
+          <div className="mb-3">
+            <label className="form-label">Phone Number:</label>
+            <input
+              name="phone_number"
+              type="text"
+              className="form-control"
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              required
+            />
+          </div>
 
-                <div className="mb-3">
-                    <label className="form-label">Phone Number:</label>
-                    <input
-                    name="phone_number"
-                    type="text"
-                    className="form-control"
-                    onChange={(e) => setPhoneNumber(e.target.value)} required
-                    />
-                </div>
-
-                <div>
-                    <input className="btn btn-primary" type="submit" value="Login" />
-                </div>
-                </form>
-            </div>
-        </div>
-    );
+          <div>
+            <input className="btn btn-primary" type="submit" value="Login" />
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default SignupForm;

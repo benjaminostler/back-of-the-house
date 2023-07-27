@@ -129,16 +129,18 @@ class ReservationRepository:
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     db.execute(
+                        # had to flip email and phone number because it was in the wrong order
+                        # also had to put account_id onto the second row as it was in the wrong order
                         """
                         SELECT id
+                            , account_id
                             , first_name
-                            , last_name
-                            , phone_number
+                            , last_name 
                             , email
+                            , phone_number 
                             , party_size
                             , date
                             , time
-                            , account_id
                         FROM reservations
                         WHERE id = %s
                         """,
@@ -217,15 +219,16 @@ class ReservationRepository:
         old_data = reservations.dict()
         return ReservationOut(id=id, **old_data)
 
+
     def record_to_reservation_out(self, record):
-        return ReservationOut(
-            id=record[0],
-            first_name=record[1],
-            last_name=record[2],
-            phone_number=record[3],
-            email=record[4],
-            party_size=record[5],
-            date=record[6],
-            time=record[7],
-            account_id=record[8],
-        )
+            return ReservationOut(
+                id=record[0],
+                account_id=record[1],                
+                first_name=record[2],
+                last_name=record[3],
+                email=record[4],
+                phone_number=record[5],
+                party_size=record[6],
+                date=record[7],
+                time=record[8],
+            )

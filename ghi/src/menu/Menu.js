@@ -1,5 +1,6 @@
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
+const baseURL = "http://localhost:3000/menu_items/";
 export default function Menu({ menuItems }) {
   return (
     <div className="row">
@@ -23,17 +24,23 @@ export default function Menu({ menuItems }) {
           {menuItems.map((item) => (
             <tr key={item.id}>
               <td>{item.category}</td>
-              <td>{item.name}</td>
-              {/* create link to
-              menu_item detail page */}
-              <td>{item.picture_url}</td>
+              <td>
+                <Link to={baseURL + item.id}>{item.name}</Link>
+              </td>
+              <td>
+                <img
+                  className="img-thumbnail"
+                  alt="Menu item "
+                  width="100px"
+                  height="100px"
+                  src={item.picture_url}
+                />
+              </td>
               <td>{item.description}</td>
               <td>{item.price}</td>
               <td> 0 waiting for incrementer </td>
               <td>
-                <button type="button" className="btn  btn-danger  mx-3">
-                  Add to Cart
-                </button>
+                <button className="btn  btn-danger  mx-3">Add to Cart</button>
               </td>
             </tr>
           ))}

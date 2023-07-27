@@ -41,13 +41,31 @@ function Nav() {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/menu">
-                Menu
+              <NavLink
+                className="nav-link active"
+                aria-current="page"
+                to="/reservations/new"
+              >
+                Create Reservation
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/counter">
-                RTK Counter!
+              <NavLink
+                className="nav-link active"
+                aria-current="page"
+                to="/reservations"
+              >
+                Reservations
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/menu_items">
+                Menu Items
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/menu">
+                Menu
               </NavLink>
             </li>
             <li className="nav-item">
@@ -87,7 +105,7 @@ function Nav() {
             )}
 
             <li className="nav-item">
-              <NavLink className="nav-link" to="menu/new">
+              <NavLink className="nav-link" to="menu_items/new">
                 Create Menu Item
               </NavLink>
             </li>
