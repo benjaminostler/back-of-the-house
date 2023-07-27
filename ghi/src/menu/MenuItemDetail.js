@@ -17,13 +17,12 @@ export default function MenuItemDetail() {
 
   useEffect(() => {
     fetchMenuItemDetail();
-  }, []);
+  });
 
   return (
     <>
       {selectedmenuItem ? (
         <div>
-          {/* <p>{id}</p> */}
           <table>
             <tbody>
               <tr>
@@ -33,6 +32,7 @@ export default function MenuItemDetail() {
                 <td>
                   <img
                     className="img-thumbail"
+                    alt="Menu item "
                     width="200px"
                     height="200px"
                     src={selectedmenuItem.picture_url}

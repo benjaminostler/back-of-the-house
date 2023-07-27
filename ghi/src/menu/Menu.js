@@ -30,6 +30,7 @@ export default function Menu({ menuItems }) {
               <td>
                 <img
                   className="img-thumbnail"
+                  alt="Menu item "
                   width="100px"
                   height="100px"
                   src={item.picture_url}
