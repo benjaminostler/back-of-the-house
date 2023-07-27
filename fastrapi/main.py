@@ -33,35 +33,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=[
-#         os.environ.get(
-#             "CORS_HOST",
-#             "http://localhost:3000",
-#         )
-#     ],
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
-
-
-# origins = [
-#     os.environ.get("CORS_HOST", "http://localhost:3000"),
-#     os.environ.get("CORS_HOST", "http://localhost:8000"),
-#     os.environ.get("CORS_HOST", "https://mar-2-pt-fastrapi.mod3projects.com"),
-#     os.environ.get("CORS_HOST", "https://backofthehouse.gitlab.io/"),
-# ]
-
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=origins,
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
-
 
 @app.get("/")
 def root():
