@@ -1,14 +1,13 @@
 from jwtdown_fastapi.authentication import Token
 from authenticator import authenticator
 from pydantic import BaseModel
-from typing import Union, List
+from typing import Union, List, Optional
 from queries.accounts import (
     Error,
     AccountIn,
     AccountOut,
     AccountRepository,
     DuplicateAccountError,
-    AccountUpdate,
 )
 from fastapi import (
     Depends,
@@ -18,6 +17,8 @@ from fastapi import (
     APIRouter,
     Request,
 )
+
+router = APIRouter()
 
 
 class AccountForm(BaseModel):
@@ -33,15 +34,12 @@ class HttpError(BaseModel):
     detail: str
 
 
-router = APIRouter()
-
-
 @router.post(
-        "/api/accounts",
-        tags=["Accounts"],
+        "/api/accounts/",
         response_model=AccountToken | HttpError,
+        tags=["Accounts"]
 )
-async def create_account(
+async def create(
     info: AccountIn,
     request: Request,
     response: Response,
@@ -49,11 +47,11 @@ async def create_account(
 ):
     hashed_password = authenticator.hash_password(info.password)
     try:
-        account = AccountOut(**repo.create(info, hashed_password).dict())
+        account = repo.create(info, hashed_password)
     except DuplicateAccountError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Cannot create an account with those credentials",
+            detail="Account with those credentials already exists."
         )
     form = AccountForm(username=info.username, password=info.password)
     token = await authenticator.login(response, request, form, repo)
@@ -61,59 +59,66 @@ async def create_account(
 
 
 @router.get(
-    "/accounts/",
-    tags=["Accounts"],
-    response_model=Union[List[AccountOut], Error]
+        "/accounts/",
+        response_model=Union[Error, List[AccountOut]],
+        tags=["Accounts"]
 )
-async def get_all_accounts(
-    response: Response,
+def get_all(
     repo: AccountRepository = Depends(),
-    account: dict = Depends(authenticator.try_get_current_account_data),
-) -> Union[AccountOut, Error]:
-    if account is None:
-        response.status_code = 401
-        return Error(message="Sign in to get a specific account.")
-    result = repo.get_all()
-    if result is None:
-        response.status_code = 404
-        result = Error(message="No accounts exist.")
-    return result
-
-
-@router.put(
-    "/accounts/{account_id}/",
-    tags=["Accounts"],
-    response_model=Union[AccountOut, Error],
-)
-async def update_one_account(
-    id: int,
-    account_update: AccountUpdate,
-    response: Response,
-    repo: AccountRepository = Depends(),
-    account: dict = Depends(authenticator.try_get_current_account_data),
-) -> Union[Error, AccountOut]:
-    if account is None:
-        response.status_code = 401
-        return Error(message="Sign in to update a user.")
-    return repo.update(id, account_update)
-
-
-@router.delete(
-    "/accounts/{account_id}",
-    tags=["Accounts"],
-    response_model=bool
-)
-async def delete_user(
-    id: int,
-    repo: AccountRepository = Depends(),
-) -> bool:
-    return repo.delete(id)
+):
+    return repo.get_all()
 
 
 @router.get(
-    "/token",
-    tags=["Authentication"],
-    response_model=AccountToken | None
+        "/accounts/{username}",
+        response_model=Optional[AccountOut],
+        tags=["Accounts"]
+)
+def get_one(
+    username: str,
+    response: Response,
+    repo: AccountRepository = Depends(),
+) -> AccountOut:
+    user = repo.get_one(username)
+    if user is None:
+        response.status_code = 404
+    return user
+
+
+@router.put(
+        "/accounts/{account_id}",
+        response_model=AccountOut,
+        tags=["Accounts"]
+)
+def update(
+    account_id: int,
+    info: AccountIn,
+    response: Response,
+    queries: AccountRepository = Depends(),
+):
+    record = queries.update(account_id, info)
+    if record is None:
+        response.status_code = 404
+    else:
+        return record
+
+
+@router.delete(
+        "/accounts/{account_id}",
+        response_model=bool,
+        tags=["Accounts"]
+)
+def delete_job(
+    account_id: int,
+    repo: AccountRepository = Depends(),
+) -> bool:
+    return repo.delete(account_id)
+
+
+@router.get(
+        "/token",
+        response_model=AccountToken | None,
+        tags=["Auth"]
 )
 async def get_token(
     request: Request,
