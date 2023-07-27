@@ -32,6 +32,7 @@ origins = [
     os.environ.get("CORS_HOST", "http://localhost:3000"),
     "https://mar-2-pt-fastrapi.mod3projects.com",
     "https://backofthehouse.gitlab.io/gastronomical-gems/",
+    "${process.env.REACT_APP_API_HOST}",
 ]
 
 app.add_middleware(

@@ -17,7 +17,7 @@ function App() {
   // const[selectedmenuItem, setselectedMenuItem]=useState("");
 
   async function getMenuItems() {
-    const url = `http://localhost:8000/menu_items/`;
+    const url = `${process.env.REACT_APP_API_HOST}/menu_items/`;
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();

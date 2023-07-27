@@ -16,7 +16,7 @@ export default function MenuItemForm() {
       description,
       price,
     };
-    const menuItemUrl = "http://localhost:8000/menu_items/";
+    const menuItemUrl = "${process.env.REACT_APP_API_HOST}/menu_items/";
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),
