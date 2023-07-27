@@ -5,7 +5,7 @@ import SignupForm from "./accounts/SignupForm.js";
 import LoginForm from "./accounts/LoginForm.js";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 import ListMenuItems from "./menu/ListMenuItems.js";
-import { Counter } from "./features/counter/Counter.js";
+import { Counter } from "./features/counter/counter.js";
 
 function App() {
   const domain = /https:\/\/[^/]+/;

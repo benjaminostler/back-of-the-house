@@ -5,8 +5,8 @@ import {
   increment,
   incrementByAmount,
   selectCount,
-} from "./CounterSlice";
-import { addToCart, removeFromCart } from "../cart/CartSlice";
+} from "./counterSlice";
+import { addToCart, removeItem } from "../cart/cartSlice";
 
 export function Counter() {
   const count = useSelector(selectCount);
@@ -44,9 +44,7 @@ export function Counter() {
           Enter Quantity
         </button>
         <button onClick={() => dispatch(addToCart)}>Add to cart</button>
-        <button onClick={() => dispatch(removeFromCart)}>
-          Remove from cart
-        </button>
+        <button onClick={() => dispatch(removeItem)}>Remove from cart</button>
       </div>
     </div>
   );
