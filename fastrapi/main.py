@@ -30,8 +30,11 @@ app.include_router(order_items.router)
 
 origins = [
     os.environ.get("CORS_HOST", "http://localhost:3000"),
-    "https://mar-2-pt-fastrapi.mod3projects.com",
-    "https://backofthehouse.gitlab.io/gastronomical-gems/",
+    os.environ.get("CORS_HOST", "http://localhost:8000"),
+    os.environ.get("CORS_HOST", "https://mar-2-pt-fastrapi.mod3projects.com"),
+    os.environ.get(
+        "CORS_HOST", "https://backofthehouse.gitlab.io/gastronomical-gems/"
+    ),
 ]
 
 app.add_middleware(

@@ -39,12 +39,12 @@ function App() {
 
   return (
     <BrowserRouter basename={basename}>
-      <AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
+      <AuthProvider>
         <Nav />
         <div className="container">
           <Routes>
             <Route path="/" element={<MainPage />} />
-            <Route path="/reservations/new" element ={<ReservationForm />} />
+            <Route path="/reservations/new" element={<ReservationForm />} />
             <Route path="/reservations" element={<ReservationList />} />
             <Route path="/reservations/:id" element={<ReservationDetail />} />
             <Route path="/accounts/new" element={<SignupForm />} />
