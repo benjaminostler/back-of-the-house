@@ -7,13 +7,12 @@ import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 import MenuItemForm from "./menu/MenuItemForm.js";
 import Menu from "./menu/Menu.js";
 import MenuItemDetail from "./menu/MenuItemDetail.js";
-
+import { useState, useEffect } from "react";
 function App() {
   const domain = /https:\/\/[^/]+/;
   const basename = process.env.PUBLIC_URL.replace(domain, "");
 
   const [menuItems, setMenuItems] = useState([]);
-  // const[selectedmenuItem, setselectedMenuItem]=useState("");
 
   async function getMenuItems() {
     const url = `http://localhost:8000/menu_items/`;
@@ -43,9 +42,8 @@ function App() {
             <Route path="/accounts/new" element={<SignupForm />} />
             <Route path="/loginform" element={<LoginForm />} />
 
-            <Route path="/menu">
+            <Route path="/menu_items">
               <Route index element={<Menu menuItems={menuItems} />} />
-
               <Route path=":id" element={<MenuItemDetail />} />
               <Route path="new" element={<MenuItemForm />} />
             </Route>
