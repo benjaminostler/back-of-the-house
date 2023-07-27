@@ -105,7 +105,7 @@ function Nav() {
             )}
 
             <li className="nav-item">
-              <NavLink className="nav-link" to="menu/new">
+              <NavLink className="nav-link" to="menu_items/new">
                 Create Menu Item
               </NavLink>
             </li>
