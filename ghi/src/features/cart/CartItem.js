@@ -1,12 +1,30 @@
-import React from "react";
+import { incrementQuantity, decrementQuantity, removeItem } from "./CartSlice";
+import { useDispatch } from "react-redux";
 
-function CartItem({ item }) {
+function CartItem({ id, image, title, price, quantity = 0 }) {
+  const dispatch = useDispatch();
+
   return (
-    <div className="cart-item">
-      <h2>{item.name}</h2>
-      <p>ID: {item.id}</p>
-      <p>Quantity: {item.quantity}</p>
-      <p>Price: ${item.price}</p>
+    <div className="cartItem">
+      <img className="cartItem__image" src={image} alt="item" />
+      <div className="cartItem__info">
+        <p className="cartItem__title">{title}</p>
+        <p className="cartItem__price">
+          <small>$</small>
+          <strong>{price}</strong>
+        </p>
+        <div className="cartItem__incrDec">
+          <button onClick={() => dispatch(decrementQuantity(id))}>-</button>
+          <p>{quantity}</p>
+          <button onClick={() => dispatch(incrementQuantity(id))}>+</button>
+        </div>
+        <button
+          className="cartItem__removeButton"
+          onClick={() => dispatch(removeItem(id))}
+        >
+          Remove
+        </button>
+      </div>
     </div>
   );
 }
