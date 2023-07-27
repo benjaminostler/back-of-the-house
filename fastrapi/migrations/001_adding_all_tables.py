@@ -96,8 +96,8 @@ steps = [
         """
         CREATE TABLE cart_items (
             id          SERIAL PRIMARY KEY not null,
-            cart_id     VARCHAR(30) not null,
-            menu_item_id    VARCHAR(100) not null,
+            cart_id     INT not null,
+            menu_item_id    INT not null,
             quantity    INT not null,
             FOREIGN KEY (cart_id)
                 REFERENCES cart (id),
