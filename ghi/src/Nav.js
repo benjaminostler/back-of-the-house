@@ -31,7 +31,6 @@ function Nav() {
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
           Back of the House
-          Back of the House
         </NavLink>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -129,12 +128,13 @@ function Nav() {
                 </NavLink>
               </li>
             )}
-
-            <li className="nav-item">
-              <NavLink className="nav-link" to="menu_items/new">
-                Create Menu Item
-              </NavLink>
-            </li>
+            {token && (
+              <li className="nav-item">
+                <NavLink className="nav-link" to="menu_items/new">
+                  Create Menu Item
+                </NavLink>
+              </li>
+            )}
           </ul>
         </div>
       </div>
