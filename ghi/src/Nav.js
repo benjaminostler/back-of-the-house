@@ -83,14 +83,23 @@ function Nav() {
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/accounts/new">
+                  <NavLink className="nav-link" to="/signup">
                     Sign-Up
                   </NavLink>
                 </li>
               </>
             )}
 
-            {/* Show the logout link if the user is logged in */}
+
+            {token && (
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/editmyaccount">
+                  My Account
+                </NavLink>
+              </li>
+            )}
+
+            {/* Show links if the user is logged in */}
             {token && (
               <li className="nav-item">
                 <NavLink
