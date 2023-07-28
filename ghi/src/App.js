@@ -21,6 +21,7 @@ import MenuItemForm from "./menu/MenuItemForm.js";
 import Menu from "./menu/Menu.js";
 import MenuItemDetail from "./menu/MenuItemDetail.js";
 
+// import HeroSection from "./HeroSection.jsx";
 
 function App() {
   const domain = /https:\/\/[^/]+/;
@@ -49,7 +50,8 @@ function App() {
         <AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
 
           <Nav accountData={accountData} />
-          <div className="container">
+          {/* <HeroSection/> */}
+        <div className="container">
 
             <Routes>
               <Route path="/" element={<MainPage />} />
