@@ -30,6 +30,14 @@ class AccountOut(BaseModel):
     phone_number: str
 
 
+class AccountUpdate(BaseModel):
+    first_name: str | None
+    last_name: str | None
+    username: str | None
+    email: str | None
+    phone_number: str | None
+
+
 class AccountRepository:
     def create(self, info: AccountIn, hashed_password: str) -> AccountOut:
         try:
@@ -100,59 +108,59 @@ class AccountRepository:
                 record = db.fetchone()
                 return self.record_to_account_out(record)
 
-    def update(self, account_id, account_update):
+    def update(self, _username, AccountUpdate):
         with pool.connection() as conn:
             with conn.cursor() as db:
                 returned_values = None
-                if account_update.first_name:
+                if AccountUpdate.first_name:
                     result = db.execute(
                         """
                         UPDATE accounts
                         SET first_name = %s
-                        WHERE id = %s
+                        WHERE username = %s
                         RETURNING *
                         """,
-                        [account_update.first_name, account_id],
+                        [AccountUpdate.first_name, _username],
                     )
-                if account_update.last_name:
+                if AccountUpdate.last_name:
                     result = db.execute(
                         """
                         UPDATE accounts
                         SET last_name = %s
-                        WHERE id = %s
+                        WHERE username = %s
                         RETURNING *
                         """,
-                        [account_update.last_name, account_id],
+                        [AccountUpdate.last_name, _username],
                     )
-                if account_update.username:
+                if AccountUpdate.username:
                     result = db.execute(
                         """
                         UPDATE accounts
                         SET username = %s
-                        WHERE id = %s
+                        WHERE username = %s
                         RETURNING *
                         """,
-                        [account_update.username, account_id]
+                        [AccountUpdate.username, _username]
                     )
-                if account_update.email:
+                if AccountUpdate.email:
                     result = db.execute(
                         """
                         UPDATE accounts
                         SET email = %s
-                        WHERE id = %s
+                        WHERE username = %s
                         RETURNING *
                         """,
-                        [account_update.email, account_id],
+                        [AccountUpdate.email, _username],
                     )
-                if account_update.phone_number:
+                if AccountUpdate.phone_number:
                     result = db.execute(
                         """
                         UPDATE accounts
                         SET phone_number = %s
-                        WHERE id = %s
+                        WHERE username = %s
                         RETURNING *
                         """,
-                        [account_update.phone_number, account_id],
+                        [AccountUpdate.phone_number, _username],
                     )
                 returned_values = result.fetchone()
                 return self.record_to_account(returned_values)
