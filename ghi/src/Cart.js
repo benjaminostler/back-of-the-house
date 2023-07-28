@@ -122,7 +122,12 @@ const Cart = () => {
               <tr key={item.id}>
                 <td>{item.name}</td>
                 <td>
-                  <img src={item.image_url} alt={item.description} />
+                  <img
+                    height="100px"
+                    width="100px"
+                    src={item.picture_url}
+                    alt={item.description}
+                  />
                 </td>
                 <td>
                   <button onClick={() => handleAddToCart(item)}>
