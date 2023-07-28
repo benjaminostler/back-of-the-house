@@ -12,23 +12,17 @@ client = TestClient(app)
 
 
 class EmptyRepository:
-    def list_orders(self):
+    def get_orders(self):
         return []
 
 
 def test_get_all_orders():
     # Arrange
-
     app.dependency_overrides[OrderRepository] = EmptyRepository
-
-    response = client.get("/orders")
-
+    response = client.get("/order")
     # Act
-
     app.dependency_overrides = {}
-
-    # Assert
-
+    # Assert response successful
     assert response.status_code == 200
     assert response.json() == []
 
@@ -39,7 +33,7 @@ def setup():
     test_order = OrderIn(
         account_id="1",
         subtotal="10",
-        total="11.90"
+        total="10"
     )
     with patch("queries.pool.pool.connection") as mock_db:
         yield repository, test_order, mock_db
@@ -48,32 +42,29 @@ def setup():
 # @patch("queries.orders.OrderRepository.record_to_order_out")
 # def test_get_order(mock_record_to_order_out, setup):
 #     repository, test_order, mock_db = setup
-
 #     # Arrange
-#     mock_db.return_value.__enter__.return_value.cursor.return_value.__enter__.return_value.fetchone.return_value = (
+# # moved part of below line temporarily to pass linter
+# mock_db.return_value.__enter__.return_value.cursor.return_value.
+# __enter__.return_value.fetchone.return_value = (
 #         None
 #     )
 #     mock_record_to_order_out.return_value = None
-
 #     # Act
 #     response = repository.get_order(1)
-
-#     # Assert
+#     # Assert response
 #     assert response == None
-
 
 # def test_create_orders(setup):
 #     repository, test_order, mock_db = setup
-
-#     # Arrangessed in 0.65s ==
-#     mock_db.return_value.__enter__.return_value.cursor.return_value.__enter__.return_value.fetchone.return_value = [
-#         1
-#     ]
+    # # moved part of below line temporarily to pass linter
+    # mock_db.return_value.__enter__.return_value.
+    # cursor.return_value.__enter__.return_value.fetchone.return_value = [
+    #     1
+    # ]
 
 #     # Act
 #     response = repository.create(test_order)
-
-#     # Assert
+#     # Assert data
 #     assert response.id == 1
 #     assert response.account_id == "1"
 #     assert response.subtotal == "10"
@@ -82,14 +73,11 @@ def setup():
 
 # def test_update_orders(setup):
 #     repository, test_order, mock_db = setup
-
 #     # Arrange
 #     mock_db.return_value.execute.return_value = True
-
 #     # Act
 #     response = repository.update(1, test_order)
-
-#     # Assert
+#     # Assert data
 #     assert response.id == 1
 #     assert response.account_id == "1"
 #     assert response.subtotal == "10"
