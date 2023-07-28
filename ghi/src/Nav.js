@@ -88,7 +88,7 @@ function Nav() {
 
             {token && (
               <li className="nav-item">
-                <NavLink className="nav-link" to="/editmyaccount">
+                <NavLink className="nav-link" to="/myaccount">
                   My Account
                 </NavLink>
               </li>
