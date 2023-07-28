@@ -5,23 +5,23 @@ function ReservationList() {
   const [reservations, setReservations] = useState([]);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [reservationToDelete, setReservationToDelete] = useState(null);
-  const [accounts, setAccounts] = useState()
+  // const [accounts, setAccounts] = useState()
+  // console.log(accounts)
+  // const currentAccount = async () => {
+  //   const url = `${process.env.REACT_APP_API_HOST}/token`;
+  //   const response = await fetch(url, {
+  //       credentials: "include",
+  //       method: "get",
+  //   });
+  //   if(response.ok) {
+  //       const data = await response.json();
+  //       setAccounts(data.account.id)
+  //   }
+  // }
 
-  const currentAccount = async () => {
-    const url = `${process.env.REACT_APP_API_HOST}/token`;
-    const response = await fetch(url, {
-        credentials: "include",
-        method: "get",
-    });
-    if(response.ok) {
-        const data = await response.json();
-        setAccounts(data.account.id)
-    }
-  }
-
-  useEffect(() => {
-    currentAccount()
-  }, [])
+  // useEffect(() => {
+  //   currentAccount()
+  // }, [])
   
   const fetchData = async () => {
     const url = `${process.env.REACT_APP_API_HOST}/reservations`;

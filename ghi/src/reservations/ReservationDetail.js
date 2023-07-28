@@ -19,29 +19,6 @@ export default function Reservation() {
     fetchReservationData();
   }, [fetchReservationData]); // Include 'fetchReservationData' as a dependency
 
-  // useEffect(() => {
-  //     console.log('useEffect');
-  //     const url = 'http://localhost:8000/reservations/' + id;
-  //     fetch(url)
-  //         .then((response) => {
-  //             return response.json();
-  //         })
-  //         .then((data) => {
-  //             setReservation(data);
-  //         })
-  // })
-
-  //     return (
-  //         <>
-  //             {reservation ? (
-  //                 <div>
-  //                     <p>{reservation.id}</p>
-  //                     <p>{reservation.first_name}</p>
-  //                 </div>
-  //             ) : null}
-  //         </>
-  //     )
-  // }
 
   return (
     <div>

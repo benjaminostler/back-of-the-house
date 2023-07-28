@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom"
 
 function EditReservationForm({ reservationId }) {
   const { id } = useParams();
-  const [reservation, setReservation] = useState({});
   const [firstName, setFirstName] = useState("");
   const handleFirstNameChange = (event) => {
     const value = event.target.value;
@@ -53,12 +52,11 @@ function EditReservationForm({ reservationId }) {
     }
   }
 
-  const fetchReservation = async () => {
+  const fetchReservation = useCallback(async () => {
     const reservationURL = `http://localhost:8000/reservations/` + id;
     const response = await fetch(reservationURL);
     if (response.ok) {
     const data = await response.json();
-    setReservation(data);
     setFirstName(data.first_name);
     setLastName(data.last_name);
     setEmail(data.email);
@@ -67,7 +65,7 @@ function EditReservationForm({ reservationId }) {
     setDate(data.date);
     setTime(data.time);
     }
-  }
+  }, [id])
 
   useEffect(() => {
     currentAccount()
@@ -75,7 +73,7 @@ function EditReservationForm({ reservationId }) {
 
   useEffect(() => {
     fetchReservation()
-  }, [reservationId])
+  }, [fetchReservation])
 
   const handleSubmit = async (event) => {
     event.preventDefault();
