@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 
 function ReservationList() {
   const [reservations, setReservations] = useState([]);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [reservationToDelete, setReservationToDelete] = useState(null);
-  const navigate = useNavigate()
   // const [accounts, setAccounts] = useState()
   // console.log(accounts)
   // const currentAccount = async () => {
