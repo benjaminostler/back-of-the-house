@@ -12,7 +12,7 @@ router = APIRouter()
 
 
 @router.post(
-    "/menu_items/",
+    "/menu_items",
     response_model=Union[MenuItemsOut, Error],
     tags=["Menu Items"],
 )
@@ -23,7 +23,7 @@ def create_menu_item(
 
 
 @router.get(
-    "/menu_items/",
+    "/menu_items",
     response_model=Union[Error, List[MenuItemsOut]],
     tags=["Menu Items"],
 )
