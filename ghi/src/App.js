@@ -23,7 +23,6 @@ import MenuItemDetail from "./menu/MenuItemDetail.js";
 
 import OrderHistory from "./orders/OrderHistory";
 
-// import HeroSection from "./HeroSection.jsx";
 
 function App() {
   const domain = /https:\/\/[^/]+/;
@@ -52,7 +51,7 @@ function App() {
         <AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
 
           <Nav accountData={accountData} />
-          {/* <HeroSection/> */}
+          
         <div className="container">
 
             <Routes>
