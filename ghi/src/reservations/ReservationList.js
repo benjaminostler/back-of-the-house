@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function ReservationList() {
+  const navigate = useNavigate()
   const [reservations, setReservations] = useState([]);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [reservationToDelete, setReservationToDelete] = useState(null);
@@ -66,7 +68,7 @@ function ReservationList() {
     setShowDeleteModal(false);
   };
 
-  const editReservation = async (id) => {
+  const EditReservation = async (id) => {
     const reservationURL = `${process.env.REACT_APP_API_HOST}/reservations/${id}`;
     const fetchConfig = {
       method: "get",
@@ -76,7 +78,7 @@ function ReservationList() {
     };
     const response = await fetch(reservationURL, fetchConfig);
     if (response.ok) {
-      window.location.replace(`${process.env.REACT_APP_API_HOST}/reservations/${id}`);
+      navigate(`/reservations/${id}`)
     }
   };
 
@@ -108,7 +110,7 @@ function ReservationList() {
                 <td>{reservation.time}</td>
                 <td>
                     <button
-                      onClick={(e) => editReservation(reservation.id)}
+                      onClick={(e) => EditReservation(reservation.id)}
                       className="btn btn-secondary m-2"
                     >
                       Edit
