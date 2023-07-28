@@ -12,6 +12,7 @@ import MenuItemForm from "./menu/MenuItemForm.js";
 import Menu from "./menu/Menu.js";
 import MenuItemDetail from "./menu/MenuItemDetail.js";
 import { useState, useEffect } from "react";
+// import HeroSection from "./HeroSection.jsx";
 
 function App() {
   const domain = /https:\/\/[^/]+/;
@@ -38,6 +39,7 @@ function App() {
     <BrowserRouter basename={basename}>
       <AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
         <Nav />
+        {/* <HeroSection/> */}
         <div className="container">
           <Routes>
             <Route path="/" element={<MainPage />} />
