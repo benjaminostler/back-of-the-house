@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 
 function EditReservationForm({ reservationId }) {
+  const navigate = useNavigate()
   const { id } = useParams();
   const [firstName, setFirstName] = useState("");
   const handleFirstNameChange = (event) => {
@@ -100,7 +101,7 @@ function EditReservationForm({ reservationId }) {
     const response = await fetch(reservationURL, fetchConfig);
     if (response.ok) {
       console.log("Reservation updated successfully");
-      window.location.reload()
+      navigate("/reservations")
     } else {
       console.error("Failed to update reservation");
     }
