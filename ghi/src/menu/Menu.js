@@ -7,7 +7,7 @@ import {
 } from "../features/cart/CartSlice";
 import { useDispatch } from "react-redux";
 
-const baseURL = `${process.env.REACT_APP_API_HOST}/menu_items`;
+const baseURL = `${process.env.REACT_APP_API_HOST}/menu_items/`;
 export default function Menu({ menuItems }) {
   const dispatch = useDispatch();
 
