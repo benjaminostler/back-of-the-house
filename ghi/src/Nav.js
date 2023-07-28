@@ -64,11 +64,6 @@ function Nav() {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/menu">
-                Menu
-              </NavLink>
-            </li>
-            <li className="nav-item">
               <NavLink className="nav-link" to="/cart">
                 Cart
               </NavLink>
