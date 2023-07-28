@@ -3,13 +3,11 @@ import MainPage from "./MainPage.js";
 import Nav from "./Nav.js";
 import SignupForm from "./accounts/SignupForm.js";
 import LoginForm from "./accounts/LoginForm.js";
-import ReservationForm from "./reservations/ReservationForm.js";
-import ReservationList from "./reservations/ReservationList.js";
-import ReservationDetail from "./reservations/ReservationDetail.js";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 import ReservationForm from "./reservations/ReservationForm.js";
 import ReservationList from "./reservations/ReservationList.js";
 import ReservationDetail from "./reservations/ReservationDetail.js";
+import EditReservationForm from "./reservations/ReservationEditForm.js";
 import Cart from "./Cart.js";
 import MenuItemForm from "./menu/MenuItemForm.js";
 import Menu from "./menu/Menu.js";
@@ -44,12 +42,10 @@ function App() {
         <div className="container">
           <Routes>
             <Route path="/" element={<MainPage />} />
-            <Route path="/reservations/new" element ={<ReservationForm />} />
-            <Route path="/reservations" element={<ReservationList />} />
-            <Route path="/reservations/:id" element={<ReservationDetail />} />
             <Route path="/accounts/new" element={<SignupForm />} />
             <Route path="/loginform" element={<LoginForm />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/reservations/:id" element = {<EditReservationForm />} />
             <Route path="/reservations/new" element={<ReservationForm />} />
             <Route path="/reservations" element={<ReservationList />} />
             <Route path="/reservations/:id" element={<ReservationDetail />} />

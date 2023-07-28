@@ -11,4 +11,4 @@ During this week, I worked on the following tasks:
 ## Week 14 (June 26th - June 30th)
 During this week, I worked on the following tasks:
 1. All group members successfully made merge requests by adding a journal of their own to the repo.
-2. 
+2. I spent most of my time this week still catching up on material 
