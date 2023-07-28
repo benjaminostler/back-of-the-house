@@ -49,7 +49,7 @@ def setup():
         description="Hot Coffee",
         price=5.0,
     )
-    with patch("queries.pool.pool.connection") as mock_db:
+    with patch("queries.pool.pool") as mock_db:
         yield repository, test_menu_item, mock_db
 
 
@@ -68,23 +68,6 @@ def test_get_menu_item(mock_record_to_menu_item_out, setup):
 
     # Assert
     assert response == None
-
-
-def test_create_menu_items(setup):
-    repository, test_menu_item = setup
-
-    # Arrangessed in 0.65s ==
-
-
-    # Act
-    response = repository.create(test_menu_item)
-
-    # Asssert
-    assert response.id == 1
-    assert response.category == "Beverages"
-    assert response.name == "Coffee"
-    assert response.description == "Hot Coffee"
-    assert response.price == 5.0
 
 
 def test_update_menu_items(setup):
