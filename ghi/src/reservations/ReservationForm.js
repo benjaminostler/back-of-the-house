@@ -90,7 +90,7 @@ function ReservationForm() {
       setPartySize("");
       setDate("");
       setTime("");
-      window.location.replace('/reservations')
+      window.location.reload()
     }
 
   };

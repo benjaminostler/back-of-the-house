@@ -38,7 +38,7 @@ function ReservationList() {
   }, []);
 
   const deleteReservation = async (id) => {
-    const reservationURL = `http://localhost:8000/reservations/${id}`;
+    const reservationURL = `${process.env.REACT_APP_API_HOST}/reservations/${id}`;
     const fetchConfig = {
       method: "delete",
       headers: {
@@ -67,7 +67,7 @@ function ReservationList() {
   };
 
   const editReservation = async (id) => {
-    const reservationURL = `http://localhost:8000/reservations/${id}`;
+    const reservationURL = `${process.env.REACT_APP_API_HOST}/reservations/${id}`;
     const fetchConfig = {
       method: "get",
       headers: {
@@ -76,7 +76,7 @@ function ReservationList() {
     };
     const response = await fetch(reservationURL, fetchConfig);
     if (response.ok) {
-      window.location.replace(`http://localhost:3000/reservations/${id}`);
+      window.location.replace(`${process.env.REACT_APP_API_HOST}/reservations`);
     }
   };
 
