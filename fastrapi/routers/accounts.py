@@ -8,6 +8,7 @@ from queries.accounts import (
     AccountOut,
     AccountRepository,
     DuplicateAccountError,
+    AccountUpdate,
 )
 from fastapi import (
     Depends,
@@ -85,18 +86,18 @@ def get_one(
     return user
 
 
-@router.put(
-        "/accounts/{account_id}",
+@router.patch(
+        "/accounts/{username}",
         response_model=AccountOut,
         tags=["Accounts"]
 )
 def update(
-    account_id: int,
-    info: AccountIn,
+    username: str,
+    info: AccountUpdate,
     response: Response,
     queries: AccountRepository = Depends(),
 ):
-    record = queries.update(account_id, info)
+    record = queries.update(username, info)
     if record is None:
         response.status_code = 404
     else:
