@@ -53,7 +53,7 @@ function EditReservationForm({ reservationId }) {
   }
 
   const fetchReservation = useCallback(async () => {
-    const reservationURL = `http://localhost:8000/reservations/` + id;
+    const reservationURL = `${process.env.REACT_APP_API_HOST}/reservations/` + id;
     const response = await fetch(reservationURL);
     if (response.ok) {
     const data = await response.json();
@@ -88,7 +88,7 @@ function EditReservationForm({ reservationId }) {
       time: time,
     };
 
-    const reservationURL = `http://localhost:8000/reservations/` + id;
+    const reservationURL = `${process.env.REACT_APP_API_HOST}/reservations/` + id;
     const fetchConfig = {
       method: "put",
       body: JSON.stringify(updatedReservation),
@@ -100,7 +100,7 @@ function EditReservationForm({ reservationId }) {
     const response = await fetch(reservationURL, fetchConfig);
     if (response.ok) {
       console.log("Reservation updated successfully");
-      window.location.replace('/reservations')
+      window.location.reload()
     } else {
       console.error("Failed to update reservation");
     }

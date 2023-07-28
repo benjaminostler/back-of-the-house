@@ -13,7 +13,6 @@ code {
 }
 
 #video {
-  position: fixed;
-  z-index: -1;
+  position:relative;
   width: 100%;
 }

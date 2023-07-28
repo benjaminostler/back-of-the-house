@@ -30,7 +30,7 @@ function Nav() {
     <nav className="navbar navbar-expand-lg navbar-dark bg-success">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
-          Gastronauts
+          Back of the House
         </NavLink>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -68,11 +68,14 @@ function Nav() {
                 Cart
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/orders">
-                Orders
-              </NavLink>
-            </li>
+            {token && (
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/orders">
+                  Orders
+                </NavLink>
+              </li>
+              )
+            }
             {/* Show login and signup links if the user is not logged in */}
             {!token && (
               <>
