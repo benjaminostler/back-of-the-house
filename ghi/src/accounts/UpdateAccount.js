@@ -19,7 +19,7 @@ function UpdateAccount() {
     editAccount.last_name = last_name;
     editAccount.email = email;
     editAccount.phone_number = phone_number;
-    const url = `${process.env.REACT_APP_API_HOST}/accounts/${accountData.username}`;
+    const url = `${process.env.REACT_APP_API_HOST}/accounts/${accountData.username}/`;
     const fetchConfig = {
       method: "PATCH",
       body: JSON.stringify(editAccount),
