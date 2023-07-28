@@ -1,99 +1,101 @@
 import React, { useEffect, useState } from "react";
 
+
 function ReservationForm() {
-    const [firstName, setFirstName] = useState('')
-    const handleFirstNameChange = (event) => {
-        const value = event.target.value
-        setFirstName(value)
+  const [firstName, setFirstName] = useState("");
+  const handleFirstNameChange = (event) => {
+    const value = event.target.value;
+    setFirstName(value);
+  };
+  const [lastName, setLastName] = useState("");
+  const handleLastNameChange = (event) => {
+    const value = event.target.value;
+    setLastName(value);
+  };
+  const [email, setEmail] = useState("");
+  const handleEmailChange = (event) => {
+    const value = event.target.value;
+    setEmail(value);
+  };
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const handlePhoneNumberChange = (event) => {
+    const value = event.target.value;
+    setPhoneNumber(value);
+  };
+  const [partySize, setPartySize] = useState("");
+  const handlePartySizeChange = (event) => {
+    const value = event.target.value;
+    setPartySize(value);
+  };
+  const [date, setDate] = useState("");
+  const handleDateChange = (event) => {
+    const value = event.target.value;
+    setDate(value);
+  };
+  const [time, setTime] = useState("");
+  const handleTimeChange = (event) => {
+    const value = event.target.value;
+    setTime(value);
+  };
+  
+  const [account, setAccount] = useState(0)
+  const handleAccountChange = (event) => {
+    const value = event.target.value;
+    setAccount(value)
+  }
+  const [accounts, setAccounts] = useState([])
+  const fetchAccountsData = async () => {
+    const accountsURL = `${process.env.REACT_APP_API_HOST}/accounts/`
+    const response = await fetch(accountsURL)
+
+    if(response.ok) {
+        const data = await response.json()
+        setAccounts(data)
     }
-    const [lastName, setLastName] = useState('')
-    const handleLastNameChange = (event) => {
-        const value = event.target.value
-        setLastName(value)
-    }
-    const [email, setEmail] = useState('')
-    const handleEmailChange = (event) => {
-        const value = event.target.value
-        setEmail(value)
-    }
-    const [phoneNumber, setPhoneNumber] = useState('')
-    const handlePhoneNumberChange = (event) => {
-        const value = event.target.value
-        setPhoneNumber(value)
-    }
-    const [partySize, setPartySize] = useState([])
-    const handlePartySizeChange = (event) => {
-        const value = event.target.value
-        setPartySize(value)
-    }
-    const [date, setDate] = useState('')
-    const handleDateChange = (event) => {
-        const value = event.target.value
-        setDate(value)
-    }
-    const [time, setTime] = useState('')
-    const handleTimeChange = (event) => {
-        const value = event.target.value
-        setTime(value)
+  }
+
+  useEffect(() => {
+    fetchAccountsData()
+  }, [])
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const date_time = new Date(`${date}T${time}`);
+    const reservation = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phoneNumber: phoneNumber,
+      partySize: partySize,
+      date_time: date_time,
+      account_id: account,
+    };
+
+    const reservationURL = `${process.env.REACT_APP_API_HOST}/reservations/`;
+    const fetchConfig = {
+      method: "post",
+      body: JSON.stringify(reservation),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const response = await fetch(reservationURL, fetchConfig);
+    if (response.ok) {
+      const newReservation = await response.json();
+      console.log(newReservation);
+
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPhoneNumber("");
+      setPartySize("");
+      setDate("");
+      setTime("");
+      setAccount(0)
     }
 
-    const [account, setAccount] = useState('')
-    const [accounts, setAccounts] = useState([])
-    const handleAccountChange = (event) => {
-        const value = parseInt(event.target.value)
-        setAccount(value)
-    }
-
-    const fetchAccountsData = async () => {
-        const accountsURL = 'http://localhost:8000/accounts/'
-        const response = await fetch(accountsURL)
-
-        if(response.ok) {
-            const data = await response.json()
-            setAccounts(data);
-        }
-    }
-    useEffect(() => {
-        fetchAccountsData()
-    }, [])
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const date_time = new Date(`${date}T${time}`);
-        const reservation = {
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            phoneNumber: phoneNumber,
-            partySize: partySize,
-            date_time: date_time,
-        }
-        const reservationURL = 'http://localhost:8000/reservations/'
-        const fetchConfig = {
-            method: "post",
-            body: JSON.stringify(reservation),
-            headers: {
-                "Content-Type": "application/json",
-            }
-        }
-
-        const response = await fetch(reservationURL, fetchConfig)
-        if(response.ok) {
-            const newReservation = await response.json()
-            console.log(newReservation)
-
-            setFirstName('')
-            setLastName('')
-            setEmail('')
-            setPhoneNumber('')
-            setPartySize('')
-            setDate('')
-            setTime('')
-            window.location.replace('/reservations')
-        } else {
-            console.log('error')
-        }
-    }
+  };
 
     return (
         <div className="row">
@@ -136,17 +138,19 @@ function ReservationForm() {
                         </div>
                         <div className="mb-3">
                             <select value={account} onChange={handleAccountChange} required name="account" id="account" className="form-select">
-                                <option value="account">Choose an account ID</option>
+                                <option value="account">Choose your account</option>
                                 {accounts.map(account => {
                                     return(
-                                        <option key={account.id} value={account.first_name}>
-                                            {account.first_name}
+                                        <option key={account.id} value={account.id}>
+                                            {account.id}
                                         </option>
                                     );
                                 })}
                             </select>
-                        </div>                        
-                        <button className="btn btn-primary">Create</button>  
+                        </div>                                             
+                            <button type="submit" className="btn btn-outline-primary">
+                                Create
+                            </button>                        
                     </form>
                 </div>
             </div>

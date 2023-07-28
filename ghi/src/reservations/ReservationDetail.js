@@ -6,7 +6,7 @@ export default function Reservation() {
   const [reservation, setReservation] = useState();
 
   const fetchReservationData = useCallback(async () => {
-    const url = "http://localhost:8000/reservations/" + id;
+    const url = `${process.env.REACT_APP_API_HOST}/reservations/` + id;
     const response = await fetch(url);
 
     if (response.ok) {

@@ -4,7 +4,7 @@ function ReservationList() {
     const [reservations, setReservations] = useState([]);
 
     const fetchData = async () => {
-        const url = `http://localhost:8000/reservations/`
+        const url = `${process.env.REACT_APP_API_HOST}/reservations/`
         const response = await fetch(url)
 
         if(response.ok) {
