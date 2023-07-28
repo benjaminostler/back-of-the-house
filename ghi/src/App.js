@@ -20,7 +20,7 @@ import Cart from "./Cart.js";
 import MenuItemForm from "./menu/MenuItemForm.js";
 import Menu from "./menu/Menu.js";
 import MenuItemDetail from "./menu/MenuItemDetail.js";
-import { useState, useEffect } from "react";
+
 // import HeroSection from "./HeroSection.jsx";
 
 function App() {
