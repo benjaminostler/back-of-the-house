@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function ReservationList() {
   const [reservations, setReservations] = useState([]);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [reservationToDelete, setReservationToDelete] = useState(null);
+  const navigate = useNavigate()
   // const [accounts, setAccounts] = useState()
   // console.log(accounts)
   // const currentAccount = async () => {
@@ -76,7 +78,7 @@ function ReservationList() {
     };
     const response = await fetch(reservationURL, fetchConfig);
     if (response.ok) {
-      window.location.replace(`${process.env.REACT_APP_API_HOST}/reservations`);
+      window.location.replace(`${process.env.REACT_APP_API_HOST}/reservations/${id}`);
     }
   };
 
@@ -107,12 +109,12 @@ function ReservationList() {
                 <td>{reservation.date}</td>
                 <td>{reservation.time}</td>
                 <td>
-                  <button
-                    onClick={(e) => editReservation(reservation.id)}
-                    className="btn btn-secondary m-2"
-                  >
-                    Edit
-                  </button>
+                    <button
+                      onClick={(e) => editReservation(reservation.id)}
+                      className="btn btn-secondary m-2"
+                    >
+                      Edit
+                    </button>
                 </td>
                 <td>
                   <button

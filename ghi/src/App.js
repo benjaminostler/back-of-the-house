@@ -13,7 +13,7 @@ import AccountDetails from "./accounts/AccountDetail.js";
 
 import ReservationForm from "./reservations/ReservationForm.js";
 import ReservationList from "./reservations/ReservationList.js";
-import ReservationDetail from "./reservations/ReservationDetail.js";
+// import ReservationDetail from "./reservations/ReservationDetail.js";
 import EditReservationForm from "./reservations/ReservationEditForm.js";
 
 import Cart from "./Cart.js";
@@ -69,7 +69,7 @@ function App() {
               <Route path="/reservations/:id" element = {<EditReservationForm />} />
               <Route path="/reservations/new" element={<ReservationForm />} />
               <Route path="/reservations" element={<ReservationList />} />
-              <Route path="/reservations/:id" element={<ReservationDetail />} />
+              {/* <Route path="/reservations/:id" element={<ReservationDetail />} /> */}
 
               <Route path="/menu_items">
                 <Route index element={<Menu menuItems={menuItems} />} />
