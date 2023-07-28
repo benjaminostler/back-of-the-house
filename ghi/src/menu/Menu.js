@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const baseURL = "http://localhost:3000/menu_items/";
+const baseURL = `${process.env.REACT_APP_API_HOST}/menu_items`;
 export default function Menu({ menuItems }) {
   return (
     <div className="row">
