@@ -68,7 +68,11 @@ function Nav() {
                 Cart
               </NavLink>
             </li>
-
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/orders">
+                Orders
+              </NavLink>
+            </li>
             {/* Show login and signup links if the user is not logged in */}
             {!token && (
               <>
@@ -84,7 +88,6 @@ function Nav() {
                 </li>
               </>
             )}
-
 
             {token && (
               <li className="nav-item">
