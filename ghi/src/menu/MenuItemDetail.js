@@ -1,9 +1,12 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { addToCart } from "../features/cart/CartSlice";
+import { useDispatch } from "react-redux";
 
 export default function MenuItemDetail() {
   const { id } = useParams();
   const [selectedmenuItem, setselectedMenuItem] = useState();
+  const dispatch = useDispatch();
 
   const fetchMenuItemDetail = async () => {
     const url = `${process.env.REACT_APP_API_HOST}/menu_items/${id}`;
@@ -19,6 +22,10 @@ export default function MenuItemDetail() {
     fetchMenuItemDetail();
   });
 
+  const handleAddToCart = (item) => {
+    dispatch(addToCart(item));
+  };
+
   return (
     <>
       {selectedmenuItem ? (
@@ -32,7 +39,7 @@ export default function MenuItemDetail() {
                 <td>
                   <img
                     className="img-thumbail"
-                    alt="Menu item "
+                    alt={selectedmenuItem.description}
                     width="200px"
                     height="200px"
                     src={selectedmenuItem.picture_url}
@@ -47,7 +54,11 @@ export default function MenuItemDetail() {
               </tr>
               <tr>
                 <td>
-                  <button type="button" className="btn  btn-danger  mx-3">
+                  <button
+                    type="button"
+                    className="btn  btn-danger  mx-3"
+                    onClick={() => handleAddToCart(selectedmenuItem)}
+                  >
                     Add to Cart
                   </button>
                 </td>

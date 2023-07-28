@@ -25,12 +25,12 @@ July 25
 
 Continued working on Menu page, created Menu Item Details page, trying to use UseParams hook as a way of accessing menu items by their id to display them on that page. I allowed bootstrap to render after it wasn't because I noticed we were missing the scripts and link in our index.html.
 
-July 26
+July 27
 
-Menu-
+Menu- Can send an item to a shopping cart
 
-Menu Items-
+Menu Items-Can send an item to a shopping cart
 
-Unit Test-
+Unit Test- Succesfully created a unit test for get_all (order_items)
 
-Orders-
+Edited Order_Items queries (fixed them so that they became functional)
