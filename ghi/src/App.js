@@ -21,6 +21,8 @@ import MenuItemForm from "./menu/MenuItemForm.js";
 import Menu from "./menu/Menu.js";
 import MenuItemDetail from "./menu/MenuItemDetail.js";
 
+import OrderHistory from "./orders/OrderHistory";
+
 // import HeroSection from "./HeroSection.jsx";
 
 function App() {
@@ -61,6 +63,8 @@ function App() {
               <Route path="/editmyaccount" element={<UpdateAccount accountData={accountData} />} />
 
               <Route path="/cart" element={<Cart />} />
+
+              <Route path="/orders" element={<OrderHistory/>} />
 
               <Route path="/reservations/new" element={<ReservationForm />} />
               <Route path="/reservations" element={<ReservationList />} />
