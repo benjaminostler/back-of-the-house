@@ -71,12 +71,10 @@ def test_get_menu_item(mock_record_to_menu_item_out, setup):
 
 
 def test_create_menu_items(setup):
-    repository, test_menu_item, mock_db = setup
+    repository, test_menu_item = setup
 
     # Arrangessed in 0.65s ==
-    mock_db.return_value.__enter__.return_value.cursor.return_value.__enter__.return_value.fetchone.return_value = [
-        1
-    ]
+
 
     # Act
     response = repository.create(test_menu_item)
