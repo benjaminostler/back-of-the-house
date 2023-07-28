@@ -1,18 +1,6 @@
 import { Link } from "react-router-dom";
-import {
-  addToCart,
-  decrementQuantity,
-  enterQuantity,
-  incrementQuantity,
-} from "../features/cart/CartSlice";
-import {
-  incrementMenuItemQuantity,
-  decrementMenuItemQuantity,
-  enterMenuItemQuantity,
-} from "../features/menu/MenuSlice";
-import { useSelector, useDispatch } from "react-redux";
-const baseURL = "http://localhost:3000/menu_items/";
 
+const baseURL = `${process.env.REACT_APP_API_HOST}/menu_items`;
 export default function Menu({ menuItems }) {
   const dispatch = useDispatch();
 

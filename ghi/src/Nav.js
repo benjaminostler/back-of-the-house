@@ -60,7 +60,7 @@ function Nav() {
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/menu_items">
-                Menu
+                Menu Items
               </NavLink>
             </li>
             <li className="nav-item">
@@ -68,7 +68,11 @@ function Nav() {
                 Cart
               </NavLink>
             </li>
-
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/orders">
+                Orders
+              </NavLink>
+            </li>
             {/* Show login and signup links if the user is not logged in */}
             {!token && (
               <>
@@ -78,14 +82,22 @@ function Nav() {
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/accounts/new">
+                  <NavLink className="nav-link" to="/signup">
                     Sign-Up
                   </NavLink>
                 </li>
               </>
             )}
 
-            {/* Show the logout link if the user is logged in */}
+            {token && (
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/myaccount">
+                  My Account
+                </NavLink>
+              </li>
+            )}
+
+            {/* Show links if the user is logged in */}
             {token && (
               <li className="nav-item">
                 <NavLink
