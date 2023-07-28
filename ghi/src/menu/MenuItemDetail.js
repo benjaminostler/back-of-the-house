@@ -6,7 +6,7 @@ export default function MenuItemDetail() {
   const [selectedmenuItem, setselectedMenuItem] = useState();
 
   const fetchMenuItemDetail = async () => {
-    const url = `http://localhost:8000/menu_items/` + id;
+    const url = `${process.env.REACT_APP_API_HOST}/menu_items/${id}`;
     const response = await fetch(url);
 
     if (response.ok) {
