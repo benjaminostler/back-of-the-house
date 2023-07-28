@@ -76,7 +76,7 @@ function ReservationList() {
     };
     const response = await fetch(reservationURL, fetchConfig);
     if (response.ok) {
-      window.location.replace(`${process.env.REACT_APP_API_HOST}/reservations/${id}`);
+      window.location.assign(reservationURL);
     }
   };
 
