@@ -60,7 +60,7 @@ function Nav() {
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/menu_items">
-                Menu Items
+                Menu
               </NavLink>
             </li>
             <li className="nav-item">
