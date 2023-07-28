@@ -31,7 +31,6 @@ function Nav() {
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
           Back of the House
-          Back of the House
         </NavLink>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
