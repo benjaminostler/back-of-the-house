@@ -24,10 +24,6 @@ import MenuItemDetail from "./menu/MenuItemDetail.js";
 
 import OrderHistory from "./orders/OrderHistory";
 
-import OrderHistory from "./orders/OrderHistory";
-
-import OrderHistory from "./orders/OrderHistory";
-
 
 function App() {
   const domain = /https:\/\/[^/]+/;
