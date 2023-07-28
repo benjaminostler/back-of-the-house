@@ -31,6 +31,7 @@ function Nav() {
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
           Back of the House
+          Back of the House
         </NavLink>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -40,42 +41,57 @@ function Nav() {
                 Home
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink
-                className="nav-link active"
-                aria-current="page"
-                to="/reservations/new"
-              >
-                Create Reservation
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                className="nav-link active"
-                aria-current="page"
-                to="/reservations"
-              >
-                Reservations
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/menu_items">
-                Menu
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/cart">
-                Cart
-              </NavLink>
-            </li>
+            {token && (
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/reservations/new"
+                >
+                  Create Reservation
+                </NavLink>
+              </li>
+            )}
+            {token && (
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/reservations"
+                >
+                  Reservations
+                </NavLink>
+              </li>
+            )}
+            {token && (
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/menu_items">
+                  Menu Items
+                </NavLink>
+              </li>
+            )}
+            {token && (
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/cart">
+                  Cart
+                </NavLink>
+              </li>
+            )}
+            {token && (
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/orders/new">
+                  Create Order
+                </NavLink>
+              </li>
+            )}
+
             {token && (
               <li className="nav-item">
                 <NavLink className="nav-link" to="/orders">
                   Orders
                 </NavLink>
               </li>
-              )
-            }
+            )}
             {/* Show login and signup links if the user is not logged in */}
             {!token && (
               <>

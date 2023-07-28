@@ -37,7 +37,7 @@ export default function OrderHistory() {
         <tbody>
           {orders.map((ord) => (
             <tr key={ord.id}>
-              <td>#{ord.id}</td>
+              <td>{ord.id}</td>
               <td>${ord.subtotal}</td>
               <td>${ord.total}</td>
             </tr>
