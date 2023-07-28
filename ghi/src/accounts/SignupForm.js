@@ -1,5 +1,5 @@
 import React from "react";
-import useAToken from "@galvanize-inc/jwtdown-for-react";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -10,7 +10,7 @@ const SignupForm = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [phone_number, setPhoneNumber] = useState("");
-  const { register } = useAToken();
+  const { register } = useToken();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -23,14 +23,14 @@ const SignupForm = () => {
       email: email,
       phone_number: phone_number,
     };
-    register(accountData, `${process.env.REACT_APP_API_HOST}/api/accounts`);
+    register(accountData, `${process.env.REACT_APP_API_HOST}/api/accounts/`);
     e.target.reset();
     navigate("/");
   };
 
   return (
     <div className="card text-bg-light mb-3">
-      <h5 className="card-header">Login</h5>
+      <h5 className="card-header">Sign-Up</h5>
       <div className="card-body">
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="mb-3">
@@ -100,8 +100,9 @@ const SignupForm = () => {
           </div>
 
           <div>
-            <input className="btn btn-primary" type="submit" value="Login" />
+            <input className="btn btn-primary" type="submit" value="Register and Login" />
           </div>
+
         </form>
       </div>
     </div>
