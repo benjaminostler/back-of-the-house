@@ -19,7 +19,7 @@ const Cart = () => {
   }, []);
 
   async function fetchItems() {
-    const response = await fetch("http://localhost:8000/menu_items");
+    const response = await fetch("http://localhost:8000/menu_items/");
     const items = await response.json();
 
     if (items.message) {

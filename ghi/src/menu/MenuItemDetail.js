@@ -9,7 +9,7 @@ export default function MenuItemDetail() {
   const dispatch = useDispatch();
 
   const fetchMenuItemDetail = async () => {
-    const url = `${process.env.REACT_APP_API_HOST}/menu_items/${id}`;
+    const url = `${process.env.REACT_APP_API_HOST}/menu_items/ +${id}`;
     const response = await fetch(url);
 
     if (response.ok) {

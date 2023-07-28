@@ -67,7 +67,6 @@ export default function Menu({ menuItems }) {
                 <button onClick={() => handleIncrementQuantity(item.id)}>
                   +
                 </button>
-                {/* possibly delete these if you cant get it to work */}
 
                 <input
                   onClick={() => handleEnterQuantity(item.id)}
