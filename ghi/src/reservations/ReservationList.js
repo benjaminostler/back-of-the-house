@@ -76,7 +76,7 @@ function ReservationList() {
     };
     const response = await fetch(reservationURL, fetchConfig);
     if (response.ok) {
-      window.location.replace(`${process.env.REACT_APP_API_HOST}/reservations`);
+      window.location.replace(`${process.env.REACT_APP_API_HOST}/reservations/${id}`);
     }
   };
 
@@ -107,12 +107,12 @@ function ReservationList() {
                 <td>{reservation.date}</td>
                 <td>{reservation.time}</td>
                 <td>
-                  <button
-                    onClick={(e) => editReservation(reservation.id)}
-                    className="btn btn-secondary m-2"
-                  >
-                    Edit
-                  </button>
+                    <button
+                      onClick={(e) => editReservation(reservation.id)}
+                      className="btn btn-secondary m-2"
+                    >
+                      Edit
+                    </button>
                 </td>
                 <td>
                   <button

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom"
 
 function ReservationForm() {
+  const navigate = useNavigate()
   const [firstName, setFirstName] = useState("");
   const handleFirstNameChange = (event) => {
     const value = event.target.value;
@@ -90,6 +91,7 @@ function ReservationForm() {
       setPartySize("");
       setDate("");
       setTime("");
+      navigate("/reservations")
     }
 
   };
