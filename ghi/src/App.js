@@ -14,12 +14,17 @@ import AccountDetails from "./accounts/AccountDetail.js";
 import ReservationForm from "./reservations/ReservationForm.js";
 import ReservationList from "./reservations/ReservationList.js";
 import ReservationDetail from "./reservations/ReservationDetail.js";
+import EditReservationForm from "./reservations/ReservationEditForm.js";
 
 import Cart from "./Cart.js";
 
 import MenuItemForm from "./menu/MenuItemForm.js";
 import Menu from "./menu/Menu.js";
 import MenuItemDetail from "./menu/MenuItemDetail.js";
+
+import OrderHistory from "./orders/OrderHistory";
+
+import OrderHistory from "./orders/OrderHistory";
 
 import OrderHistory from "./orders/OrderHistory";
 
@@ -51,7 +56,7 @@ function App() {
         <AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
 
           <Nav accountData={accountData} />
-          
+
         <div className="container">
 
             <Routes>
@@ -64,7 +69,7 @@ function App() {
               <Route path="/cart" element={<Cart />} />
 
               <Route path="/orders" element={<OrderHistory/>} />
-
+              <Route path="/reservations/:id" element = {<EditReservationForm />} />
               <Route path="/reservations/new" element={<ReservationForm />} />
               <Route path="/reservations" element={<ReservationList />} />
               <Route path="/reservations/:id" element={<ReservationDetail />} />
