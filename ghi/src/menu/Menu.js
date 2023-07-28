@@ -1,4 +1,11 @@
 import { Link } from "react-router-dom";
+import {
+  addToCart,
+  incrementQuantity,
+  decrementQuantity,
+  enterQuantity,
+} from "../features/cart/CartSlice";
+import { useDispatch } from "react-redux";
 
 const baseURL = `${process.env.REACT_APP_API_HOST}/menu_items`;
 export default function Menu({ menuItems }) {
@@ -16,20 +23,9 @@ export default function Menu({ menuItems }) {
     dispatch(enterQuantity({ id, quantity }));
   };
 
-  const handleIncrementMenuItemQuantity = (id) => {
-    dispatch(incrementMenuItemQuantity(id));
-  };
-
-  const handleDecrementMenuItemQuantity = (id) => {
-    dispatch(decrementMenuItemQuantity(id));
-  };
-  const handleEnterMenuItemQuantity = (id, quantity) => {
-    dispatch(enterMenuItemQuantity(id, quantity));
-  };
   const handleAddToCart = (item) => {
     dispatch(addToCart(item));
   };
-
   return (
     <div className="row">
       <div className="offset-3 col-6">
