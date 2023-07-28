@@ -111,7 +111,7 @@ function EditReservationForm({ reservationId }) {
         <div className="row">
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
-                    <h1>Create a Reservation</h1>
+                    <h1>Edit a Reservation</h1>
                     <form onSubmit={handleSubmit} id="create-reservation-form">
                         <div className="form-floating mb-3">                       
                             <input onChange={handleFirstNameChange} placeholder="First Name" value={firstName} required type="text" name="first_name" id="first_name" className="form-control"/>
