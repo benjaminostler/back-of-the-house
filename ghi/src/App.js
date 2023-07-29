@@ -23,6 +23,9 @@ import Menu from "./menu/Menu.js";
 import MenuItemDetail from "./menu/MenuItemDetail.js";
 
 import OrderHistory from "./orders/OrderHistory";
+import OrderForm from "./orders/OrderForm";
+
+// import background from "./assets/img/diner.png"
 
 
 function App() {
@@ -50,22 +53,37 @@ function App() {
     <AccountContext.Provider value={{ accountData, setAccountData }}>
       <BrowserRouter basename={basename}>
         <AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
-
           <Nav accountData={accountData} />
 
-        <div className="container">
-
+          <div
+            className="container"
+          //   style={{
+          //     backgroundImage: `url(${background})`,
+          //     backgroundRepeat: 'no-repeat',
+          //     width: "100%"
+          //  }}
+          >
             <Routes>
               <Route path="/" element={<MainPage />} />
               <Route path="/signup" element={<SignupForm />} />
               <Route path="/loginform" element={<LoginForm />} />
-              <Route path="/myaccount" element={<AccountDetails accountData={accountData} />} />
-              <Route path="/editmyaccount" element={<UpdateAccount accountData={accountData} />} />
+              <Route
+                path="/myaccount"
+                element={<AccountDetails accountData={accountData} />}
+              />
+              <Route
+                path="/editmyaccount"
+                element={<UpdateAccount accountData={accountData} />}
+              />
 
               <Route path="/cart" element={<Cart />} />
 
-              <Route path="/orders" element={<OrderHistory/>} />
-              <Route path="/reservations/:id" element = {<EditReservationForm />} />
+              <Route path="/orders" element={<OrderHistory />} />
+              <Route path="/orders/new" element={<OrderForm />} />
+              <Route
+                path="/reservations/:id"
+                element={<EditReservationForm />}
+              />
               <Route path="/reservations/new" element={<ReservationForm />} />
               <Route path="/reservations" element={<ReservationList />} />
               {/* <Route path="/reservations/:id" element={<ReservationDetail />} /> */}
@@ -75,7 +93,6 @@ function App() {
                 <Route path=":id" element={<MenuItemDetail />} />
                 <Route path="new" element={<MenuItemForm />} />
               </Route>
-
             </Routes>
           </div>
         </AuthProvider>

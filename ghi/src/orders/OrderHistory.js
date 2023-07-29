@@ -5,7 +5,7 @@ export default function OrderHistory() {
   const [orders, setOrders] = useState([]);
 
   async function getOrders() {
-    const url = `${process.env.REACT_APP_API_HOST}/order/`;
+    const url = `${process.env.REACT_APP_API_HOST}/order`;
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
@@ -37,7 +37,7 @@ export default function OrderHistory() {
         <tbody>
           {orders.map((ord) => (
             <tr key={ord.id}>
-              <td>#{ord.id}</td>
+              <td>{ord.id}</td>
               <td>${ord.subtotal}</td>
               <td>${ord.total}</td>
             </tr>
