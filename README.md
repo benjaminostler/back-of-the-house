@@ -1,45 +1,58 @@
 # Module3 Project Gamma
-## API Endpoints and Project Links (Local and Deployed/Prod)
-(Local Backend): http://localhost:8000/docs
-(Deployed/Prod Backend) - https://mar-2-pt-fastrapi.mod3projects.com/docs#/
-(Local Frontend): http://localhost:3000
-(Deployed/Prod Frontend) - https://backofthehouse.gitlab.io/gastronomical-gems
 
-Wire-Frames: https://excalidraw.com/#room=ae01c103655b963a3799,6v_wKfT6C2fzkKNNqbYXkQ
-FastAPI: https://mar-2-pt-fastrapi.mod3projects.com/docs
+## About our Project
 
-ERD: https://drive.google.com/file/d/1pWQop7rLnYlZO-vijExYePNbFCZVOuoy/view?usp=sharing
+Our project is aimed towards small to medium sized restaurant owners looking for a software solution to manage essential portions of their business. Our app provides features that would be of interest to business owners who want to create an online presence.
 
-# Who did what:
-### [Kenny](https://gitlab.com/kenny.phung12)
-- Created Tables: Reservations, Accounts
-- All Account endpoints
-- All Reservations endpoints
-- Front and backend Auth
-- Front & back End: Login & Logout
-- Unit Test: test_accounts.py
+## Running the project locally
 
-### [Ed](https://gitlab.com/eleet94)
-Created Table: menu_items
-- All Menu_item, Cart, and Cart_item endpoints
-- Frontend: Cart Page
-- Unit Test: test_menu_items.py
+1. Fork this project (https://gitlab.com/backofthehouse/gastronomical-gems).
 
-### [Benjamin](https://gitlab.com/benjaminostler)
-Created Table: Order_items
-- Order_items Endpoints: Create, Get One
-- Orders Endpoints: Get All
-- Front End: Main page, Orders Page, Create Order Page, Create Menu Item Page
-- Unit Test: test_order_history.py
-- Created Zoom Background
+2. Clone the repository to your local machine.
 
-### [Alec]()
-- Created Table: Orders
-- Orders Endpoints: Get One, Create, Update, Delete
-- Unit Test: test_order_items.py
+3. Change directory to the new project directory.
 
-### [Raymond Quach](https://gitlab.com/Rayblah)
-- Created Table: Order_items
-- Order_items Endpoints: Update, Delete
-- Front End: Reservations Page, Create Reservation Page
-- Unit Test: test_reservations.py
+4. Install [Docker](https://www.docker.com/products/docker-desktop/).
+
+5. Start Docker Desktop.
+
+6. In terminal, run these commands:
+
+```
+docker volume create gastroids2
+
+docker compose build
+
+docker compose up
+```
+If you have a computer with [Apple silicon](https://support.apple.com/en-us/HT211814), use these commands:
+```
+docker volume create gastroids2
+
+DOCKER_DEFAULT_PLATFORM=linux/amd64 docker compose build
+
+docker compose up
+```
+
+7. Visit [http://localhost:3000](http://localhost:3000) in your browser.
+
+Enjoy Community Fridges website to its fullest!
+
+## Deliverables
+
+- [Wire-Frame](docs/wireframes.md)
+
+- [API Docs](docs/API_Documentation.md)
+
+- [Deployed Project](https://backofthehouse.gitlab.io/gastronomical-gems)
+
+- [OpenAPI Endpoints](https://mar-2-pt-fastrapi.mod3projects.com/docs#/)
+
+- [Gitlab Issue Board](https://gitlab.com/backofthehouse/gastronomical-gems/-/issues)
+
+- Team Journals:
+  - [Alec](journals/alec_weinstein.MD)
+  - [Ben](journals/Benjamin_Ostler.MD)
+  - [Ray](journals/Raymond_quach.md)
+  - [Kenny](journals/kenny_phung.md)
+  - [Ed](journals/ed_lee.md)
