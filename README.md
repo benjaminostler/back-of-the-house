@@ -6,6 +6,7 @@
 (Deployed/Prod Frontend) - https://backofthehouse.gitlab.io/gastronomical-gems
 
 Wire-Frames: https://excalidraw.com/#room=ae01c103655b963a3799,6v_wKfT6C2fzkKNNqbYXkQ
+FastAPI: https://mar-2-pt-fastrapi.mod3projects.com/docs
 
 ERD: https://drive.google.com/file/d/1pWQop7rLnYlZO-vijExYePNbFCZVOuoy/view?usp=sharing
 
