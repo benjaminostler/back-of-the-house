@@ -25,6 +25,9 @@ import MenuItemDetail from "./menu/MenuItemDetail.js";
 import OrderHistory from "./orders/OrderHistory";
 import OrderForm from "./orders/OrderForm";
 
+// import background from "./assets/img/diner.png"
+
+
 function App() {
   const domain = /https:\/\/[^/]+/;
   const basename = process.env.PUBLIC_URL.replace(domain, "");
@@ -52,7 +55,14 @@ function App() {
         <AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
           <Nav accountData={accountData} />
 
-          <div className="container">
+          <div
+            className="container"
+          //   style={{
+          //     backgroundImage: `url(${background})`,
+          //     backgroundRepeat: 'no-repeat',
+          //     width: "100%"
+          //  }}
+          >
             <Routes>
               <Route path="/" element={<MainPage />} />
               <Route path="/signup" element={<SignupForm />} />
@@ -76,7 +86,6 @@ function App() {
               />
               <Route path="/reservations/new" element={<ReservationForm />} />
               <Route path="/reservations" element={<ReservationList />} />
-              {/* <Route path="/reservations/:id" element={<ReservationDetail />} /> */}
 
               <Route path="/menu_items">
                 <Route index element={<Menu menuItems={menuItems} />} />

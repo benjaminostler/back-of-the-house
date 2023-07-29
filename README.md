@@ -2,7 +2,7 @@
 
 ## About our Project
 
-Our project is aimed towards small to medium sized restaurant owners looking for a software solution to manage essential portions of their business. Our app provides features that would be of interest to business owners who want to create an online presence.  
+Our project is aimed towards small to medium sized restaurant owners looking for a software solution to manage essential portions of their business. Our app provides features that would be of interest to business owners who want to create an online presence.
 
 ## Running the project locally
 

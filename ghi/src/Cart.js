@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import {
-  addToCart,
   incrementQuantity,
   decrementQuantity,
   enterQuantity,
@@ -13,13 +12,13 @@ const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
   const [items, setItems] = useState([]);
-
+  console.log(items);
   useEffect(() => {
     fetchItems();
   }, []);
 
   async function fetchItems() {
-    const response = await fetch("http://localhost:8000/menu_items");
+    const response = await fetch("http://localhost:8000/menu_items/");
     const items = await response.json();
 
     if (items.message) {
@@ -43,32 +42,6 @@ const Cart = () => {
     return totalPrice.toFixed(2);
   };
 
-  // const handleSubmitOrder = async (event) => {
-  //   event.preventDefault();
-  //   const data = {
-  //     id,
-  //     subtotal,
-  //     total
-  //   };
-  //   const orderUrl = `${process.env.REACT_APP_API_HOST}/order`;
-  //   const fetchConfig = {
-  //     method: "post",
-  //     body: JSON.stringify(data),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   };
-  //   const response = await fetch(orderUrl, fetchConfig);
-  //   if (response.ok) {
-  //     const newOrder = await response.json();
-  //     console.log("new Order", newOrder);
-  //   }
-  // };
-
-  const handleAddToCart = (item) => {
-    dispatch(addToCart(item));
-  };
-
   const handleIncrementQuantity = (id) => {
     dispatch(incrementQuantity(id));
   };
@@ -85,9 +58,7 @@ const Cart = () => {
     dispatch(removeItem(id));
   };
 
-
   return (
-    // <>
     <div>
       <h1>Cart</h1>
 
@@ -133,39 +104,6 @@ const Cart = () => {
       </table>
       <h4>Sub-total:${calculateSubTotal()}</h4>
       <h3 className="strong">Total: ${calculateTotalPrice()}</h3>
-      {/* <button onClick={() => handleSubmitOrder()}>Submit Order</button> */}
-
-      <div>
-        <h2>Menu Items</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Picture</th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map((item) => (
-              <tr key={item.id}>
-                <td>{item.name}</td>
-                <td>
-                  <img
-                    height="100px"
-                    width="100px"
-                    src={item.picture_url}
-                    alt={item.description}
-                  />
-                </td>
-                <td>
-                  <button onClick={() => handleAddToCart(item)}>
-                    Add to Cart
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
     </div>
   );
 };
