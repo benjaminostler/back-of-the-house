@@ -12,13 +12,13 @@ const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
   const [items, setItems] = useState([]);
-  console.log(items)
+  console.log(items);
   useEffect(() => {
     fetchItems();
   }, []);
 
   async function fetchItems() {
-    const response = await fetch("http://localhost:8000/menu_items");
+    const response = await fetch("http://localhost:8000/menu_items/");
     const items = await response.json();
 
     if (items.message) {
@@ -57,7 +57,6 @@ const Cart = () => {
   const handleRemoveItem = (id) => {
     dispatch(removeItem(id));
   };
-
 
   return (
     <div>
