@@ -43,6 +43,28 @@ const Cart = () => {
     return totalPrice.toFixed(2);
   };
 
+  // const handleSubmitOrder = async (event) => {
+  //   event.preventDefault();
+  //   const data = {
+  //     id,
+  //     subtotal,
+  //     total
+  //   };
+  //   const orderUrl = `${process.env.REACT_APP_API_HOST}/order`;
+  //   const fetchConfig = {
+  //     method: "post",
+  //     body: JSON.stringify(data),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   };
+  //   const response = await fetch(orderUrl, fetchConfig);
+  //   if (response.ok) {
+  //     const newOrder = await response.json();
+  //     console.log("new Order", newOrder);
+  //   }
+  // };
+
   const handleAddToCart = (item) => {
     dispatch(addToCart(item));
   };
@@ -63,9 +85,12 @@ const Cart = () => {
     dispatch(removeItem(id));
   };
 
+
   return (
+    // <>
     <div>
       <h1>Cart</h1>
+
       <table>
         <thead>
           <tr>
@@ -108,6 +133,8 @@ const Cart = () => {
       </table>
       <h4>Sub-total:${calculateSubTotal()}</h4>
       <h3 className="strong">Total: ${calculateTotalPrice()}</h3>
+      {/* <button onClick={() => handleSubmitOrder()}>Submit Order</button> */}
+
       <div>
         <h2>Menu Items</h2>
         <table>
@@ -122,7 +149,12 @@ const Cart = () => {
               <tr key={item.id}>
                 <td>{item.name}</td>
                 <td>
-                  <img src={item.image_url} alt={item.description} />
+                  <img
+                    height="100px"
+                    width="100px"
+                    src={item.picture_url}
+                    alt={item.description}
+                  />
                 </td>
                 <td>
                   <button onClick={() => handleAddToCart(item)}>
