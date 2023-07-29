@@ -135,7 +135,7 @@ function Nav() {
                 </NavLink>
               </li>
             )}
-            
+
             {!token && (
               <>
                 <li className="nav-item">
@@ -169,6 +169,13 @@ function Nav() {
                   to="/"
                 >
                   Logout
+                </NavLink>
+              </li>
+            )}
+            {token && (
+              <li className="nav-item">
+                <NavLink className="nav-link" to="menu_items/new">
+                  Create Menu Item
                 </NavLink>
               </li>
             )}
