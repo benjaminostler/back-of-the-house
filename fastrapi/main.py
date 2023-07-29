@@ -1,3 +1,6 @@
+from authenticator import authenticator
+from fastapi.middleware.cors import CORSMiddleware
+import os
 from fastapi import FastAPI
 from routers import (
     reservations,
@@ -8,9 +11,6 @@ from routers import (
     cart,
     cart_items,
 )
-from authenticator import authenticator
-from fastapi.middleware.cors import CORSMiddleware
-import os
 
 app = FastAPI()
 app.include_router(reservations.router)
