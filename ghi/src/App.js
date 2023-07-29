@@ -25,7 +25,7 @@ import MenuItemDetail from "./menu/MenuItemDetail.js";
 import OrderHistory from "./orders/OrderHistory";
 import OrderForm from "./orders/OrderForm";
 
-import background from "./assets/img/diner.png"
+// import background from "./assets/img/diner.png"
 
 
 function App() {
@@ -57,11 +57,11 @@ function App() {
 
           <div
             className="container"
-            style={{
-              backgroundImage: `url(${background})`,
-              backgroundRepeat: 'no-repeat',
-              width: "100%"
-           }}
+          //   style={{
+          //     backgroundImage: `url(${background})`,
+          //     backgroundRepeat: 'no-repeat',
+          //     width: "100%"
+          //  }}
           >
             <Routes>
               <Route path="/" element={<MainPage />} />
