@@ -36,7 +36,7 @@ class OrderItemsRepository(BaseModel):
                         SET
                             orders_id = %s,
                             menu_item_id = %s,
-                            quantity = %s,
+                            quantity = %s
                         WHERE id = %s
 
                         """,
@@ -47,8 +47,8 @@ class OrderItemsRepository(BaseModel):
                             order_items_id,
                         ]
                     )
-                    order_items.id = order_items_id
-                    return order_items
+                    old_data = order_items.dict()
+                    return OrderItemsOut(id=order_items_id, **old_data)
         except Exception as e:
             print(e)
             return {"message": "Could not update order items."}
