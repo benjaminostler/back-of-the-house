@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from queries.pool import pool
-from typing import List, Union
+from typing import Union
 
 
 class Error(BaseModel):
@@ -132,6 +132,9 @@ class OrderItemsRepository(BaseModel):
                             orders_id,
                             menu_item_id,
                             quantity
+                            orders_id,
+                            menu_item_id,
+                            quantity
                             )
                         VALUES
                             (%s, %s, %s)
@@ -150,6 +153,7 @@ class OrderItemsRepository(BaseModel):
             return {"message": "Could not create new order items."}
 
     def delete(self, orders_item_id: int) -> bool:
+    def delete(self, orders_item_id: int) -> bool:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -158,6 +162,7 @@ class OrderItemsRepository(BaseModel):
                         DELETE FROM order_items
                         WHERE id = %s
                         """,
+                        [orders_item_id],
                         [orders_item_id],
                     )
             return True

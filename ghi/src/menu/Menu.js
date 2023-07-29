@@ -6,8 +6,32 @@ import {
   enterQuantity,
 } from "../features/cart/CartSlice";
 import { useDispatch } from "react-redux";
+import {
+  addToCart,
+  incrementQuantity,
+  decrementQuantity,
+  enterQuantity,
+} from "../features/cart/CartSlice";
+import { useDispatch } from "react-redux";
 
 export default function Menu({ menuItems }) {
+  const dispatch = useDispatch();
+
+  const handleIncrementQuantity = (id) => {
+    dispatch(incrementQuantity(id));
+  };
+
+  const handleDecrementQuantity = (id) => {
+    dispatch(decrementQuantity(id));
+  };
+
+  const handleEnterQuantity = (id, quantity) => {
+    dispatch(enterQuantity({ id, quantity }));
+  };
+
+  const handleAddToCart = (item) => {
+    dispatch(addToCart(item));
+  };
   const dispatch = useDispatch();
 
   const handleIncrementQuantity = (id) => {
@@ -54,6 +78,7 @@ export default function Menu({ menuItems }) {
                 <img
                   className="img-thumbnail"
                   alt={item.description}
+                  alt={item.description}
                   width="100px"
                   height="100px"
                   src={item.picture_url}
@@ -82,6 +107,12 @@ export default function Menu({ menuItems }) {
                 </button>
               </td>
               <td>
+                <button
+                  className="btn  btn-danger  mx-3"
+                  onClick={() => handleAddToCart(item)}
+                >
+                  Add to Cart
+                </button>
                 <button
                   className="btn  btn-danger  mx-3"
                   onClick={() => handleAddToCart(item)}
