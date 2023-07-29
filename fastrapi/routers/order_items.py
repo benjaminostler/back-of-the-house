@@ -25,7 +25,6 @@ def update_order_items(
     return repo.update(order_items_id, order_items)
 
 
-
 @router.delete(
     "/order_items/{order_items_id}",
     response_model=bool,
