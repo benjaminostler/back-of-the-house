@@ -1,10 +1,4 @@
 import { Link } from "react-router-dom";
-import {
-  addToCart,
-  incrementQuantity,
-  decrementQuantity,
-  enterQuantity,
-} from "../features/cart/CartSlice";
 import { useDispatch } from "react-redux";
 import {
   addToCart,
@@ -12,26 +6,8 @@ import {
   decrementQuantity,
   enterQuantity,
 } from "../features/cart/CartSlice";
-import { useDispatch } from "react-redux";
 
 export default function Menu({ menuItems }) {
-  const dispatch = useDispatch();
-
-  const handleIncrementQuantity = (id) => {
-    dispatch(incrementQuantity(id));
-  };
-
-  const handleDecrementQuantity = (id) => {
-    dispatch(decrementQuantity(id));
-  };
-
-  const handleEnterQuantity = (id, quantity) => {
-    dispatch(enterQuantity({ id, quantity }));
-  };
-
-  const handleAddToCart = (item) => {
-    dispatch(addToCart(item));
-  };
   const dispatch = useDispatch();
 
   const handleIncrementQuantity = (id) => {
