@@ -13,7 +13,7 @@ const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
   const [items, setItems] = useState([]);
-
+  console.log(items)
   useEffect(() => {
     fetchItems();
   }, []);
@@ -41,11 +41,6 @@ const Cart = () => {
       0
     );
     return totalPrice.toFixed(2);
-  };
-
-
-  const handleAddToCart = (item) => {
-    dispatch(addToCart(item));
   };
 
   const handleIncrementQuantity = (id) => {

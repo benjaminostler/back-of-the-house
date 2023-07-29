@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import backgroundVideo from "./assets/background.mp4";
-import background from "./assets/img/diner.png";
+
 function MainPage() {
   const videoRef = useRef();
   return (
