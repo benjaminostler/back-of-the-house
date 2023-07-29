@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from queries.pool import pool
-from typing import List, Union
+from typing import Union
 
 
 class Error(BaseModel):
@@ -18,8 +18,6 @@ class OrderItemsOut(BaseModel):
     orders_id: int
     menu_item_id: int
     quantity: int
-
-
 
 
 class OrderItemsRepository(BaseModel):
@@ -67,8 +65,6 @@ class OrderItemsRepository(BaseModel):
 
                 record = db.fetchall()
                 return self.record_to_all_order_items_out(record)
-
-
 
     # def get_order_item_detail(self, order_items_id: int,) -> Optional[OrderItemsOut]:
     #     try:
@@ -123,11 +119,6 @@ class OrderItemsRepository(BaseModel):
     #         )
     #         record = db.fetchone()
     #         return self.record_to_order_items_out(record)
-
-
-
-
-
 
     def create(self, order_items: OrderItemsIn) -> OrderItemsOut:
         try:

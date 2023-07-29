@@ -40,52 +40,111 @@ function Nav() {
                 Home
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink
-                className="nav-link active"
-                aria-current="page"
-                to="/reservations/new"
-              >
-                Create Reservation
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                className="nav-link active"
-                aria-current="page"
-                to="/reservations"
-              >
-                Reservations
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/menu_items">
-                Menu
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/cart">
-                Cart
-              </NavLink>
-            </li>
             {token && (
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/orders">
+              <li className="nav-item dropdown">
+                <NavLink
+                  className="nav-link dropdown-toggle"
+                  to="/"
+                  id="navbarDarkDropdownReservationLink"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Reservations
+                </NavLink>
+                <ul
+                  className="dropdown-menu dropdown-menu-dark"
+                  aria-labelledby="navbarDarkDropdownReservationLink"
+                >
+                  <li>
+                    <NavLink className="dropdown-item" to="/reservations">
+                      Reservation List
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink className="dropdown-item" to="/reservations/new">
+                      Create Reservation
+                    </NavLink>
+                  </li>
+                </ul>
+              </li>
+            )}
+            {token && (
+              <li className="nav-item dropdown">
+                <NavLink
+                  className="nav-link dropdown-toggle"
+                  to="/"
+                  id="navbarDarkDropdownMenuLink"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Menu
+                </NavLink>
+                <ul
+                  className="dropdown-menu dropdown-menu-dark"
+                  aria-labelledby="navbarDarkDropdownMenuLink"
+                >
+                  <li>
+                    <NavLink className="dropdown-item" to="/menu_items">
+                      View Menu
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink className="dropdown-item" to="/menu_items/new">
+                      Create Menu Item
+                    </NavLink>
+                  </li>
+                </ul>
+              </li>
+            )}
+
+            {token && (
+              <li className="nav-item dropdown">
+                <NavLink
+                  className="nav-link dropdown-toggle"
+                  to="/"
+                  id="navbarDarkDropdownMenuLink"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
                   Orders
                 </NavLink>
+                <ul
+                  className="dropdown-menu dropdown-menu-dark"
+                  aria-labelledby="navbarDarkDropdownOrdersLink"
+                >
+                  <li>
+                    <NavLink className="dropdown-item" to="/orders">
+                      Order History
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink className="dropdown-item" to="/orders/new">
+                      Create Order
+                    </NavLink>
+                  </li>
+                </ul>
               </li>
-              )
-            }
-            {/* Show login and signup links if the user is not logged in */}
+            )}
+            {token && (
+              <li className="nav-item">
+                <NavLink className="nav-link active" to="/cart">
+                  Cart
+                </NavLink>
+              </li>
+            )}
+
             {!token && (
               <>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/loginform">
+                  <NavLink className="nav-link active" to="/loginform">
                     Login
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/signup">
+                  <NavLink className="nav-link active" to="/signup">
                     Sign-Up
                   </NavLink>
                 </li>
@@ -94,7 +153,7 @@ function Nav() {
 
             {token && (
               <li className="nav-item">
-                <NavLink className="nav-link" to="/myaccount">
+                <NavLink className="nav-link active" to="/myaccount">
                   My Account
                 </NavLink>
               </li>
@@ -104,7 +163,7 @@ function Nav() {
             {token && (
               <li className="nav-item">
                 <NavLink
-                  className="nav-link"
+                  className="nav-link active"
                   value="logout"
                   onClick={handleLogout}
                   to="/"
@@ -113,12 +172,13 @@ function Nav() {
                 </NavLink>
               </li>
             )}
-
-            <li className="nav-item">
-              <NavLink className="nav-link" to="menu_items/new">
-                Create Menu Item
-              </NavLink>
-            </li>
+            {token && (
+              <li className="nav-item">
+                <NavLink className="nav-link" to="menu_items/new">
+                  Create Menu Item
+                </NavLink>
+              </li>
+            )}
           </ul>
         </div>
       </div>
