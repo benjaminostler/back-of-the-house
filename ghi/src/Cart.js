@@ -104,37 +104,6 @@ const Cart = () => {
       </table>
       <h4>Sub-total:${calculateSubTotal()}</h4>
       <h3 className="strong">Total: ${calculateTotalPrice()}</h3>
-      <div>
-        <h2>Menu Items</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Picture</th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map((item) => (
-              <tr key={item.id}>
-                <td>{item.name}</td>
-                <td>
-                  <img
-                    height="100px"
-                    width="100px"
-                    src={item.picture_url}
-                    alt={item.description}
-                  />
-                </td>
-                <td>
-                  <button onClick={() => handleAddToCart(item)}>
-                    Add to Cart
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
     </div>
   );
 };
