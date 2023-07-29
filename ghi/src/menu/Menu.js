@@ -7,7 +7,6 @@ import {
 } from "../features/cart/CartSlice";
 import { useDispatch } from "react-redux";
 
-const baseURL = `${process.env.REACT_APP_API_HOST}/menu_items/`;
 export default function Menu({ menuItems }) {
   const dispatch = useDispatch();
 
@@ -49,7 +48,7 @@ export default function Menu({ menuItems }) {
             <tr key={item.id}>
               <td>{item.category}</td>
               <td>
-                <Link to={baseURL + item.id}>{item.name}</Link>
+                <Link to={"/menu_items/" + item.id}>{item.name}</Link>
               </td>
               <td>
                 <img
