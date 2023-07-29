@@ -21,7 +21,6 @@ class OrderItemsOut(BaseModel):
 
 
 class OrderItemsRepository(BaseModel):
-
     def update(
         self,
         order_items_id: int,
@@ -66,7 +65,8 @@ class OrderItemsRepository(BaseModel):
                 record = db.fetchall()
                 return self.record_to_all_order_items_out(record)
 
-    # def get_order_item_detail(self, order_items_id: int,) -> Optional[OrderItemsOut]:
+    # def get_order_item_detail(self, order_items_id: int,) -> O
+    # ptional[OrderItemsOut]:
     #     try:
     #         # connect the database
     #         with pool.connection() as conn:
@@ -95,30 +95,18 @@ class OrderItemsRepository(BaseModel):
     #
     #        return {"message": "Could not get that order"}
 
-    # def get_order_item_detail(self, order_items_id: int):
-    #     with pool.connection() as conn:
-    #         with conn.cursor() as db:
-    #             db.execute(
-    #                 """
-    #                 SELECT * FROM order_items
-    #                 WHERE id = %s
-    #                 """,
-    #                 [order_items_id],
-    #             )
-    #             record = db.fetchone()
-    #             return self.record_to_order_items_out(record)
-    # def get_order_item_detail(self, order_items_id: int):
-    #  with pool.connection() as conn:
-    #     with conn.cursor() as db:
-    #         db.execute(
-    #             """
-    #             SELECT * FROM order_items
-    #             WHERE id = %s
-    #             """,
-    #             [order_items_id],
-    #         )
-    #         record = db.fetchone()
-    #         return self.record_to_order_items_out(record)
+    def get_order_item_detail(self, order_items_id: int):
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                db.execute(
+                    """
+                    SELECT * FROM order_items
+                    WHERE id = %s
+                    """,
+                    [order_items_id],
+                )
+            record = db.fetchone()
+            return self.record_to_order_items_out(record)
 
     def create(self, order_items: OrderItemsIn) -> OrderItemsOut:
         try:
@@ -131,6 +119,9 @@ class OrderItemsRepository(BaseModel):
                         """
                         INSERT INTO order_items
                             (
+                            orders_id,
+                            menu_item_id,
+                            quantity
                             orders_id,
                             menu_item_id,
                             quantity
@@ -160,6 +151,7 @@ class OrderItemsRepository(BaseModel):
                         DELETE FROM order_items
                         WHERE id = %s
                         """,
+                        [orders_item_id],
                         [orders_item_id],
                     )
             return True
