@@ -80,12 +80,14 @@ Team highlights:
 
 During this week, I worked on the following tasks:
 
-1.
-2.
-3.
+1. Completed deployment (back-end & front-end).
+   - https://gitlab.com/backofthehouse/gastronomical-gems/-/commit/af4dcee076989a6f636610929d30f3946761c3bd
+2. Created tables, routers and queries for cart and cart_item features.
+   - https://gitlab.com/backofthehouse/gastronomical-gems/-/commit/e8cb069271e2494f13745aea9dae67108408f073
+3. Added more robust unit tests
+   - https://gitlab.com/backofthehouse/gastronomical-gems/-/commit/a8b3d239a543203d809e25b688a87780bd9bf51b
+4. Helped troubleshoot team errors.
 
 Team highlights:
 
-1.
-2.
-3.
+1. Project complete (rubric-wise)! (All)
