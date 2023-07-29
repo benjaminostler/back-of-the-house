@@ -32,4 +32,11 @@ During this week, I worked on the following tasks:
 1. I notified the team that I would be offline on Thursday, leaving 3 days to work on frontend authorization.
 2. I created the initial frontend pages "SignupForm.js" and "LoginForm.js" while finalizing reservation endpoints to reference account_id as a foreign key via [this merge request](https://gitlab.com/backofthehouse/gastronomical-gems/-/merge_requests/36)
 3. Although the frontend forms are able to submit data to the backend, the login does not work since it's not able to sucessfully fetch the token from the backend.
-4. I eventually fixed the front end auth issue by updating my import to '@galvanize-inc/jwtdown-for-react' [Merge Request #41](https://gitlab.com/backofthehouse/gastronomical-gems/-/merge_requests/41/diffs). Our project can now allow users to create an account and sucessfully login with a token. I also updated our Nav.js to checkToken and display the proper Nav items depending on the login status of the user. 
+4. I eventually fixed the front end auth issue by updating my import to '@galvanize-inc/jwtdown-for-react' [Merge Request #41](https://gitlab.com/backofthehouse/gastronomical-gems/-/merge_requests/41/diffs). Our project can now allow users to create an account and sucessfully login with a token. I also updated our Nav.js to checkToken and display the proper Nav items depending on the login status of the user.
+
+## Week 16 (July 17th - July 20th)
+1. Monday, I encountered an issue trying to post new accounts into the backend via the signup form. It was resolved with Instructor Zach by fixing a typo in my routers/accounts.py
+2. Tuesday, worked with a team to help un-stuck folks from their backend point issues. Fetch issues, CORS errors, etc. Some good progress was made.
+3. Wedneday, started off the day with Signup/Login breaking again on local and our deployed project - it was resolved with Instructor Paul when we finally created a .env file (vs. .env.sample)
+4. Thursday, finalized the accounts edit form and accounts detail page having accountData being carried across the app with the useContext hook. Began working on unit tests
+5. Unit tests finalized, our team was scrambling in preparation for the presentation with Instructor Paul. Everyone did well and we all individuallly satisfied the MVP requirements as a team. After presentation, we put together the finalize touches to clean our code, update journals, git issues, and a few people wanted to quash bugs within their code. Overall, we came very far since week1 and we're proud of ourselves.
