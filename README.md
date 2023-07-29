@@ -1,15 +1,16 @@
 # Module3 Project Gamma
-## API Endpoints and Project Links (Local and Deployed/Prod)
-(Local Backend): http://localhost:8000/docs
-(Deployed/Prod Backend) - https://mar-2-pt-fastrapi.mod3projects.com/docs#/
-(Local Frontend): http://localhost:3000
-(Deployed/Prod Frontend) - https://backofthehouse.gitlab.io/gastronomical-gems
 
-Wire-Frames: https://excalidraw.com/#room=ae01c103655b963a3799,6v_wKfT6C2fzkKNNqbYXkQ
+## Local Hosting
+- **Localhost Backend**: http://localhost:8000/docs
+- **Localhost Frontend**: http://localhost:3000
 
-ERD: https://drive.google.com/file/d/1pWQop7rLnYlZO-vijExYePNbFCZVOuoy/view?usp=sharing
+## Deployed / Production
+- **Deployed Project** - https://backofthehouse.gitlab.io/gastronomical-gems
+- **Deployed Backend/OpenAPI** - https://mar-2-pt-fastrapi.mod3projects.com/docs#/
 
-# Who did what:
+**ERD Diagram:** ![ERD](ERDforReadme.png)
+
+## Team Contributions:
 ### [Kenny](https://gitlab.com/kenny.phung12)
 - Created Tables: Reservations, Accounts
 - All Account endpoints
@@ -19,13 +20,13 @@ ERD: https://drive.google.com/file/d/1pWQop7rLnYlZO-vijExYePNbFCZVOuoy/view?usp=
 - Unit Test: test_accounts.py
 
 ### [Ed](https://gitlab.com/eleet94)
-Created Table: menu_items
+- Created Table: menu_items
 - All Menu_item, Cart, and Cart_item endpoints
 - Frontend: Cart Page
 - Unit Test: test_menu_items.py
 
 ### [Benjamin](https://gitlab.com/benjaminostler)
-Created Table: Order_items
+- Created Table: Order_items
 - Order_items Endpoints: Create, Get One
 - Orders Endpoints: Get All
 - Front End: Main page, Orders Page, Create Order Page, Create Menu Item Page
