@@ -86,7 +86,6 @@ function App() {
               />
               <Route path="/reservations/new" element={<ReservationForm />} />
               <Route path="/reservations" element={<ReservationList />} />
-              {/* <Route path="/reservations/:id" element={<ReservationDetail />} /> */}
 
               <Route path="/menu_items">
                 <Route index element={<Menu menuItems={menuItems} />} />
