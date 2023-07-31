@@ -36,13 +36,11 @@ docker compose up
 
 7. Visit [http://localhost:3000](http://localhost:3000) in your browser.
 
-Enjoy Community Fridges website to its fullest!
+Welcome to Pip's diner!
 
 ## Deliverables
 
-- [Wire-Frame](docs/wireframes.md)
-
-- [API Docs](docs/API_Documentation.md)
+- [Wire-Frame](docs/wireframe_design.md)
 
 - [Deployed Project](https://backofthehouse.gitlab.io/gastronomical-gems)
 
