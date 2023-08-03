@@ -27,6 +27,7 @@ import OrderForm from "./orders/OrderForm";
 
 // import background from "./assets/img/diner.png"
 
+
 function App() {
   const domain = /https:\/\/[^/]+/;
   const basename = process.env.PUBLIC_URL.replace(domain, "");

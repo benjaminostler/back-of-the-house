@@ -33,4 +33,4 @@ Menu Items-Can send an item to a shopping cart
 
 Unit Test- Succesfully created a unit test for get_all (order_items)
 
-Edited Order_Items queries (fixed them so that they became functional)
+Edited Order_Items queries (fixed them so that they became functional) with the exception of a get_order_item_detail

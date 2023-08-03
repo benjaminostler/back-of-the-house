@@ -21,7 +21,6 @@ class OrderItemsOut(BaseModel):
 
 
 class OrderItemsRepository(BaseModel):
-
     def update(
         self,
         order_items_id: int,
@@ -36,7 +35,7 @@ class OrderItemsRepository(BaseModel):
                         SET
                             orders_id = %s,
                             menu_item_id = %s,
-                            quantity = %s,
+                            quantity = %s
                         WHERE id = %s
 
                         """,
@@ -47,8 +46,8 @@ class OrderItemsRepository(BaseModel):
                             order_items_id,
                         ]
                     )
-                    order_items.id = order_items_id
-                    return order_items
+                    old_data = order_items.dict()
+                    return OrderItemsOut(id=order_items_id, **old_data)
         except Exception as e:
             print(e)
             return {"message": "Could not update order items."}
@@ -62,75 +61,20 @@ class OrderItemsRepository(BaseModel):
                     FROM order_items
                     """
                 )
-
                 record = db.fetchall()
                 return self.record_to_all_order_items_out(record)
 
-    # def get_order_item_detail(self, order_items_id: int,) -> Optional[OrderItemsOut]:
-    #     try:
-    #         # connect the database
-    #         with pool.connection() as conn:
-    #             # get a cursor (something to run SQL with)
-    #             with conn.cursor() as db:
-    #                 db.execute(
-    #                     """
-    #                     SELECT id,
-    #                         orders_id,
-    #                         menu_item_id,
-    #                         quantity
-    #                     FROM order_items
-    #                     WHERE id = %s
-    #                     """,
-    #                     [order_items_id]
-
-    #                 )
-    #                 record = db.fetchone()
-    #                 print("get_order_item_detail",record)
-    #                 if record is None:
-    #                     return {"message": "Order not found"}
-    #                 return self.record_to_order_items_out(record)
-    #     except Exception as e:
-    #         print(e)
-    #
-    #
-    #        return {"message": "Could not get that order"}
-
-    # def get_order_item_detail(self, order_items_id: int):
-    #     with pool.connection() as conn:
-    #         with conn.cursor() as db:
-    #             db.execute(
-    #                 """
-    #                 SELECT * FROM order_items
-    #                 WHERE id = %s
-    #                 """,
-    #                 [order_items_id],
-    #             )
-    #             record = db.fetchone()
-    #             return self.record_to_order_items_out(record)
-    # def get_order_item_detail(self, order_items_id: int):
-    #  with pool.connection() as conn:
-    #     with conn.cursor() as db:
-    #         db.execute(
-    #             """
-    #             SELECT * FROM order_items
-    #             WHERE id = %s
-    #             """,
-    #             [order_items_id],
-    #         )
-    #         record = db.fetchone()
-    #         return self.record_to_order_items_out(record)
-
     def create(self, order_items: OrderItemsIn) -> OrderItemsOut:
         try:
-            # connect the database
             with pool.connection() as conn:
-                # get a cursor (something to run SQL with)
                 with conn.cursor() as db:
-                    # Run our INSERT statement
                     result = db.execute(
                         """
                         INSERT INTO order_items
                             (
+                            orders_id,
+                            menu_item_id,
+                            quantity
                             orders_id,
                             menu_item_id,
                             quantity
@@ -160,6 +104,7 @@ class OrderItemsRepository(BaseModel):
                         DELETE FROM order_items
                         WHERE id = %s
                         """,
+                        [orders_item_id],
                         [orders_item_id],
                     )
             return True
