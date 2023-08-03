@@ -7,7 +7,7 @@ const AccountDetail = ({ accountData }) => {
         <div className="user-table shadow p-3">
           <h3>Your Account Details</h3>
 
-          <div>
+          <div id="accdetails" className="shadow p-4 mt-4">
             <p>Username: {accountData && accountData.username}</p>
             <p>Email: {accountData && accountData.email}</p>
             <p>First Name: {accountData && accountData.first_name}</p>
@@ -17,12 +17,9 @@ const AccountDetail = ({ accountData }) => {
 
           <div>
             <Link to="/editmyaccount">
-              <button className="button">
-                Edit Account Information
-              </button>
+              <button className="button">Edit Account Information</button>
             </Link>
           </div>
-
         </div>
       </div>
     </div>

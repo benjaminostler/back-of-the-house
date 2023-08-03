@@ -3,28 +3,11 @@ import { Modal, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 function ReservationList() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [reservations, setReservations] = useState([]);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [reservationToDelete, setReservationToDelete] = useState(null);
-  // const [accounts, setAccounts] = useState()
-  // console.log(accounts)
-  // const currentAccount = async () => {
-  //   const url = `${process.env.REACT_APP_API_HOST}/token`;
-  //   const response = await fetch(url, {
-  //       credentials: "include",
-  //       method: "get",
-  //   });
-  //   if(response.ok) {
-  //       const data = await response.json();
-  //       setAccounts(data.account.id)
-  //   }
-  // }
 
-  // useEffect(() => {
-  //   currentAccount()
-  // }, [])
-  
   const fetchData = async () => {
     const url = `${process.env.REACT_APP_API_HOST}/reservations`;
     const response = await fetch(url);
@@ -78,12 +61,12 @@ function ReservationList() {
     };
     const response = await fetch(reservationURL, fetchConfig);
     if (response.ok) {
-      navigate(`/reservations/${id}`)
+      navigate(`/reservations/${id}`);
     }
   };
 
   return (
-    <div>
+    <div className="shadow p-4 mt-4">
       <h1 className="mt-3 mb-3 p-0">Reservations</h1>
       <table className="table table-striped">
         <thead>
@@ -109,12 +92,12 @@ function ReservationList() {
                 <td>{reservation.date}</td>
                 <td>{reservation.time}</td>
                 <td>
-                    <button
-                      onClick={(e) => EditReservation(reservation.id)}
-                      className="btn btn-secondary m-2"
-                    >
-                      Edit
-                    </button>
+                  <button
+                    onClick={(e) => EditReservation(reservation.id)}
+                    className="btn btn-secondary m-2"
+                  >
+                    Edit
+                  </button>
                 </td>
                 <td>
                   <button

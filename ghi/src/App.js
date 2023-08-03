@@ -27,7 +27,6 @@ import OrderForm from "./orders/OrderForm";
 
 // import background from "./assets/img/diner.png"
 
-
 function App() {
   const domain = /https:\/\/[^/]+/;
   const basename = process.env.PUBLIC_URL.replace(domain, "");
@@ -57,11 +56,11 @@ function App() {
 
           <div
             className="container"
-          //   style={{
-          //     backgroundImage: `url(${background})`,
-          //     backgroundRepeat: 'no-repeat',
-          //     width: "100%"
-          //  }}
+            //   style={{
+            //     backgroundImage: `url(${background})`,
+            //     backgroundRepeat: 'no-repeat',
+            //     width: "100%"
+            //  }}
           >
             <Routes>
               <Route path="/" element={<MainPage />} />
@@ -86,7 +85,6 @@ function App() {
               />
               <Route path="/reservations/new" element={<ReservationForm />} />
               <Route path="/reservations" element={<ReservationList />} />
-              {/* <Route path="/reservations/:id" element={<ReservationDetail />} /> */}
 
               <Route path="/menu_items">
                 <Route index element={<Menu menuItems={menuItems} />} />
