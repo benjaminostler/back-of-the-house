@@ -54,7 +54,6 @@ function UpdateAccount() {
       <h5 className="card-header">Update your Account</h5>
       <div className="card-body">
         <form onSubmit={handleSubmit} id="account-update-form">
-
           <div className="mb-3">
             <label className="form-label">First Name</label>
             <input
@@ -110,7 +109,6 @@ function UpdateAccount() {
           <div>
             <input className="btn btn-primary" type="submit" value="Update" />
           </div>
-
         </form>
       </div>
     </div>

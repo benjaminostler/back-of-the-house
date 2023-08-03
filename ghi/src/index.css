@@ -1,4 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fontdiner+Swanky&display=swap');
+#navlogo {
+  /* font-family: 'Bungee Spice', cursive; */
+  font-family: 'Fontdiner Swanky', cursive;
+}
+
+nav {
+  background-color:darkred;
+}
+
+#accdetails {
+  background-color: azure;
+}
+
 body {
+  background-image: url("./assets/img/diner_bg.jpg");
+  background-repeat: no-repeat;
+  background-size:cover;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -7,6 +25,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
 }
+
+h1, h3, h4 {
+  color: white;
+}
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

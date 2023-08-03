@@ -57,11 +57,11 @@ function App() {
 
           <div
             className="container"
-          //   style={{
-          //     backgroundImage: `url(${background})`,
-          //     backgroundRepeat: 'no-repeat',
-          //     width: "100%"
-          //  }}
+            //   style={{
+            //     backgroundImage: `url(${background})`,
+            //     backgroundRepeat: 'no-repeat',
+            //     width: "100%"
+            //  }}
           >
             <Routes>
               <Route path="/" element={<MainPage />} />

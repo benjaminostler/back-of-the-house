@@ -19,7 +19,6 @@ export default function Reservation() {
     fetchReservationData();
   }, [fetchReservationData]); // Include 'fetchReservationData' as a dependency
 
-
   return (
     <div>
       <h1 className="mt-3 mb-3 p-0">Reservations</h1>

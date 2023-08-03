@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import calendar from "../assets/lottie_files/calendar.json";
+import Lottie from "lottie-react";
 
 function ReservationForm() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const handleFirstNameChange = (event) => {
     const value = event.target.value;
@@ -38,24 +40,24 @@ function ReservationForm() {
     const value = event.target.value;
     setTime(value);
   };
-  
-  const [accounts, setAccounts] = useState()
+
+  const [accounts, setAccounts] = useState();
 
   const currentAccount = async () => {
     const url = `${process.env.REACT_APP_API_HOST}/token`;
     const response = await fetch(url, {
-        credentials: "include",
-        method: "get",
+      credentials: "include",
+      method: "get",
     });
-    if(response.ok) {
-        const data = await response.json();
-        setAccounts(data.account.id)
+    if (response.ok) {
+      const data = await response.json();
+      setAccounts(data.account.id);
     }
-  }
+  };
 
   useEffect(() => {
-    currentAccount()
-  }, [])
+    currentAccount();
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -91,60 +93,115 @@ function ReservationForm() {
       setPartySize("");
       setDate("");
       setTime("");
-      navigate("/reservations")
+      navigate("/reservations");
     }
-
   };
 
-    return (
-        <div className="row">
-            <div className="offset-3 col-6">
-                <div className="shadow p-4 mt-4">
-                    <h1>Create a Reservation</h1>
-                    <form onSubmit={handleSubmit} id="create-reservation-form">
-                        <div className="form-floating mb-3">                       
-                            <input onChange={handleFirstNameChange} placeholder="First Name" required type="text" name="first_name" id="first_name" className="form-control"/>
-                            <label htmlFor="first_name">First Name:</label>     
-                        </div>
-                        <div className="form-floating mb-3">                          
-                            <input onChange={handleLastNameChange} placeholder="Last Name" required type="text" name="last_name" id="last_name" className="form-control"/>
-                            <label htmlFor="last_name">Last Name:</label>                              
-                        </div>
-                        <div className="form-floating mb-3">                            
-                            <input onChange={handleEmailChange} placeholder="Email" required type="text" name="email" id="email" className="form-control"/>
-                            <label htmlFor="email">Email:</label>
-                        </div>
-                        <div className="form-floating mb-3">                            
-                            <input onChange={handlePhoneNumberChange} placeholder="Phone Number" required type="text" name="phone_number" id="phone_number" className="form-control"/>
-                            <label htmlFor="phone_number">Phone Number:</label>
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="party_size">Party Size:  </label>                                                               
-                            <select onChange={handlePartySizeChange}>
-                                {
-                                    [...Array(20)].map((_, i) => i + 1)
-                                                  .map(i => <option key={i} value={i}>{i}</option>)
-                                }
-                            </select>
-                        </div>
-                        <div className="form-floating mb-3">                         
-                            <input value={date} onChange={handleDateChange} placeholder="Date" required type="date" name="date" id="date" className="form-control" />
-                            <label htmlFor="date">Date:</label>
-                        </div>
-                        <div className="form-floating mb-3">                    
-                            <input value={time} onChange={handleTimeChange} placeholder="Time" required type="time" name="time" id="time" className="form-control" />
-                            <label htmlFor="time">Time:</label>
-                        </div>                                     
-                        <button type="submit" className="btn btn-outline-primary">
-                            Create
-                        </button>                        
-                    </form>
-                </div>
-            </div>
+  return (
+    <div class="container">
+      <div class="row">
+        <div className="col-7">
+          <div className="shadow p-4 mt-4">
+            <h1>Create a Reservation</h1>
+            <form onSubmit={handleSubmit} id="create-reservation-form">
+              <div className="form-floating mb-3">
+                <input
+                  onChange={handleFirstNameChange}
+                  placeholder="First Name"
+                  required
+                  type="text"
+                  name="first_name"
+                  id="first_name"
+                  className="form-control"
+                />
+                <label htmlFor="first_name">First Name:</label>
+              </div>
+              <div className="form-floating mb-3">
+                <input
+                  onChange={handleLastNameChange}
+                  placeholder="Last Name"
+                  required
+                  type="text"
+                  name="last_name"
+                  id="last_name"
+                  className="form-control"
+                />
+                <label htmlFor="last_name">Last Name:</label>
+              </div>
+              <div className="form-floating mb-3">
+                <input
+                  onChange={handleEmailChange}
+                  placeholder="Email"
+                  required
+                  type="text"
+                  name="email"
+                  id="email"
+                  className="form-control"
+                />
+                <label htmlFor="email">Email:</label>
+              </div>
+              <div className="form-floating mb-3">
+                <input
+                  onChange={handlePhoneNumberChange}
+                  placeholder="Phone Number"
+                  required
+                  type="text"
+                  name="phone_number"
+                  id="phone_number"
+                  className="form-control"
+                />
+                <label htmlFor="phone_number">Phone Number:</label>
+              </div>
+              <div className="mb-3">
+                <label htmlFor="party_size">Party Size: </label>
+                <select onChange={handlePartySizeChange}>
+                  {[...Array(20)]
+                    .map((_, i) => i + 1)
+                    .map((i) => (
+                      <option key={i} value={i}>
+                        {i}
+                      </option>
+                    ))}
+                </select>
+              </div>
+              <div className="form-floating mb-3">
+                <input
+                  value={date}
+                  onChange={handleDateChange}
+                  placeholder="Date"
+                  required
+                  type="date"
+                  name="date"
+                  id="date"
+                  className="form-control"
+                />
+                <label htmlFor="date">Date:</label>
+              </div>
+              <div className="form-floating mb-3">
+                <input
+                  value={time}
+                  onChange={handleTimeChange}
+                  placeholder="Time"
+                  required
+                  type="time"
+                  name="time"
+                  id="time"
+                  className="form-control"
+                />
+                <label htmlFor="time">Time:</label>
+              </div>
+              <button type="submit" className="btn btn-outline-primary">
+                Create
+              </button>
+            </form>
+          </div>
         </div>
-    )
+        <div className="col-5">
+          <Lottie animationData={calendar} />
+        </div>
+      </div>
+    </div>
+  );
 }
 
-
-
-export default ReservationForm
+export default ReservationForm;

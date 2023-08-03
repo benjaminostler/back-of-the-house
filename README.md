@@ -36,7 +36,8 @@ docker compose up
 
 7. Visit [http://localhost:3000](http://localhost:3000) in your browser.
 
-Welcome to Pip's diner!
+Wire-Frames: https://excalidraw.com/#room=ae01c103655b963a3799,6v_wKfT6C2fzkKNNqbYXkQ
+FastAPI: https://mar-2-pt-fastrapi.mod3projects.com/docs
 
 ## Deliverables
 
