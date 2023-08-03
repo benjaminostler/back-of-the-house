@@ -28,7 +28,8 @@ export default function LoginPage() {
       });
       if (response.ok) {
         const data = await response.json();
-        const { id, first_name, last_name, username, email, phone_number } = data.account;
+        const { id, first_name, last_name, username, email, phone_number } =
+          data.account;
         setAccountData({
           id,
           first_name,
@@ -66,7 +67,8 @@ export default function LoginPage() {
               name="username"
               type="text"
               className="form-control"
-              onChange={(e) => setUsername(e.target.value)} required
+              onChange={(e) => setUsername(e.target.value)}
+              required
             />
           </div>
 
@@ -76,7 +78,8 @@ export default function LoginPage() {
               name="password"
               type="password"
               className="form-control"
-              onChange={(e) => setPassword(e.target.value)} required
+              onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
 

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import takingnotes from "../assets/lottie_files/taking_notes.json";
+import Lottie from "lottie-react";
 
 export default function OrderForm() {
   const [accountId, setAccountId] = useState("");
@@ -44,9 +46,12 @@ export default function OrderForm() {
   };
 
   return (
-    <>
+    <div className="container">
       <div className="row">
-        <div className="offset-3 col-6">
+        <div className="col-5">
+          <Lottie animationData={takingnotes} />
+        </div>
+        <div className="col-7">
           <div className="shadow p-4 mt-4">
             <h1>Create an Order</h1>
             <form onSubmit={handleSubmit} id="create-order-form">
@@ -96,6 +101,6 @@ export default function OrderForm() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

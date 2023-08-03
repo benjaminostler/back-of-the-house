@@ -7,6 +7,8 @@ import {
   enterQuantity,
   removeItem,
 } from "./features/cart/CartSlice";
+import cartanim from "./assets/lottie_files/shopping_cart.json";
+import Lottie from "lottie-react";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -59,51 +61,59 @@ const Cart = () => {
   };
 
   return (
-    <div>
-      <h1>Cart</h1>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Qty</th>
-            <th>Price</th>
-            <th>+1/-1 Enter Qty</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cart.map((item) => (
-            <tr key={item.id}>
-              <td>{item.name}</td>
-              <td>{item.quantity}</td>
-              <td>${item.price}</td>
-              <td>
-                <button onClick={() => handleIncrementQuantity(item.id)}>
-                  +
-                </button>
-                <button onClick={() => handleDecrementQuantity(item.id)}>
-                  -
-                </button>
-                <input
-                  type="number"
-                  min="1"
-                  defaultValue={1}
-                  onChange={(e) =>
-                    handleEnterQuantity(item.id, parseInt(e.target.value))
-                  }
-                />
-              </td>
-              <td>
-                <button onClick={() => handleRemoveItem(item.id)}>
-                  Remove
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <h4>Sub-total:${calculateSubTotal()}</h4>
-      <h3 className="strong">Total: ${calculateTotalPrice()}</h3>
+    <div className="container">
+      <div className="row">
+        <div className="col-4" style={{ "background-color": "black" }}>
+          <Lottie animationData={cartanim} />
+        </div>
+        <div className="col-8">
+          <h1>Cart</h1>
+          <div className="shadow p-4 mt-4">
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Qty</th>
+                  <th>Price</th>
+                  <th>+1/-1 Enter Qty</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cart.map((item) => (
+                  <tr key={item.id}>
+                    <td>{item.name}</td>
+                    <td>{item.quantity}</td>
+                    <td>${item.price}</td>
+                    <td>
+                      <button onClick={() => handleIncrementQuantity(item.id)}>
+                        +
+                      </button>
+                      <button onClick={() => handleDecrementQuantity(item.id)}>
+                        -
+                      </button>
+                      <input
+                        type="number"
+                        min="1"
+                        defaultValue={1}
+                        onChange={(e) =>
+                          handleEnterQuantity(item.id, parseInt(e.target.value))
+                        }
+                      />
+                    </td>
+                    <td>
+                      <button onClick={() => handleRemoveItem(item.id)}>
+                        Remove
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <h4>Sub-total:${calculateSubTotal()}</h4>
+            <h3 className="strong">Total: ${calculateTotalPrice()}</h3>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

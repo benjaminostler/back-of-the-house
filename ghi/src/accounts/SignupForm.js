@@ -100,9 +100,12 @@ const SignupForm = () => {
           </div>
 
           <div>
-            <input className="btn btn-primary" type="submit" value="Register and Login" />
+            <input
+              className="btn btn-primary"
+              type="submit"
+              value="Register and Login"
+            />
           </div>
-
         </form>
       </div>
     </div>

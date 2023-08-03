@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
+import "./index.css";
 
 function Nav() {
   const { token, logout } = useToken();
@@ -27,9 +28,9 @@ function Nav() {
   console.log("Token:", token);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-success">
+    <nav className="navbar navbar-expand-lg navbar-dark">
       <div className="container-fluid">
-        <NavLink className="navbar-brand" to="/">
+        <NavLink className="navbar-brand" id="navlogo" to="/">
           Back of the House
         </NavLink>
 
@@ -169,13 +170,6 @@ function Nav() {
                   to="/"
                 >
                   Logout
-                </NavLink>
-              </li>
-            )}
-            {token && (
-              <li className="nav-item">
-                <NavLink className="nav-link" to="menu_items/new">
-                  Create Menu Item
                 </NavLink>
               </li>
             )}
