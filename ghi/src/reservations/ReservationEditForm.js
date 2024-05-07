@@ -114,10 +114,10 @@ function EditReservationForm({ reservationId }) {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-4">
-          <Lottie animationData={edit_note} />
-        </div>
         <div className="offset-3 col-6 shadow p-4 mt-4">
+          {/* <div className="col-2">
+            <Lottie animationData={edit_note} />
+          </div> */}
           <h1>Edit a Reservation</h1>
           <form onSubmit={handleSubmit} id="create-reservation-form">
             <div className="form-floating mb-3">

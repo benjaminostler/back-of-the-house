@@ -8,8 +8,8 @@ import Nav from "./Nav.js";
 
 import SignupForm from "./accounts/SignupForm.js";
 import LoginForm from "./accounts/LoginForm.js";
-import UpdateAccount from "./accounts/UpdateAccount";
-import AccountDetails from "./accounts/AccountDetail.js";
+// import UpdateAccount from "./accounts/UpdateAccount";
+// import AccountDetails from "./accounts/AccountDetail.js";
 
 import ReservationForm from "./reservations/ReservationForm.js";
 import ReservationList from "./reservations/ReservationList.js";
@@ -26,7 +26,7 @@ import OrderHistory from "./orders/OrderHistory";
 import OrderForm from "./orders/OrderForm";
 
 // import background from "./assets/img/diner.png"
-
+import "./index.css";
 
 function App() {
   const domain = /https:\/\/[^/]+/;
@@ -48,33 +48,26 @@ function App() {
   useEffect(() => {
     getMenuItems();
   }, []);
-
+  
   return (
     <AccountContext.Provider value={{ accountData, setAccountData }}>
       <BrowserRouter basename={basename}>
         <AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
           <Nav accountData={accountData} />
 
-          <div
-            className="container"
-            //   style={{
-            //     backgroundImage: `url(${background})`,
-            //     backgroundRepeat: 'no-repeat',
-            //     width: "100%"
-            //  }}
-          >
+          <div className="container">
             <Routes>
               <Route path="/" element={<MainPage />} />
               <Route path="/signup" element={<SignupForm />} />
               <Route path="/loginform" element={<LoginForm />} />
-              <Route
+              {/* <Route
                 path="/myaccount"
                 element={<AccountDetails accountData={accountData} />}
               />
               <Route
                 path="/editmyaccount"
                 element={<UpdateAccount accountData={accountData} />}
-              />
+              /> */}
 
               <Route path="/cart" element={<Cart />} />
 

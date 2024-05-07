@@ -30,17 +30,20 @@ export default function MenuItemDetail() {
     <>
       {selectedmenuItem ? (
         <div>
-          <table>
+          <table className="notepadbg">
             <tbody>
               <tr>
-                <td>{selectedmenuItem.name}</td>
+                <td><h1>{selectedmenuItem.name}</h1></td>
+              </tr>
+              <tr>
+                <td></td>
               </tr>
               <tr>
                 <td>
                   <img
                     className="img-thumbail"
                     alt={selectedmenuItem.description}
-                    width="200px"
+                    width="auto"
                     height="200px"
                     src={selectedmenuItem.picture_url}
                   />

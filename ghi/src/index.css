@@ -30,13 +30,49 @@ h1, h3, h4 {
   color: white;
 }
 
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
+/* table {
+  background-color: wheat;
+  
+} */
+
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  background-color: #f4e6b9;
+  padding: 20px;
+}
+
 #video {
   position:relative;
   width: 100%;
+}
+
+.notepadbg {
+  background-image: url("./assets/img/notepadbg2.PNG");
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.whiteboardbg {
+  background-image: url("./assets/img/whiteboard-bg-portrait.PNG");
+  background-size: cover;
+
+}
+
+.menubg {
+  background-image: url("./assets/img/menu-bg.jpg");
+  background-size: cover;
 }

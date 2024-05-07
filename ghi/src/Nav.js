@@ -6,7 +6,6 @@ import "./index.css";
 function Nav() {
   const { token, logout } = useToken();
   const [showLogin, setShowLogin] = useState(true);
-  console.log(token);
 
   // added to pass es linter
   console.log(showLogin);
@@ -25,7 +24,7 @@ function Nav() {
     }
   }, [token]);
 
-  console.log("Token:", token);
+  // console.log("Token:", token);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark">
@@ -152,13 +151,13 @@ function Nav() {
               </>
             )}
 
-            {token && (
+            {/* {token && (
               <li className="nav-item">
                 <NavLink className="nav-link active" to="/myaccount">
                   My Account
                 </NavLink>
               </li>
-            )}
+            )} */}
 
             {/* Show links if the user is logged in */}
             {token && (

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import calendar from "../assets/lottie_files/calendar.json";
 import Lottie from "lottie-react";
-
+import "../index.css";
 function ReservationForm() {
   const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
@@ -98,8 +98,8 @@ function ReservationForm() {
   };
 
   return (
-    <div class="container">
-      <div class="row">
+    <div className="container">
+      <div className="row">
         <div className="col-7">
           <div className="shadow p-4 mt-4">
             <h1>Create a Reservation</h1>

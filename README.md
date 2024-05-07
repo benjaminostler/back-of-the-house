@@ -1,4 +1,4 @@
-# Module3 Project Gamma
+# Back of the House Restaurant App
 
 ## About our Project
 
@@ -10,7 +10,7 @@ Our project is aimed towards small to medium sized restaurant owners looking for
 
 2. Clone the repository to your local machine.
 
-3. Change directory to the new project directory.
+3. Change directory to the new project directory. (cd gastronomical-gems)
 
 4. Install [Docker](https://www.docker.com/products/docker-desktop/).
 
@@ -34,7 +34,8 @@ DOCKER_DEFAULT_PLATFORM=linux/amd64 docker compose build
 docker compose up
 ```
 
-7. Visit [http://localhost:3000](http://localhost:3000) in your browser.
+7. When you see in the terminal "Webpack compiled Successfully", Visit [http://localhost:3000](http://localhost:3000) in your browser.
+
 
 Wire-Frames: https://excalidraw.com/#room=ae01c103655b963a3799,6v_wKfT6C2fzkKNNqbYXkQ
 FastAPI: https://mar-2-pt-fastrapi.mod3projects.com/docs

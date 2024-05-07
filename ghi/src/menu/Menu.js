@@ -7,6 +7,7 @@ import {
   enterQuantity,
 } from "../features/cart/CartSlice";
 
+
 export default function Menu({ menuItems }) {
   const dispatch = useDispatch();
 

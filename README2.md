@@ -1,10 +1,11 @@
-# Module3 Project Gamma
+# Back of the House Restaurant App
 
 ## Local Hosting
 - **Localhost Backend**: http://localhost:8000/docs
 - **Localhost Frontend**: http://localhost:3000
 
 ## Deployed / Production
+- ** NO LONGER DEPLOYED **
 - **Deployed Project** - https://backofthehouse.gitlab.io/gastronomical-gems
 - **Deployed Backend/OpenAPI** - https://mar-2-pt-fastrapi.mod3projects.com/docs#/
 

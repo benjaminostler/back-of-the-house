@@ -60,7 +60,10 @@ export default function MenuItemForm() {
         <div className="offset-3 col-6">
           <div className="shadow p-4 mt-4">
             <h1>Create a menu item</h1>
-            <form onSubmit={handleSubmit} id="create-menu-item-form">
+            <form
+              onSubmit={handleSubmit}
+              id="create-menu-item-form"
+            >
               <div className="form-floating mb-3">
                 <input
                   onChange={handleCategoryChange}
